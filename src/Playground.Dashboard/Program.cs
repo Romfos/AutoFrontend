@@ -16,6 +16,6 @@ internal static class Program
             .Query(demoStateService.GetUsers)
             .Command(demoStateService.AddUser)
             .Command(demoStateService.DeleteUser)
-            .Run(new DashboardApplication());
+            .Run(new DashboardApplication($"Playground.Dashboard CLR: {Environment.Version}"));
     }
 }
