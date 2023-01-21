@@ -2,11 +2,12 @@
 
   <PropertyGroup>
     <TargetFrameworks>net6.0-windows;net462</TargetFrameworks>
-    <UseWindowsForms>true</UseWindowsForms>
+    <OutputType>WinExe</OutputType>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AutoFrontend\AutoFrontend.csproj" />
+    <ProjectReference Include="..\AutoFrontend.Themes.Monitor\AutoFrontend.Themes.Monitor.csproj" />
   </ItemGroup>
 
 </Project>
