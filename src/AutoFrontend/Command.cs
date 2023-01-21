@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace AutoFrontend;
 
@@ -13,4 +13,3 @@ public sealed class Command
         Delegate = @delegate;
     }
 }
-
