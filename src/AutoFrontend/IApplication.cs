@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using AutoFrontend.Models;
 
 namespace AutoFrontend;
 
 public interface IApplication
 {
-    void Run(IEnumerable<Query> queries, IEnumerable<Command> commands);
+    void Run(ApplicationModel applicationModel);
 }

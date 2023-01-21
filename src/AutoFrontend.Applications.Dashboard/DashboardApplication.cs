@@ -12,7 +12,7 @@ public sealed class DashboardApplication : IApplication
         this.title = title;
     }
 
-    public void Run(IEnumerable<Query> queries, IEnumerable<Command> commands)
+    public void Run(AutoFrontendModel applicationModel)
     {
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);

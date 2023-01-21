@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using AutoFrontend.Models;
 
 namespace AutoFrontend;
 
@@ -22,6 +23,7 @@ public sealed class AutoFrontendBuilder
 
     public void Run(IApplication application)
     {
-        application.Run(queries, commands);
+        var applicationModel = new ApplicationModel(queries, commands);
+        application.Run(applicationModel);
     }
 }

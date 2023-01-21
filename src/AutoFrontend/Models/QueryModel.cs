@@ -1,6 +1,6 @@
 using System;
 
-namespace AutoFrontend;
+namespace AutoFrontend.Models;
 
 public sealed class Query
 {
