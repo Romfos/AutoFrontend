@@ -12,6 +12,8 @@ public sealed class DashboardApplication : IApplication
 #if NET6_0_OR_GREATER
         Application.SetHighDpiMode(HighDpiMode.SystemAware);
 #endif
-        Application.Run();
+        var dashboardForm = new DashboardForm();
+
+        Application.Run(dashboardForm);
     }
 }
