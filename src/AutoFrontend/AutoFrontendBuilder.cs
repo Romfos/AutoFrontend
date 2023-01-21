@@ -21,7 +21,7 @@ public sealed class AutoFrontendBuilder
         return this;
     }
 
-    public void Run(IApplicationRuntime application)
+    public void Run(IApplication application)
     {
         var applicationModel = new ApplicationModel(queries, commands);
         application.Run(applicationModel);
