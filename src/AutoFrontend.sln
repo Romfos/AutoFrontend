@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{4133860F-FC76-4BBF-9CD5-05A2295B1B4A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Themes", "Themes", "{FB7A6218-9056-4587-A4B2-32E9E1907F37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFrontend.Themes.Monitor", "AutoFrontend.Themes.Monitor\AutoFrontend.Themes.Monitor.csproj", "{1587EE51-6F4C-4E45-85C3-C94DBE9C93BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{F1387777-22C5-43B3-9DC8-25BD25D259F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1387777-22C5-43B3-9DC8-25BD25D259F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1387777-22C5-43B3-9DC8-25BD25D259F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1587EE51-6F4C-4E45-85C3-C94DBE9C93BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1587EE51-6F4C-4E45-85C3-C94DBE9C93BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1587EE51-6F4C-4E45-85C3-C94DBE9C93BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1587EE51-6F4C-4E45-85C3-C94DBE9C93BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{934E1655-EA9B-4CE9-99FD-A4482027B8B3} = {56D977FE-195D-40C8-BB1E-E8A4F44321FD}
 		{F1387777-22C5-43B3-9DC8-25BD25D259F3} = {56D977FE-195D-40C8-BB1E-E8A4F44321FD}
+		{1587EE51-6F4C-4E45-85C3-C94DBE9C93BB} = {FB7A6218-9056-4587-A4B2-32E9E1907F37}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C60227E-5450-4FD5-A72B-F2F424BAE756}
