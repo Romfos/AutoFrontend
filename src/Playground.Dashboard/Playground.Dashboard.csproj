@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AutoFrontend.Themes.Monitor\AutoFrontend.Themes.Monitor.csproj" />
+    <ProjectReference Include="..\AutoFrontend.Applications.Dashboard\AutoFrontend.Applications.Dashboard.csproj" />
+    <ProjectReference Include="..\Playground\Playground.csproj" />
   </ItemGroup>
 
 </Project>
