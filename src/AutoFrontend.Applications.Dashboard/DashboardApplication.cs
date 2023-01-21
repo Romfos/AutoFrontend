@@ -4,7 +4,7 @@ using AutoFrontend.Models;
 
 namespace AutoFrontend.Applications.Dashboard;
 
-public sealed class DashboardApplication : IApplication
+public sealed class DashboardApplication : IApplicationRuntime
 {
     private readonly string title;
 
