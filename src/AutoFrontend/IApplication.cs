@@ -3,7 +3,7 @@ using AutoFrontend.Models;
 
 namespace AutoFrontend;
 
-public interface IApplicationRuntime
+public interface IApplication
 {
     void Run(ApplicationModel applicationModel);
 }
