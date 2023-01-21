@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
+using AutoFrontend.Models;
 
 namespace AutoFrontend.Applications.Dashboard;
 
@@ -12,7 +13,7 @@ public sealed class DashboardApplication : IApplication
         this.title = title;
     }
 
-    public void Run(AutoFrontendModel applicationModel)
+    public void Run(ApplicationModel applicationModel)
     {
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
