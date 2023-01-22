@@ -1,6 +1,6 @@
 ﻿namespace AutoFrontend.WindowsForms.Controls;
 
-partial class FunctionFrontend
+partial class FunctionControl
 {
     /// <summary> 
     /// Required designer variable.

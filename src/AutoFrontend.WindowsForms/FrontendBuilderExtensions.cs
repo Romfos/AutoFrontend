@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace AutoFrontend.WindowsForms;
 
-public static class AutoFrontendBuilderExtensions
+public static class FrontendBuilderExtensions
 {
     public static void RunWindowsFormsApplication(this FrontendBuilder autoFrontendBuilder)
     {

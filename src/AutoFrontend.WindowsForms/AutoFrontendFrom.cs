@@ -1,5 +1,6 @@
 using AutoFrontend.Models;
 using AutoFrontend.WindowsForms.Controls;
+using AutoFrontend.WindowsForms.Services;
 using System.Windows.Forms;
 
 namespace AutoFrontend.WindowsForms;
@@ -13,6 +14,8 @@ public partial class AutoFrontendFrom : Form
 
     public void SetFrontend(Frontend frontend)
     {
+        var componentFactroy = new ComponentFactroy(frontend.Components);
+
         foreach (var service in frontend.Services)
         {
             var tabPage = new TabPage(service.Name);
@@ -20,8 +23,8 @@ public partial class AutoFrontendFrom : Form
 
             foreach (var function in service.Functions)
             {
-                var functionFrontend = new FunctionFrontend();
-                functionFrontend.SetFunction(function, frontend.Components);
+                var functionFrontend = new FunctionControl();
+                functionFrontend.SetFunction(function, componentFactroy);
                 flowLayoutPanel.Controls.Add(functionFrontend);
             }
 
