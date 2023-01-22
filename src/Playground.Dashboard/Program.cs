@@ -1,5 +1,5 @@
-using AutoFrontend;
-using AutoFrontend.Applications.Dashboard;
+using AutoFrontend.Builders;
+using AutoFrontend.WindowsForms;
 using Playground.Services;
 using System;
 
@@ -12,10 +12,13 @@ internal static class Program
     {
         var demoStateService = new UserService();
 
-        new AutoFrontendBuilder()
-            .Query(demoStateService.GetUsers)
-            .Command(demoStateService.AddUser)
-            .Command(demoStateService.DeleteUser)
-            .Run(new DashboardApplication($"Playground.Dashboard CLR: {Environment.Version}"));
+        var autoFrontendBuilder = new AutoFrontendBuilder();
+
+        var usersService = autoFrontendBuilder.Service("Users");
+        usersService.Action(demoStateService.GetUsers);
+        usersService.Action(demoStateService.AddUser);
+        usersService.Action(demoStateService.DeleteUser);
+
+        autoFrontendBuilder.RunWindowsFormsApplication();
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace AutoFrontend.Applications.Dashboard;
+﻿namespace AutoFrontend.WindowsForms;
 
-partial class DashboardForm
+partial class AutoFrontendFrom
 {
     /// <summary>
     /// Required designer variable.
@@ -28,18 +28,10 @@ partial class DashboardForm
     /// </summary>
     private void InitializeComponent()
     {
-			this.SuspendLayout();
-			// 
-			// DashboardForm
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Name = "DashboardForm";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "DashboardForm";
-			this.ResumeLayout(false);
-
+        this.components = new System.ComponentModel.Container();
+        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        this.ClientSize = new System.Drawing.Size(800, 450);
+        this.Text = "AutoFrontendFrom";
     }
 
     #endregion

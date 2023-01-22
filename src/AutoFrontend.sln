@@ -15,13 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Playground", "Playground", "{4133860F-FC76-4BBF-9CD5-05A2295B1B4A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{378D87C5-5FD0-409A-B0E7-12A136B712EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Playground", "Playground\Playground.csproj", "{B47B0361-A101-4430-BA71-BBA904CDE9FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Playground.csproj", "{B47B0361-A101-4430-BA71-BBA904CDE9FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Playground.Dashboard", "Playground.Dashboard\Playground.Dashboard.csproj", "{44288874-7686-4624-939E-A83D4EDA7446}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground.Dashboard", "Playground.Dashboard\Playground.Dashboard.csproj", "{44288874-7686-4624-939E-A83D4EDA7446}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFrontend.Applications.Dashboard", "AutoFrontend.Applications.Dashboard\AutoFrontend.Applications.Dashboard.csproj", "{3C78CA77-339A-45D5-B58E-A0F38C3DABAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFrontend.WindowsForms", "AutoFrontend.WindowsForms\AutoFrontend.WindowsForms.csproj", "{25692874-5CDA-4FFC-B7AB-AC15B5380B73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,10 @@ Global
 		{44288874-7686-4624-939E-A83D4EDA7446}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44288874-7686-4624-939E-A83D4EDA7446}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44288874-7686-4624-939E-A83D4EDA7446}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C78CA77-339A-45D5-B58E-A0F38C3DABAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C78CA77-339A-45D5-B58E-A0F38C3DABAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C78CA77-339A-45D5-B58E-A0F38C3DABAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C78CA77-339A-45D5-B58E-A0F38C3DABAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25692874-5CDA-4FFC-B7AB-AC15B5380B73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25692874-5CDA-4FFC-B7AB-AC15B5380B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25692874-5CDA-4FFC-B7AB-AC15B5380B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25692874-5CDA-4FFC-B7AB-AC15B5380B73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,7 +51,7 @@ Global
 		{934E1655-EA9B-4CE9-99FD-A4482027B8B3} = {56D977FE-195D-40C8-BB1E-E8A4F44321FD}
 		{B47B0361-A101-4430-BA71-BBA904CDE9FC} = {4133860F-FC76-4BBF-9CD5-05A2295B1B4A}
 		{44288874-7686-4624-939E-A83D4EDA7446} = {4133860F-FC76-4BBF-9CD5-05A2295B1B4A}
-		{3C78CA77-339A-45D5-B58E-A0F38C3DABAA} = {378D87C5-5FD0-409A-B0E7-12A136B712EF}
+		{25692874-5CDA-4FFC-B7AB-AC15B5380B73} = {56D977FE-195D-40C8-BB1E-E8A4F44321FD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C60227E-5450-4FD5-A72B-F2F424BAE756}
