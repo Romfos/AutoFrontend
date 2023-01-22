@@ -1,4 +1,4 @@
-﻿namespace AutoFrontend.WindowsForms;
+namespace AutoFrontend.WindowsForms;
 
 partial class AutoFrontendFrom
 {
@@ -28,10 +28,18 @@ partial class AutoFrontendFrom
     /// </summary>
     private void InitializeComponent()
     {
-        this.components = new System.ComponentModel.Container();
-        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(800, 450);
-        this.Text = "AutoFrontendFrom";
+			this.SuspendLayout();
+			// 
+			// AutoFrontendFrom
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(828, 476);
+			this.Name = "AutoFrontendFrom";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Text = "AutoFrontendFrom";
+			this.ResumeLayout(false);
+
     }
 
     #endregion
