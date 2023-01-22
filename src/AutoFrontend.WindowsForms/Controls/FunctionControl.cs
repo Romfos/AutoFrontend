@@ -17,16 +17,14 @@ public partial class FunctionControl : UserControl
 
         var button = new Button
         {
-            Text = function.Name,
-            Dock = DockStyle.Top
+            Text = function.Name
         };
-        groupBox.Controls.Add(button);
+        flowLayoutPanel.Controls.Add(button);
 
         foreach (var parameterInfo in function.MethodInfo.GetParameters())
         {
             var control = componentFactroy.Create(parameterInfo.ParameterType);
-            control.Dock = DockStyle.Top;
-            groupBox.Controls.Add(control);
+            flowLayoutPanel.Controls.Add(control);
         }
     }
 }

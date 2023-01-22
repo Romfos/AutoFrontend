@@ -29,27 +29,43 @@ partial class FunctionControl
     private void InitializeComponent()
     {
 			this.groupBox = new System.Windows.Forms.GroupBox();
+			this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+			this.groupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox
 			// 
 			this.groupBox.AutoSize = true;
+			this.groupBox.Controls.Add(this.flowLayoutPanel);
 			this.groupBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox.Location = new System.Drawing.Point(0, 0);
 			this.groupBox.Name = "groupBox";
-			this.groupBox.Size = new System.Drawing.Size(279, 238);
+			this.groupBox.Size = new System.Drawing.Size(236, 207);
 			this.groupBox.TabIndex = 0;
 			this.groupBox.TabStop = false;
 			this.groupBox.Text = "groupBox1";
+			// 
+			// flowLayoutPanel
+			// 
+			this.flowLayoutPanel.AutoSize = true;
+			this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+			this.flowLayoutPanel.Location = new System.Drawing.Point(3, 19);
+			this.flowLayoutPanel.Name = "flowLayoutPanel";
+			this.flowLayoutPanel.Size = new System.Drawing.Size(230, 185);
+			this.flowLayoutPanel.TabIndex = 0;
+			this.flowLayoutPanel.WrapContents = false;
 			// 
 			// FunctionControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.AutoScroll = true;
+			this.AutoSize = true;
 			this.Controls.Add(this.groupBox);
 			this.Name = "FunctionControl";
-			this.Size = new System.Drawing.Size(279, 238);
+			this.Size = new System.Drawing.Size(236, 207);
+			this.groupBox.ResumeLayout(false);
+			this.groupBox.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -58,4 +74,5 @@ partial class FunctionControl
     #endregion
 
     private System.Windows.Forms.GroupBox groupBox;
+    private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
 }
