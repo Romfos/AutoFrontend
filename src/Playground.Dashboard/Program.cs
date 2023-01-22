@@ -13,12 +13,7 @@ internal static class Program
         var demoStateService = new UserService();
 
         var autoFrontendBuilder = new AutoFrontendBuilder();
-
-        var usersService = autoFrontendBuilder.Service("Users");
-        usersService.Action(demoStateService.GetUsers);
-        usersService.Action(demoStateService.AddUser);
-        usersService.Action(demoStateService.DeleteUser);
-
+        autoFrontendBuilder.Service(demoStateService);
         autoFrontendBuilder.RunWindowsFormsApplication();
     }
 }

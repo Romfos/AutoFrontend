@@ -1,4 +1,5 @@
 using AutoFrontend.Models;
+using System.Reflection;
 
 namespace AutoFrontend.Builders;
 
@@ -16,5 +17,17 @@ public sealed class AutoFrontendBuilder
         var serviceModel = new ServiceModel(name);
         autoFrontendModel.Services.Add(serviceModel);
         return new ServiceBuilder(serviceModel);
+    }
+
+    public ServiceBuilder Service(object service)
+    {
+        var type = service.GetType();
+        var serviceBuilder = Service(type.Name);
+        var bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly;
+        foreach (var method in type.GetMethods(bindingFlags))
+        {
+            serviceBuilder.Action(service, method);
+        }
+        return serviceBuilder;
     }
 }

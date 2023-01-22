@@ -1,15 +1,22 @@
-using System;
+using System.Reflection;
 
 namespace AutoFrontend.Models;
 
 public sealed class ActionModel
 {
-    public Delegate Delegate { get; }
+    public object? Target { get; }
+    public MethodInfo MethodInfo { get; }
     public string Name { get; set; }
 
-    public ActionModel(Delegate @delegate)
+    public ActionModel(object? target, MethodInfo methodInfo)
     {
-        Name = @delegate.Method.Name;
-        Delegate = @delegate;
+        Target = target;
+        MethodInfo = methodInfo;
+        Name = methodInfo.Name;
+    }
+
+    public override string ToString()
+    {
+        return $"Action: {Name}";
     }
 }

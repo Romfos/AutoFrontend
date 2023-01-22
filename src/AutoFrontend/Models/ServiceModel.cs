@@ -12,4 +12,9 @@ public sealed class ServiceModel
         Name = name;
         Actions = new();
     }
+
+    public override string ToString()
+    {
+        return $"Service: {Name}";
+    }
 }
