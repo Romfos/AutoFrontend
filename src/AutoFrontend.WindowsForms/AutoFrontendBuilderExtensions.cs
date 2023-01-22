@@ -5,7 +5,7 @@ namespace AutoFrontend.WindowsForms;
 
 public static class AutoFrontendBuilderExtensions
 {
-    public static void RunWindowsFormsApplication(this ApplicationBuilder autoFrontendBuilder)
+    public static void RunWindowsFormsApplication(this FrontendBuilder autoFrontendBuilder)
     {
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
@@ -14,8 +14,8 @@ public static class AutoFrontendBuilderExtensions
 #endif
 
         var autoFrontendFrom = new AutoFrontendFrom();
-        var autoFrontendModel = autoFrontendBuilder.ToAutoFrontendModel();
-        autoFrontendFrom.SetAutoFrontendModel(autoFrontendModel);
+        var frontend = autoFrontendBuilder.ToFrontend();
+        autoFrontendFrom.SetFrontend(frontend);
         Application.Run(autoFrontendFrom);
     }
 }

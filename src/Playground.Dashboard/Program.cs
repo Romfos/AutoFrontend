@@ -12,7 +12,7 @@ internal static class Program
     {
         var demoStateService = new UserService();
 
-        var applicationBuilder = new ApplicationBuilder();
+        var applicationBuilder = new FrontendBuilder();
         applicationBuilder.Service(demoStateService);
         applicationBuilder.RunWindowsFormsApplication();
     }

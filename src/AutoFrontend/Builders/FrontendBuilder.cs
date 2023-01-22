@@ -3,19 +3,19 @@ using System.Reflection;
 
 namespace AutoFrontend.Builders;
 
-public sealed class ApplicationBuilder
+public sealed class FrontendBuilder
 {
-    private readonly Application application = new();
+    private readonly Frontend frontend = new();
 
-    public Application ToAutoFrontendModel()
+    public Frontend ToFrontend()
     {
-        return application;
+        return frontend;
     }
 
     public ServiceBuilder Service(string name)
     {
         var service = new Service(name);
-        application.Services.Add(service);
+        frontend.Services.Add(service);
         return new ServiceBuilder(service);
     }
 
@@ -36,7 +36,7 @@ public sealed class ApplicationBuilder
     public ComponentBuilder Component<TComponent, TValue>()
     {
         var component = new Component(typeof(TComponent), typeof(TValue));
-        application.Components.Add(component);
+        frontend.Components.Add(component);
         return new ComponentBuilder(component);
     }
 }
