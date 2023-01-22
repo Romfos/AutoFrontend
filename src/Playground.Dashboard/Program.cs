@@ -12,8 +12,8 @@ internal static class Program
     {
         var demoStateService = new UserService();
 
-        var autoFrontendBuilder = new AutoFrontendBuilder();
-        autoFrontendBuilder.Service(demoStateService);
-        autoFrontendBuilder.RunWindowsFormsApplication();
+        var applicationBuilder = new ApplicationBuilder();
+        applicationBuilder.Service(demoStateService);
+        applicationBuilder.RunWindowsFormsApplication();
     }
 }

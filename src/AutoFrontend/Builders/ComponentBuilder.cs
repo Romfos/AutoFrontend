@@ -4,10 +4,10 @@ namespace AutoFrontend.Builders;
 
 public sealed class ComponentBuilder
 {
-    private readonly ComponentModel componentModel;
+    private readonly Component component;
 
-    public ComponentBuilder(ComponentModel componentModel)
+    public ComponentBuilder(Component component)
     {
-        this.componentModel = componentModel;
+        this.component = component;
     }
 }

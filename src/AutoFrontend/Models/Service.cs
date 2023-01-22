@@ -2,12 +2,12 @@ using System.Collections.Generic;
 
 namespace AutoFrontend.Models;
 
-public sealed class ServiceModel
+public sealed class Service
 {
     public string Name { get; }
-    public List<ActionModel> Actions { get; } = new();
+    public List<Function> Functions { get; } = new();
 
-    public ServiceModel(string name)
+    public Service(string name)
     {
         Name = name;
     }

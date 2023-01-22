@@ -2,12 +2,12 @@ using System;
 
 namespace AutoFrontend.Models;
 
-public sealed class ComponentModel
+public sealed class Component
 {
     public Type ComponentType { get; }
     public Type ValueType { get; }
 
-    public ComponentModel(Type componentType, Type valueType)
+    public Component(Type componentType, Type valueType)
     {
         ComponentType = componentType;
         ValueType = valueType;

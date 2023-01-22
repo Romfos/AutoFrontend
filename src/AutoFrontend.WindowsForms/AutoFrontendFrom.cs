@@ -10,14 +10,14 @@ public partial class AutoFrontendFrom : Form
         InitializeComponent();
     }
 
-    public void SetAutoFrontendModel(AutoFrontendModel autoFrontendModel)
+    public void SetAutoFrontendModel(Models.Application autoFrontendModel)
     {
         foreach (var service in autoFrontendModel.Services)
         {
             var tabPage = new TabPage(service.Name);
             var flowLayoutPanel = new FlowLayoutPanel();
 
-            foreach (var action in service.Actions)
+            foreach (var action in service.Functions)
             {
                 flowLayoutPanel.Controls.Add(new Button() { Text = action.Name });
             }

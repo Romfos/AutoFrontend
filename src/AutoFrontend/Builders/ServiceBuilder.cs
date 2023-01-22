@@ -6,24 +6,24 @@ namespace AutoFrontend.Builders;
 
 public sealed class ServiceBuilder
 {
-    private readonly ServiceModel serviceModel;
+    private readonly Service service;
 
-    public ServiceBuilder(ServiceModel serviceModel)
+    public ServiceBuilder(Service service)
     {
-        this.serviceModel = serviceModel;
+        this.service = service;
     }
 
-    public ActionBuilder Action(Delegate @delegate)
+    public FunctionBuilder Function(Delegate @delegate)
     {
-        var actionModel = new ActionModel(@delegate.Target, @delegate.Method);
-        serviceModel.Actions.Add(actionModel);
-        return new ActionBuilder(actionModel);
+        var function = new Function(@delegate.Target, @delegate.Method);
+        service.Functions.Add(function);
+        return new FunctionBuilder(function);
     }
 
-    public ActionBuilder Action(object target, MethodInfo methodInfo)
+    public FunctionBuilder Function(object target, MethodInfo methodInfo)
     {
-        var actionModel = new ActionModel(target, methodInfo);
-        serviceModel.Actions.Add(actionModel);
-        return new ActionBuilder(actionModel);
+        var function = new Function(target, methodInfo);
+        service.Functions.Add(function);
+        return new FunctionBuilder(function);
     }
 }
