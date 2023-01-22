@@ -12,9 +12,9 @@ public sealed class UserService
         return users;
     }
 
-    public void AddUser(User user)
+    public void AddUser(string name, int age)
     {
-        users.Add(user);
+        users.Add(new User(name, age));
     }
 
     public void DeleteUser(string name)

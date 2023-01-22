@@ -2,21 +2,20 @@ using AutoFrontend.Models;
 using AutoFrontend.WindowsForms.Controls;
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace AutoFrontend.WindowsForms.Services;
 
-internal sealed class ComponentFactroy
+public sealed class ComponentFactroy
 {
-    private readonly ImmutableArray<Component> components;
+    private readonly List<Component> components;
 
     public ComponentFactroy(List<Component> components)
     {
         this.components = GetDefaultComponents()
             .Select(defaultComponent => components.Find(x => x.ValueType == x.ValueType) ?? defaultComponent)
-            .ToImmutableArray();
+            .ToList();
     }
 
     public Control Create(Type valueType)
@@ -36,5 +35,6 @@ internal sealed class ComponentFactroy
     private IEnumerable<Component> GetDefaultComponents()
     {
         yield return new Component(typeof(StringDefaultControl), typeof(string));
+        yield return new Component(typeof(Int32DefaultControl), typeof(int));
     }
 }

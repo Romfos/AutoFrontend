@@ -19,7 +19,14 @@ public partial class AutoFrontendFrom : Form
         foreach (var service in frontend.Services)
         {
             var tabPage = new TabPage(service.Name);
-            var flowLayoutPanel = new FlowLayoutPanel();
+            tabs.TabPages.Add(tabPage);
+
+            var flowLayoutPanel = new FlowLayoutPanel()
+            {
+                Dock = DockStyle.Fill,
+                AutoScroll = true
+            };
+            tabPage.Controls.Add(flowLayoutPanel);
 
             foreach (var function in service.Functions)
             {
@@ -27,9 +34,6 @@ public partial class AutoFrontendFrom : Form
                 functionFrontend.SetFunction(function, componentFactroy);
                 flowLayoutPanel.Controls.Add(functionFrontend);
             }
-
-            tabPage.Controls.Add(flowLayoutPanel);
-            tabs.TabPages.Add(tabPage);
         }
     }
 }
