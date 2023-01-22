@@ -30,4 +30,11 @@ public sealed class AutoFrontendBuilder
         }
         return serviceBuilder;
     }
+
+    public ComponentBuilder Component<TComponent, TValue>()
+    {
+        var componentModel = new ComponentModel(typeof(TComponent), typeof(TValue));
+        autoFrontendModel.Components.Add(componentModel);
+        return new ComponentBuilder(componentModel);
+    }
 }
