@@ -11,9 +11,4 @@ public sealed class ServiceModel
     {
         Name = name;
     }
-
-    public override string ToString()
-    {
-        return $"Service: {Name}";
-    }
 }
