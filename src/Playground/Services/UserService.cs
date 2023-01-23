@@ -7,9 +7,9 @@ public sealed class UserService
 {
     private readonly List<User> users = new();
 
-    public IEnumerable<User> GetUsers()
+    public int GetUsers()
     {
-        return users;
+        return users.Count;
     }
 
     public void AddUser(string name, int age)

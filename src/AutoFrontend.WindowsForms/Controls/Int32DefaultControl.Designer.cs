@@ -28,22 +28,22 @@ partial class Int32DefaultControl
     /// </summary>
     private void InitializeComponent()
     {
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.groupBox = new System.Windows.Forms.GroupBox();
 			this.numericUpDown = new System.Windows.Forms.NumericUpDown();
-			this.groupBox1.SuspendLayout();
+			this.groupBox.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// groupBox1
+			// groupBox
 			// 
-			this.groupBox1.Controls.Add(this.numericUpDown);
-			this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.groupBox1.Location = new System.Drawing.Point(0, 0);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(250, 50);
-			this.groupBox1.TabIndex = 0;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "field name";
+			this.groupBox.Controls.Add(this.numericUpDown);
+			this.groupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.groupBox.Location = new System.Drawing.Point(0, 0);
+			this.groupBox.Name = "groupBox";
+			this.groupBox.Size = new System.Drawing.Size(250, 50);
+			this.groupBox.TabIndex = 0;
+			this.groupBox.TabStop = false;
+			this.groupBox.Text = "field name";
 			// 
 			// numericUpDown
 			// 
@@ -58,11 +58,11 @@ partial class Int32DefaultControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.groupBox);
 			this.MinimumSize = new System.Drawing.Size(250, 50);
 			this.Name = "Int32DefaultControl";
 			this.Size = new System.Drawing.Size(250, 50);
-			this.groupBox1.ResumeLayout(false);
+			this.groupBox.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
 			this.ResumeLayout(false);
 
@@ -70,6 +70,6 @@ partial class Int32DefaultControl
 
     #endregion
 
-    private System.Windows.Forms.GroupBox groupBox1;
+    private System.Windows.Forms.GroupBox groupBox;
     private System.Windows.Forms.NumericUpDown numericUpDown;
 }

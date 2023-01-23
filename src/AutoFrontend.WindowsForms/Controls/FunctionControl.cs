@@ -13,18 +13,28 @@ public partial class FunctionControl : UserControl
 
     public void SetFunction(Function function, ComponentFactroy componentFactroy)
     {
-        groupBox.Text = function.Name;
+        button.Text = function.Name;
 
-        foreach (var parameterInfo in function.MethodInfo.GetParameters())
+        foreach (var argument in function.Arguments)
         {
-            var control = componentFactroy.Create(parameterInfo.ParameterType);
-            flowLayoutPanel.Controls.Add(control);
+            var control = CreateArgumentControl(argument, componentFactroy);
+            argumentPanel.Controls.Add(control);
         }
 
-        var button = new Button
+        if (function.Result is not null)
         {
-            Text = function.Name
-        };
-        flowLayoutPanel.Controls.Add(button);
+            var control = CreateArgumentControl(function.Result, componentFactroy);
+            resultPanel.Controls.Add(control);
+        }
+    }
+
+    private Control CreateArgumentControl(Argument argument, ComponentFactroy componentFactroy)
+    {
+        var control = componentFactroy.Create(argument.ValueType);
+        if (control is IArgumentControl argumentControl)
+        {
+            argumentControl.Setup(argument);
+        }
+        return control;
     }
 }
