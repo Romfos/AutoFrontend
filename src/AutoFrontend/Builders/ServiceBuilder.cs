@@ -15,15 +15,25 @@ public sealed class ServiceBuilder
 
     public FunctionBuilder Function(Delegate @delegate)
     {
-        var function = new Function(@delegate.Target, @delegate.Method);
-        service.Functions.Add(function);
-        return new FunctionBuilder(function);
+        return Function(@delegate.Target, @delegate.Method);
     }
 
-    public FunctionBuilder Function(object target, MethodInfo methodInfo)
+    public FunctionBuilder Function(object? target, MethodInfo methodInfo)
     {
         var function = new Function(target, methodInfo);
+        var functionBuilder = new FunctionBuilder(function);
+
+        functionBuilder.Result(methodInfo.ReturnParameter.ParameterType);
+        foreach (var parameterInfo in methodInfo.GetParameters())
+        {
+            if (parameterInfo == null)
+            {
+                throw new Exception($"Unable to get parameter for {methodInfo.Name}");
+            }
+            functionBuilder.Argument(parameterInfo.Name, parameterInfo.ParameterType);
+        }
+
         service.Functions.Add(function);
-        return new FunctionBuilder(function);
+        return functionBuilder;
     }
 }

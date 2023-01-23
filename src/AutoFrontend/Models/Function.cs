@@ -9,8 +9,8 @@ public sealed class Function
     public MethodInfo MethodInfo { get; }
     public string Name { get; }
 
-    public List<Argument> Input { get; } = new();
-    public List<Argument> Output { get; } = new();
+    public List<Argument> Arguments { get; } = new();
+    public Argument? Result { get; set; }
 
     public Function(object? target, MethodInfo methodInfo)
     {
