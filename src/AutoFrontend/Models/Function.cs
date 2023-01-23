@@ -6,7 +6,7 @@ public sealed class Function
 {
     public object? Target { get; }
     public MethodInfo MethodInfo { get; }
-    public string Name { get; set; }
+    public string Name { get; }
 
     public Function(object? target, MethodInfo methodInfo)
     {
