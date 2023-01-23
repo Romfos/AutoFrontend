@@ -15,16 +15,16 @@ public partial class FunctionControl : UserControl
     {
         groupBox.Text = function.Name;
 
-        var button = new Button
-        {
-            Text = function.Name
-        };
-        flowLayoutPanel.Controls.Add(button);
-
         foreach (var parameterInfo in function.MethodInfo.GetParameters())
         {
             var control = componentFactroy.Create(parameterInfo.ParameterType);
             flowLayoutPanel.Controls.Add(control);
         }
+
+        var button = new Button
+        {
+            Text = function.Name
+        };
+        flowLayoutPanel.Controls.Add(button);
     }
 }

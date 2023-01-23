@@ -43,7 +43,7 @@ partial class FunctionControl
 			this.groupBox.Size = new System.Drawing.Size(236, 207);
 			this.groupBox.TabIndex = 0;
 			this.groupBox.TabStop = false;
-			this.groupBox.Text = "groupBox1";
+			this.groupBox.Text = "function name";
 			// 
 			// flowLayoutPanel
 			// 

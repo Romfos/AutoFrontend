@@ -29,30 +29,30 @@ partial class Int32DefaultControl
     private void InitializeComponent()
     {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.groupBox1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.numericUpDown1);
+			this.groupBox1.Controls.Add(this.numericUpDown);
 			this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox1.Location = new System.Drawing.Point(0, 0);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(250, 50);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "groupBox1";
+			this.groupBox1.Text = "field name";
 			// 
-			// numericUpDown1
+			// numericUpDown
 			// 
-			this.numericUpDown1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.numericUpDown1.Location = new System.Drawing.Point(3, 19);
-			this.numericUpDown1.MinimumSize = new System.Drawing.Size(244, 0);
-			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(244, 23);
-			this.numericUpDown1.TabIndex = 0;
+			this.numericUpDown.Dock = System.Windows.Forms.DockStyle.Top;
+			this.numericUpDown.Location = new System.Drawing.Point(3, 19);
+			this.numericUpDown.MinimumSize = new System.Drawing.Size(244, 0);
+			this.numericUpDown.Name = "numericUpDown";
+			this.numericUpDown.Size = new System.Drawing.Size(244, 23);
+			this.numericUpDown.TabIndex = 0;
 			// 
 			// Int32DefaultControl
 			// 
@@ -63,7 +63,7 @@ partial class Int32DefaultControl
 			this.Name = "Int32DefaultControl";
 			this.Size = new System.Drawing.Size(250, 50);
 			this.groupBox1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
 			this.ResumeLayout(false);
 
     }
@@ -71,5 +71,5 @@ partial class Int32DefaultControl
     #endregion
 
     private System.Windows.Forms.GroupBox groupBox1;
-    private System.Windows.Forms.NumericUpDown numericUpDown1;
+    private System.Windows.Forms.NumericUpDown numericUpDown;
 }

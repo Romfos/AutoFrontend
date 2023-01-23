@@ -42,7 +42,7 @@ partial class StringDefaultControl
 			this.groupBox.Size = new System.Drawing.Size(250, 50);
 			this.groupBox.TabIndex = 0;
 			this.groupBox.TabStop = false;
-			this.groupBox.Text = "groupBox1";
+			this.groupBox.Text = "field name";
 			// 
 			// textBox
 			// 
