@@ -46,7 +46,8 @@ partial class FunctionControl
 			this.tableLayoutPanel1.Controls.Add(this.resultPanel, 0, 2);
 			this.tableLayoutPanel1.Controls.Add(this.button, 0, 1);
 			this.tableLayoutPanel1.Controls.Add(this.argumentPanel, 0, 0);
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 22);
+			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 3;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -59,6 +60,7 @@ partial class FunctionControl
 			// 
 			this.resultPanel.AutoScroll = true;
 			this.resultPanel.AutoSize = true;
+			this.resultPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.resultPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.resultPanel.Location = new System.Drawing.Point(3, 44);
 			this.resultPanel.Name = "resultPanel";
@@ -93,9 +95,10 @@ partial class FunctionControl
 			this.groupBox1.AutoSize = true;
 			this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.groupBox1.Controls.Add(this.tableLayoutPanel1);
+			this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox1.Location = new System.Drawing.Point(0, 0);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(218, 91);
+			this.groupBox1.Size = new System.Drawing.Size(212, 69);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			// 
@@ -107,7 +110,7 @@ partial class FunctionControl
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.Controls.Add(this.groupBox1);
 			this.Name = "FunctionControl";
-			this.Size = new System.Drawing.Size(221, 94);
+			this.Size = new System.Drawing.Size(212, 69);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
