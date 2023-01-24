@@ -37,7 +37,6 @@ public partial class MainWindow : Window
                 Content = new ScrollViewer
                 {
                     VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-                    CanContentScroll = true,
                     Content = stackPanel
                 }
             });
