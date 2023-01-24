@@ -21,7 +21,7 @@ public sealed class FunctionBuilder
 
     public ArgumentBuilder Result(Type valueType)
     {
-        function.Result = new Argument(null, valueType);
+        function.Result = new Argument("Result", valueType);
         return new ArgumentBuilder(function.Result);
     }
 }

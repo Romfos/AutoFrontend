@@ -19,7 +19,7 @@ public partial class MainWindow : Window
 
         foreach (var service in frontend.Services)
         {
-            var stackPanel = new StackPanel
+            var wrapPanel = new WrapPanel
             {
                 VerticalAlignment = VerticalAlignment.Top,
             };
@@ -28,7 +28,7 @@ public partial class MainWindow : Window
             {
                 var functionControl = new FunctionControl();
                 functionControl.Setup(function, componentFactroy);
-                stackPanel.Children.Add(functionControl);
+                wrapPanel.Children.Add(functionControl);
             }
 
             tabs.Items.Add(new TabItem
@@ -37,7 +37,7 @@ public partial class MainWindow : Window
                 Content = new ScrollViewer
                 {
                     VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-                    Content = stackPanel
+                    Content = wrapPanel
                 }
             });
         }

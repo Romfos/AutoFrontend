@@ -7,6 +7,11 @@ public sealed class UserService
 {
     private readonly List<User> users = new();
 
+    public int Add(int x, int y)
+    {
+        return x + y;
+    }
+
     public int GetUsers()
     {
         return users.Count;

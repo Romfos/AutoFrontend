@@ -13,16 +13,19 @@ public partial class FunctionControl : UserControl
 
     public void Setup(Function function, ControlFactory controlFactory)
     {
+        groupBox.Header = function.Name;
         executeButton.Content = function.Name;
 
         foreach (var argument in function.Arguments)
         {
-            argumentStack.Children.Add(CreateArgumentControl(argument, controlFactory));
+            var control = CreateArgumentControl(argument, controlFactory);
+            argumentStack.Children.Add(control);
         }
 
         if (function.Result != null)
         {
-            resultStack.Children.Add(CreateArgumentControl(function.Result, controlFactory));
+            var control = CreateArgumentControl(function.Result, controlFactory);
+            resultStack.Children.Add(control);
         }
     }
 
@@ -32,6 +35,11 @@ public partial class FunctionControl : UserControl
         {
             return null;
         }
-        return controlFactory.Create(argument.ValueType);
+        var control = controlFactory.Create(argument.ValueType);
+        if (control is IArgumentControl argumentControl)
+        {
+            argumentControl.Setup(argument);
+        }
+        return control;
     }
 }
