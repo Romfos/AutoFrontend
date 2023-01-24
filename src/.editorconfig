@@ -110,3 +110,6 @@ dotnet_diagnostic.CA2248.severity=error
 dotnet_diagnostic.CA2211.severity=error
 dotnet_diagnostic.CA1021.severity=error
 dotnet_diagnostic.CA1852.severity=error
+
+[Program.cs]
+dotnet_diagnostic.CA1852.severity=none
