@@ -9,13 +9,12 @@
     <GroupBox x:Name="groupBox">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="35"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <StackPanel x:Name="argumentStack" Grid.Row="0"/>
+            <StackPanel x:Name="resultStack" Grid.Row="0" Visibility="Collapsed" />
             <Button x:Name="executeButton" Content="Execute" Grid.Row="1" Width="100" Height="30"/>
-            <StackPanel x:Name="resultStack" Grid.Row="2" Visibility="Collapsed"/>
         </Grid>
     </GroupBox>
 </UserControl>

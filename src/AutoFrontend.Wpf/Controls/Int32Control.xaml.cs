@@ -12,6 +12,6 @@ public partial class Int32Control : UserControl, IArgumentControl
 
     public void Setup(Argument argument)
     {
-        groupBox.Header = argument.Name;
+        label.Content = argument.Name;
     }
 }

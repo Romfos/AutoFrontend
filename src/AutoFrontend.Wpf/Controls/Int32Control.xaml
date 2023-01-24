@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d">
-    <GroupBox x:Name="groupBox" Header="ArgumentName">
+    <StackPanel>
+        <Label x:Name="label"></Label>
         <TextBox TextWrapping="NoWrap"/>
-    </GroupBox>
+    </StackPanel>
 </UserControl>
