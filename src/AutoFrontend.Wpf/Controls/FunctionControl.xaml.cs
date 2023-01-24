@@ -11,27 +11,27 @@ public partial class FunctionControl : UserControl
         InitializeComponent();
     }
 
-    public void Setup(Function function, ComponentFactroy componentFactroy)
+    public void Setup(Function function, ControlFactory controlFactory)
     {
         executeButton.Content = function.Name;
 
         foreach (var argument in function.Arguments)
         {
-            argumentStack.Children.Add(CreateArgumentControl(argument, componentFactroy));
+            argumentStack.Children.Add(CreateArgumentControl(argument, controlFactory));
         }
 
         if (function.Result != null)
         {
-            resultStack.Children.Add(CreateArgumentControl(function.Result, componentFactroy));
+            resultStack.Children.Add(CreateArgumentControl(function.Result, controlFactory));
         }
     }
 
-    private Control? CreateArgumentControl(Argument argument, ComponentFactroy componentFactroy)
+    private Control? CreateArgumentControl(Argument argument, ControlFactory controlFactory)
     {
         if (argument.ValueType == typeof(void))
         {
             return null;
         }
-        return componentFactroy.Create(argument.ValueType);
+        return controlFactory.Create(argument.ValueType);
     }
 }

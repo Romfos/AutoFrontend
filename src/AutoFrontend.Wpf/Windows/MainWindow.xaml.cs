@@ -15,7 +15,7 @@ public partial class MainWindow : Window
 
     public void Setup(Frontend frontend)
     {
-        var componentFactroy = new ComponentFactroy(frontend.Components);
+        var componentFactroy = new ControlFactory(frontend.Components);
 
         foreach (var service in frontend.Services)
         {

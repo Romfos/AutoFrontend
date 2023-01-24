@@ -7,11 +7,11 @@ using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Services;
 
-public sealed class ComponentFactroy
+public sealed class ControlFactory
 {
     private readonly List<Component> components;
 
-    public ComponentFactroy(List<Component> customComponents)
+    public ControlFactory(List<Component> customComponents)
     {
         components = GetDefaultComponents()
             .Select(defaultComponent => customComponents.Find(x => x.ValueType == x.ValueType) ?? defaultComponent)
@@ -27,7 +27,11 @@ public sealed class ComponentFactroy
         }
         if (Activator.CreateInstance(component.ComponentType) is not Control control)
         {
-            throw new Exception($"Component {component.ComponentType} should be windows forms control");
+            throw new Exception($"Component {component.ComponentType} should be wpf control");
+        }
+        if (control is not IArgumentControl)
+        {
+            throw new Exception($"Component {component.ComponentType} should implement {nameof(IArgumentControl)}");
         }
         return control;
     }
