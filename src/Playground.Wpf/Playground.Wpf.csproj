@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0-windows;net462</TargetFrameworks>
+    <OutputType>WinExe</OutputType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutoFrontend.Wpf\AutoFrontend.Wpf.csproj" />
+    <ProjectReference Include="..\Playground\Playground.csproj" />
+  </ItemGroup>
+
+</Project>
