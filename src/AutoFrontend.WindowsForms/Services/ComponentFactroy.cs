@@ -11,10 +11,10 @@ public sealed class ComponentFactroy
 {
     private readonly List<Component> components;
 
-    public ComponentFactroy(List<Component> components)
+    public ComponentFactroy(List<Component> customComponents)
     {
-        this.components = GetDefaultComponents()
-            .Select(defaultComponent => components.Find(x => x.ValueType == x.ValueType) ?? defaultComponent)
+        components = GetDefaultComponents()
+            .Select(defaultComponent => customComponents.Find(x => x.ValueType == x.ValueType) ?? defaultComponent)
             .ToList();
     }
 
