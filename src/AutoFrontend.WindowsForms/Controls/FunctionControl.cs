@@ -35,6 +35,7 @@ public partial class FunctionControl : UserControl
         {
             argumentControl.Setup(argument);
         }
+        control.Dock = DockStyle.Top;
         return control;
     }
 }

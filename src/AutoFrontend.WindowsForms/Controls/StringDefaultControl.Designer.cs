@@ -39,18 +39,23 @@ partial class StringDefaultControl
 			this.groupBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox.Location = new System.Drawing.Point(0, 0);
 			this.groupBox.Name = "groupBox";
-			this.groupBox.Size = new System.Drawing.Size(250, 50);
+			this.groupBox.Size = new System.Drawing.Size(286, 130);
 			this.groupBox.TabIndex = 0;
 			this.groupBox.TabStop = false;
 			this.groupBox.Text = "field name";
 			// 
 			// textBox
 			// 
-			this.textBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.textBox.AcceptsReturn = true;
+			this.textBox.AcceptsTab = true;
+			this.textBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.textBox.Location = new System.Drawing.Point(3, 19);
+			this.textBox.Multiline = true;
 			this.textBox.Name = "textBox";
-			this.textBox.Size = new System.Drawing.Size(244, 23);
+			this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox.Size = new System.Drawing.Size(280, 108);
 			this.textBox.TabIndex = 0;
+			this.textBox.Text = "hjkghjk";
 			// 
 			// StringDefaultControl
 			// 
@@ -58,7 +63,7 @@ partial class StringDefaultControl
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.groupBox);
 			this.Name = "StringDefaultControl";
-			this.Size = new System.Drawing.Size(250, 50);
+			this.Size = new System.Drawing.Size(286, 130);
 			this.groupBox.ResumeLayout(false);
 			this.groupBox.PerformLayout();
 			this.ResumeLayout(false);

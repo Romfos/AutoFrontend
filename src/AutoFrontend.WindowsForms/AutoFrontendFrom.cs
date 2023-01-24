@@ -18,21 +18,26 @@ public partial class AutoFrontendFrom : Form
 
         foreach (var service in frontend.Services)
         {
-            var tabPage = new TabPage(service.Name);
-            tabs.TabPages.Add(tabPage);
-
-            var flowLayoutPanel = new FlowLayoutPanel()
+            var tabPage = new TabPage(service.Name)
             {
-                Dock = DockStyle.Fill,
                 AutoScroll = true
             };
-            tabPage.Controls.Add(flowLayoutPanel);
+            tabs.TabPages.Add(tabPage);
+
+            var panel = new Panel()
+            {
+                Dock = DockStyle.Top,
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            };
+            tabPage.Controls.Add(panel);
 
             foreach (var function in service.Functions)
             {
                 var functionFrontend = new FunctionControl();
                 functionFrontend.SetFunction(function, componentFactroy);
-                flowLayoutPanel.Controls.Add(functionFrontend);
+                functionFrontend.Dock = DockStyle.Top;
+                panel.Controls.Add(functionFrontend);
             }
         }
     }
