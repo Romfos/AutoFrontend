@@ -18,12 +18,12 @@ public sealed class ControlFactory
             .ToList();
     }
 
-    public Control Create(Type valueType)
+    public Control? Create(Type valueType)
     {
         var component = components.SingleOrDefault(x => x.ValueType == valueType);
         if (component == null)
         {
-            throw new Exception($"Unable to resolve component for type {valueType.FullName}");
+            return new DefaultArgumentControl();
         }
         if (Activator.CreateInstance(component.ComponentType) is not Control control)
         {
@@ -38,7 +38,8 @@ public sealed class ControlFactory
 
     private IEnumerable<Component> GetDefaultComponents()
     {
-        yield return new Component(typeof(DefaultStringControl), typeof(string));
-        yield return new Component(typeof(DefaultInt32Control), typeof(int));
+        yield break;
+        //yield return new Component(typeof(DefaultStringControl), typeof(string));
+        //yield return new Component(typeof(DefaultInt32Control), typeof(int));
     }
 }

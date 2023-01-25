@@ -15,12 +15,12 @@ public partial class MainWindow : Window
 
     public void Setup(Frontend frontend)
     {
-        var controlFactory = new ControlFactory(frontend.Components);
+        var servcieLocator = new ServiceLocator(frontend);
 
         foreach (var service in frontend.Services)
         {
             var serviceControl = new ServiceControl();
-            serviceControl.Setup(service, controlFactory);
+            serviceControl.Setup(service, servcieLocator);
 
             tabs.Items.Add(new TabItem
             {

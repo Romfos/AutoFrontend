@@ -4,17 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="100"
-             Width="300">
+             d:DesignHeight="100" MinWidth="300">
     <GroupBox x:Name="groupBox">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="35"/>
-            </Grid.RowDefinitions>
-            <StackPanel x:Name="argumentStack" Grid.Row="0"/>
-            <StackPanel x:Name="resultStack" Grid.Row="0" Visibility="Collapsed" />
-            <Button x:Name="executeButton" Content="Execute" Grid.Row="1" Width="100" Height="30"/>
-        </Grid>
+        <StackPanel>
+            <StackPanel x:Name="argumentStack" />
+            <Button x:Name="executeButton" Content="Execute" Height="35" />
+            <StackPanel x:Name="resultStack" />
+        </StackPanel>
     </GroupBox>
 </UserControl>

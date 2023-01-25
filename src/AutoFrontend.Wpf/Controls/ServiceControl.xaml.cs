@@ -12,13 +12,13 @@ public partial class ServiceControl : UserControl
         InitializeComponent();
     }
 
-    public void Setup(Service service, ControlFactory controlFactory)
+    public void Setup(Service service, ServiceLocator servcieLocator)
     {
         foreach (var function in service.Functions)
         {
             var functionControl = new DefaultFunctionControl();
-            functionControl.Setup(function, controlFactory);
-            wrapPanel.Children.Add(functionControl);
+            functionControl.Setup(function, servcieLocator);
+            grid.Children.Add(functionControl);
         }
     }
 }
