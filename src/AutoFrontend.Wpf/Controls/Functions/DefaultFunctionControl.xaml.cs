@@ -1,12 +1,13 @@
 using AutoFrontend.Models;
+using AutoFrontend.Wpf.Controls.Arguments;
 using AutoFrontend.Wpf.Services;
 using System.Windows.Controls;
 
-namespace AutoFrontend.Wpf.Controls;
+namespace AutoFrontend.Wpf.Controls.Functions;
 
-public partial class FunctionControl : UserControl
+public partial class DefaultFunctionControl : UserControl
 {
-    public FunctionControl()
+    public DefaultFunctionControl()
     {
         InitializeComponent();
     }

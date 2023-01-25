@@ -1,11 +1,11 @@
 using AutoFrontend.Models;
 using System.Windows.Controls;
 
-namespace AutoFrontend.Wpf.Controls;
+namespace AutoFrontend.Wpf.Controls.Arguments;
 
-public partial class StringControl : UserControl, IArgumentControl
+public partial class DefaultStringControl : UserControl, IArgumentControl
 {
-    public StringControl()
+    public DefaultStringControl()
     {
         InitializeComponent();
     }

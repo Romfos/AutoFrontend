@@ -1,11 +1,11 @@
 using AutoFrontend.Models;
 using System.Windows.Controls;
 
-namespace AutoFrontend.Wpf.Controls;
+namespace AutoFrontend.Wpf.Controls.Arguments;
 
-public partial class Int32Control : UserControl, IArgumentControl
+public partial class DefaultInt32Control : UserControl, IArgumentControl
 {
-    public Int32Control()
+    public DefaultInt32Control()
     {
         InitializeComponent();
     }

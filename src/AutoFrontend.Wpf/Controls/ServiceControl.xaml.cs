@@ -1,4 +1,5 @@
 using AutoFrontend.Models;
+using AutoFrontend.Wpf.Controls.Functions;
 using AutoFrontend.Wpf.Services;
 using System.Windows.Controls;
 
@@ -13,6 +14,11 @@ public partial class ServiceControl : UserControl
 
     public void Setup(Service service, ControlFactory controlFactory)
     {
-
+        foreach (var function in service.Functions)
+        {
+            var functionControl = new DefaultFunctionControl();
+            functionControl.Setup(function, controlFactory);
+            wrapPanel.Children.Add(functionControl);
+        }
     }
 }

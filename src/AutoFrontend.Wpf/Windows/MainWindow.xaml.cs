@@ -15,30 +15,17 @@ public partial class MainWindow : Window
 
     public void Setup(Frontend frontend)
     {
-        var componentFactroy = new ControlFactory(frontend.Components);
+        var controlFactory = new ControlFactory(frontend.Components);
 
         foreach (var service in frontend.Services)
         {
-            var wrapPanel = new WrapPanel
-            {
-                VerticalAlignment = VerticalAlignment.Top,
-            };
-
-            foreach (var function in service.Functions)
-            {
-                var functionControl = new FunctionControl();
-                functionControl.Setup(function, componentFactroy);
-                wrapPanel.Children.Add(functionControl);
-            }
+            var serviceControl = new ServiceControl();
+            serviceControl.Setup(service, controlFactory);
 
             tabs.Items.Add(new TabItem
             {
                 Header = service.Name,
-                Content = new ScrollViewer
-                {
-                    VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-                    Content = wrapPanel
-                }
+                Content = serviceControl
             });
         }
     }

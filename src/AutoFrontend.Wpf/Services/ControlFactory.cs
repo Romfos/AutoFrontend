@@ -1,5 +1,5 @@
 using AutoFrontend.Models;
-using AutoFrontend.Wpf.Controls;
+using AutoFrontend.Wpf.Controls.Arguments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +38,7 @@ public sealed class ControlFactory
 
     private IEnumerable<Component> GetDefaultComponents()
     {
-        yield return new Component(typeof(StringControl), typeof(string));
-        yield return new Component(typeof(Int32Control), typeof(int));
+        yield return new Component(typeof(DefaultStringControl), typeof(string));
+        yield return new Component(typeof(DefaultInt32Control), typeof(int));
     }
 }

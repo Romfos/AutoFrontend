@@ -1,6 +1,6 @@
 using AutoFrontend.Models;
 
-namespace AutoFrontend.Wpf.Controls;
+namespace AutoFrontend.Wpf.Controls.Arguments;
 
 public interface IArgumentControl
 {
