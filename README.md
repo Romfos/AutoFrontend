@@ -15,7 +15,7 @@ Good approach to build new applciation is to **start from business logic and bui
 | Wpf        | .NET 6+ (Recomended) or .NET Framework 4.6.2+ | AutoFrontend.Wpf |
 
 ## How to use
-1) Create new empty projet for target technology
+1) Create new empty project for target technology
 2) Install nuget package AutoFrontend.* based on selected technology
 3) Create FrontendBuilder, register services, and run application. Example:
 
