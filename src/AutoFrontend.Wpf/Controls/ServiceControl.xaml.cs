@@ -18,7 +18,7 @@ public partial class ServiceControl : UserControl
         {
             var functionControl = new DefaultFunctionControl();
             functionControl.Setup(function, servcieLocator);
-            grid.Children.Add(functionControl);
+            wrapPanel.Children.Add(functionControl);
         }
     }
 }
