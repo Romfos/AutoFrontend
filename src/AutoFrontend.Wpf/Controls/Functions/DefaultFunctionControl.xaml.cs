@@ -1,12 +1,16 @@
 using AutoFrontend.Models;
 using AutoFrontend.Wpf.Controls.Arguments;
 using AutoFrontend.Wpf.Services;
+using System;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Functions;
 
 public partial class DefaultFunctionControl : UserControl
 {
+    private Function? function;
+
     public DefaultFunctionControl()
     {
         InitializeComponent();
@@ -14,6 +18,8 @@ public partial class DefaultFunctionControl : UserControl
 
     public void Configure(ServiceLocator servcieLocator, Function function)
     {
+        this.function = function;
+
         groupBox.Header = function.Name;
         executeButton.Content = function.Name;
 
@@ -42,5 +48,23 @@ public partial class DefaultFunctionControl : UserControl
             argumentControl.Configure(servcieLocator, argument, IsReadOnly);
         }
         return control;
+    }
+
+    private void Execute(object sender, System.Windows.RoutedEventArgs e)
+    {
+        if (function == null)
+        {
+            throw new Exception($"Field {function} is requried");
+        }
+
+        var parameters = argumentStack.Children.Cast<IArgumentControl>().Select(x => x.GetArgumentValue()).ToArray();
+        var result = function.MethodInfo.Invoke(function.Target, parameters);
+
+        if (function.Result == null)
+        {
+            return;
+        }
+
+        resultStack.Children.Cast<IArgumentControl>().Single().SetArgumentValue(result);
     }
 }

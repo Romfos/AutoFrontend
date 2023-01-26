@@ -7,7 +7,7 @@ public sealed class UserService
 {
     private readonly List<User> users = new();
 
-    public List<User> GetUsers(User user)
+    public List<User> GetUsers()
     {
         return users;
     }
