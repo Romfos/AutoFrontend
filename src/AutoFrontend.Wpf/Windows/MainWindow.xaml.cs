@@ -20,7 +20,7 @@ public partial class MainWindow : Window
         foreach (var service in frontend.Services)
         {
             var serviceControl = new ServiceControl();
-            serviceControl.Setup(service, servcieLocator);
+            serviceControl.Configure(servcieLocator, service);
 
             tabs.Items.Add(new TabItem
             {

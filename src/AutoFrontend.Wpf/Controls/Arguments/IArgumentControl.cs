@@ -5,5 +5,8 @@ namespace AutoFrontend.Wpf.Controls.Arguments;
 
 public interface IArgumentControl
 {
-    void Setup(Argument argument, ServiceLocator servcieLocator);
+    void Configure(ServiceLocator serviceLocator, Argument argument, bool isReadOnly);
+
+    void SetArgumentValue(object? value);
+    object? GetArgumentValue();
 }

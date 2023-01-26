@@ -12,25 +12,25 @@ public partial class DefaultFunctionControl : UserControl
         InitializeComponent();
     }
 
-    public void Setup(Function function, ServiceLocator servcieLocator)
+    public void Configure(ServiceLocator servcieLocator, Function function)
     {
         groupBox.Header = function.Name;
         executeButton.Content = function.Name;
 
         foreach (var argument in function.Arguments)
         {
-            var control = CreateArgumentControl(argument, servcieLocator);
+            var control = CreateArgumentControl(argument, servcieLocator, false);
             argumentStack.Children.Add(control);
         }
 
         if (function.Result != null)
         {
-            var control = CreateArgumentControl(function.Result, servcieLocator);
+            var control = CreateArgumentControl(function.Result, servcieLocator, true);
             resultStack.Children.Add(control);
         }
     }
 
-    private Control? CreateArgumentControl(Argument argument, ServiceLocator servcieLocator)
+    private Control? CreateArgumentControl(Argument argument, ServiceLocator servcieLocator, bool IsReadOnly)
     {
         if (argument.ValueType == typeof(void))
         {
@@ -39,7 +39,7 @@ public partial class DefaultFunctionControl : UserControl
         var control = servcieLocator.ControlFactory.Create(argument.ValueType);
         if (control is IArgumentControl argumentControl)
         {
-            argumentControl.Setup(argument, servcieLocator);
+            argumentControl.Configure(servcieLocator, argument, IsReadOnly);
         }
         return control;
     }
