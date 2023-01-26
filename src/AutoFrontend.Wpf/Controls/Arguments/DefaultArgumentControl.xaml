@@ -14,7 +14,7 @@
                 AcceptsReturn="True" 
                 AcceptsTab="True" 
                 MinHeight="50"/>
-            <Button Content="Random" Click="Button_Click"/>
+            <Button x:Name="randomButton" Content="Random" Click="Button_Click"/>
         </StackPanel>
     </GroupBox>
 </UserControl>
