@@ -24,8 +24,16 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
         this.serviceLocator = serviceLocator;
 
         label.Header = argument.Name;
-        textBox.IsReadOnly = isReadOnly;
-        SetRandomData();
+
+        if (isReadOnly)
+        {
+            textBox.IsReadOnly = true;
+            randomButton.IsEnabled = false;
+        }
+        else
+        {
+            SetRandomData();
+        }
     }
 
     public void SetArgumentValue(object? value)
@@ -37,7 +45,7 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
     {
         if (argument == null)
         {
-            throw new Exception("Argument is required");
+            throw new Exception($"Field {nameof(argument)} is required");
         }
         return JsonSerializer.Deserialize(textBox.Text, argument.ValueType);
     }
@@ -51,7 +59,7 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
     {
         if (argument == null || serviceLocator == null)
         {
-            return;
+            throw new Exception($"Fields {nameof(argument)}, {nameof(serviceLocator)} are required");
         }
         var fixture = serviceLocator.Fixture.Create(argument.ValueType);
         textBox.Text = JsonSerializer.Serialize(fixture, JsonSerializerOptions);
