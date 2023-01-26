@@ -38,7 +38,7 @@ internal class Program
         var customService = new CustomService(); //Get instance of your service somehow
 
         var applicationBuilder = new FrontendBuilder();
-        applicationBuilder.Service(demoStateService);
+        applicationBuilder.Service(customService);
         applicationBuilder.RunWpfpplication();
     }
 }
