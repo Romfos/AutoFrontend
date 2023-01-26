@@ -1,6 +1,6 @@
 # Owerview
 
-AutoFrontend is a framework for automatic builing UI applciations based on custom businees logic
+AutoFrontend is a framework for automaticaly builing UI applciations based on custom businees logic
 
 ## Why this framework could be useful for you?
 Some use cases:
