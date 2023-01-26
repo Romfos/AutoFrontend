@@ -17,7 +17,7 @@ Good approach to build new applciation is to **start from business logic and bui
 ## How to use
 1) Create new empty projet for target technology
 2) Install nuget package AutoFrontend.* based on selected technology
-3) Create FrontendBuilder, register services, and run applciation. Example:
+3) Create FrontendBuilder, register services, and run application. Example:
 
 ```csharp
 var applicationBuilder = new FrontendBuilder();
