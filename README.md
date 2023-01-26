@@ -20,7 +20,26 @@ Good approach to build new applciation is to **start from business logic and bui
 3) Create FrontendBuilder, register services, and run application. Example:
 
 ```csharp
-var applicationBuilder = new FrontendBuilder();
-applicationBuilder.Service(customService);
-applicationBuilder.RunWpfpplication();
+public class CustomService
+{
+  public int Add(int x, int y) => x + y;
+  
+  public int Substract(int x, int y) => x - y;
+}
+```
+
+Program.cs
+```csharp
+internal class Program
+{
+    [STAThread]
+    public static void Main()
+    {
+        var customService = new CustomService(); //Get instance of your service somehow
+
+        var applicationBuilder = new FrontendBuilder();
+        applicationBuilder.Service(demoStateService);
+        applicationBuilder.RunWpfpplication();
+    }
+}
 ```
