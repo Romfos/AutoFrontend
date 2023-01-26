@@ -5,9 +5,9 @@ namespace AutoFrontend.Wpf;
 
 public static class FrontendBuilderExtensions
 {
-    public static void RunWpfApplication(this FrontendBuilder autoFrontendBuilder)
+    public static void RunWpfApplication(this FrontendBuilder frontendBuilder)
     {
-        var frontend = autoFrontendBuilder.ToFrontend();
+        var frontend = frontendBuilder.ToFrontend();
         var mainWindow = new MainWindow();
         mainWindow.Setup(frontend);
         mainWindow.ShowDialog();
