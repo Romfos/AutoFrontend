@@ -7,4 +7,18 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Authors>Romfos</Authors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Description>Framework for automaticaly builing UI applications based on custom businees logic</Description>
+    <PackageTags>AutoFrontend Wpf</PackageTags>
+    <RepositoryUrl>https://github.com/Romfos/AutoFrontend</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\">
+      <Visible>false</Visible>
+    </None>
+  </ItemGroup>
+
 </Project>

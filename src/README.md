@@ -17,34 +17,6 @@ Some use cases:
 | ---------- | --------------------------------------------- | ----------------------------------------------- |
 | Wpf        | .NET 6+ (Recomended) or .NET Framework 4.6.2+ | https://www.nuget.org/packages/AutoFrontend.Wpf |
 
-## How to use
+## How to use and more info
 
-1. Create new empty project for target technology
-2. Install nuget package AutoFrontend.\* based on selected technology
-3. Create FrontendBuilder, register services, and run application. Example:
-
-```csharp
-public class CustomService
-{
-  public int Add(int x, int y) => x + y;
-
-  public int Substract(int x, int y) => x - y;
-}
-```
-
-Program.cs
-
-```csharp
-internal class Program
-{
-    [STAThread]
-    public static void Main()
-    {
-        var customService = new CustomService(); //Get instance of your service somehow
-
-        var applicationBuilder = new FrontendBuilder();
-        applicationBuilder.Service(customService);
-        applicationBuilder.RunWpfApplication();
-    }
-}
-```
+https://github.com/Romfos/AutoFrontend
