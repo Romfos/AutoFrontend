@@ -67,13 +67,5 @@ public partial class DefaultFunctionControl : UserControl
         }
 
         resultStack.Children.Cast<IArgumentControl>().Single().SetArgumentValue(result);
-        resultStack.Visibility = Visibility.Visible;
-        clearButton.IsEnabled = true;
-    }
-
-    private void Clear_Click(object sender, RoutedEventArgs e)
-    {
-        resultStack.Visibility = Visibility.Collapsed;
-        clearButton.IsEnabled = false;
     }
 }
