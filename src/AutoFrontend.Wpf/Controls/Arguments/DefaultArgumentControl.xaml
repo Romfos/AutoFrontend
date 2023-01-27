@@ -13,8 +13,13 @@
                 HorizontalScrollBarVisibility="Auto"
                 AcceptsReturn="True" 
                 AcceptsTab="True" 
-                MinHeight="50"/>
-            <Button x:Name="randomButton" Content="Random" Click="Button_Click"/>
+                MinHeight="50">
+                <TextBox.ContextMenu>
+                    <ContextMenu x:Name="contextMenu">
+                        <MenuItem Header="Generate random value" Click="GenerateRandomValue_Click"/>
+                    </ContextMenu>
+                </TextBox.ContextMenu>
+            </TextBox>
         </StackPanel>
     </GroupBox>
 </UserControl>

@@ -28,7 +28,7 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
         if (isReadOnly)
         {
             textBox.IsReadOnly = true;
-            randomButton.IsEnabled = false;
+            contextMenu.IsEnabled = false;
         }
         else
         {
@@ -50,11 +50,6 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
         return JsonSerializer.Deserialize(textBox.Text, argument.ValueType);
     }
 
-    private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-    {
-        SetRandomData();
-    }
-
     private void SetRandomData()
     {
         if (argument == null || serviceLocator == null)
@@ -63,5 +58,10 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
         }
         var fixture = serviceLocator.Fixture.Create(argument.ValueType);
         textBox.Text = JsonSerializer.Serialize(fixture, JsonSerializerOptions);
+    }
+
+    private void GenerateRandomValue_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        SetRandomData();
     }
 }
