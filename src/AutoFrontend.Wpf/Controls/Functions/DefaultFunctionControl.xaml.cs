@@ -3,6 +3,7 @@ using AutoFrontend.Wpf.Controls.Arguments;
 using AutoFrontend.Wpf.Services;
 using System;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Functions;
@@ -50,7 +51,7 @@ public partial class DefaultFunctionControl : UserControl
         return control;
     }
 
-    private void Execute(object sender, System.Windows.RoutedEventArgs e)
+    private void Execute(object sender, RoutedEventArgs e)
     {
         if (function == null)
         {
@@ -66,5 +67,13 @@ public partial class DefaultFunctionControl : UserControl
         }
 
         resultStack.Children.Cast<IArgumentControl>().Single().SetArgumentValue(result);
+        resultStack.Visibility = Visibility.Visible;
+        clearButton.IsEnabled = true;
+    }
+
+    private void Clear_Click(object sender, RoutedEventArgs e)
+    {
+        resultStack.Visibility = Visibility.Collapsed;
+        clearButton.IsEnabled = false;
     }
 }

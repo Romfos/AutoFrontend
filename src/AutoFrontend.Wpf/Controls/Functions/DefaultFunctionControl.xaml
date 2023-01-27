@@ -7,11 +7,14 @@
              d:DesignHeight="100" 
              Width="800"
              VerticalAlignment="Top">
-    <GroupBox x:Name="groupBox">
+    <GroupBox x:Name="groupBox" VerticalAlignment="Top">
         <StackPanel>
             <StackPanel x:Name="argumentStack" />
-            <Button x:Name="executeButton" Content="Execute" Height="30" Click="Execute" />
-            <StackPanel x:Name="resultStack" />
+            <UniformGrid Columns="2">
+                <Button x:Name="executeButton" Content="Execute" Height="30" Click="Execute" />
+                <Button x:Name="clearButton" Content="Clear" Height="30" IsEnabled="False" Click="Clear_Click" />
+            </UniformGrid>
+            <StackPanel x:Name="resultStack" Visibility="Collapsed" />
         </StackPanel>
     </GroupBox>
 </UserControl>
