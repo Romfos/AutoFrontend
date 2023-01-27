@@ -10,7 +10,7 @@
     <GroupBox x:Name="groupBox">
         <StackPanel>
             <StackPanel x:Name="argumentStack" />
-            <Button x:Name="executeButton" Content="Execute" Height="35" Click="Execute" />
+            <Button x:Name="executeButton" Content="Execute" Height="30" Click="Execute" />
             <StackPanel x:Name="resultStack" />
         </StackPanel>
     </GroupBox>
