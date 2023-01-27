@@ -13,7 +13,8 @@
                 HorizontalScrollBarVisibility="Auto"
                 AcceptsReturn="True" 
                 AcceptsTab="True" 
-                MinHeight="50">
+                MinHeight="50"
+                MaxHeight="500">
                 <TextBox.ContextMenu>
                     <ContextMenu x:Name="contextMenu">
                         <MenuItem Header="Generate random value" Click="GenerateRandomValue_Click"/>
