@@ -13,9 +13,9 @@ Some use cases:
 
 ## Supported platforms
 
-| Technology | Supported platforms                           | Nuget                                           |
-| ---------- | --------------------------------------------- | ----------------------------------------------- |
-| Wpf        | .NET 6+ (Recomended) or .NET Framework 4.6.2+ | https://www.nuget.org/packages/AutoFrontend.Wpf |
+| Technology | Supported platforms                           | Nuget                                                               |
+| ---------- | --------------------------------------------- | ------------------------------------------------------------------- |
+| Wpf        | .NET 6+ (Recomended) or .NET Framework 4.6.2+ | [AutoFrontend.Wpf](https://www.nuget.org/packages/AutoFrontend.Wpf) |
 
 ## How to use and more info
 
