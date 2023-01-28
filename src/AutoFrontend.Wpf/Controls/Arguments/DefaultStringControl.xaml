@@ -8,11 +8,10 @@
     <GroupBox x:Name="label">
         <StackPanel>
             <TextBox x:Name="textBox"
-                     VerticalScrollBarVisibility="Auto" 
+                     VerticalScrollBarVisibility="Disabled" 
                      HorizontalScrollBarVisibility="Auto"
                      AcceptsReturn="True" 
-                     AcceptsTab="True" 
-                     MaxHeight="500" />
+                     AcceptsTab="True" />
         </StackPanel>
     </GroupBox>
 </UserControl>

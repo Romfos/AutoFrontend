@@ -9,12 +9,11 @@
         <StackPanel>
             <TextBox 
                 x:Name="textBox"
-                VerticalScrollBarVisibility="Auto" 
+                VerticalScrollBarVisibility="Disabled" 
                 HorizontalScrollBarVisibility="Auto"
                 AcceptsReturn="True" 
                 AcceptsTab="True" 
-                MinHeight="50"
-                MaxHeight="500">
+                MinHeight="50">
                 <TextBox.ContextMenu>
                     <ContextMenu x:Name="contextMenu">
                         <MenuItem Header="Generate random value" Click="GenerateRandomValue_Click"/>
