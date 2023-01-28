@@ -38,6 +38,6 @@ public sealed class ControlFactory
 
     private IEnumerable<Component> GetDefaultComponents()
     {
-        yield break;
+        yield return new Component(typeof(DefaultStringControl), typeof(string));
     }
 }
