@@ -1,5 +1,4 @@
 using AutoFrontend.Models;
-using System;
 using System.Threading.Tasks;
 
 namespace AutoFrontend.Wpf.Services;
@@ -23,25 +22,18 @@ public sealed class FunctionExecutor
 
         if (function.Result.AwaitResultType == typeof(void))
         {
-            await Task.Run(async () =>
+            await Task.Run(() =>
             {
-                await Task.Delay(300);
                 function.MethodInfo.Invoke(function.Target, parameters);
             });
             return null;
         }
         else
         {
-            return await Task.Run(async () =>
+            return await Task.Run(() =>
             {
-                await Task.Delay(300);
                 return function.MethodInfo.Invoke(function.Target, parameters);
             });
         }
-    }
-
-    private bool IsAsyncMethod(Type returnType)
-    {
-        return returnType.GetMethod(nameof(Task.GetAwaiter)) != null;
     }
 }

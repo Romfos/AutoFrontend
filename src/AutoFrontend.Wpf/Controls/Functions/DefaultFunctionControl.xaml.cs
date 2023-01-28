@@ -3,6 +3,7 @@ using AutoFrontend.Wpf.Controls.Arguments;
 using AutoFrontend.Wpf.Services;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -74,11 +75,12 @@ public partial class DefaultFunctionControl : UserControl
 
         try
         {
-            var result = await serviceLocator.FunctionExecutor.ExecuteFunctionAsync(function, parameters);
+            var functionTask = serviceLocator.FunctionExecutor.ExecuteFunctionAsync(function, parameters);
+            await Task.Delay(300);
             if (function.Result.AwaitResultType != typeof(void))
             {
                 var resultArgumentControl = resultStack.Children.Cast<IArgumentControl>().Single();
-                resultArgumentControl.SetArgumentValue(result);
+                resultArgumentControl.SetArgumentValue(await functionTask);
                 resultStack.Visibility = Visibility.Visible;
             }
         }
