@@ -27,24 +27,28 @@ public partial class DefaultFunctionControl : UserControl
 
         foreach (var argument in function.Arguments)
         {
-            var control = CreateArgumentControl(argument, serviceLocator, false);
-            argumentStack.Children.Add(control);
+            var argumentControl = CreateArgumentControl(argument, serviceLocator, false);
+            argumentStack.Children.Add(argumentControl);
         }
 
-        if (function.Result != null)
+        if (function.Result == null)
         {
-            var control = CreateArgumentControl(function.Result, serviceLocator, true);
-            resultStack.Children.Add(control);
+            throw new Exception($"Function cannot be null");
+        }
+        var resultControl = CreateArgumentControl(function.Result, serviceLocator, true);
+        if (resultControl != null)
+        {
+            resultStack.Children.Add(resultControl);
         }
     }
 
     private Control? CreateArgumentControl(Argument argument, ServiceLocator servcieLocator, bool IsReadOnly)
     {
-        if (argument.ValueType == typeof(void))
+        if (argument.AwaitResultType == typeof(void))
         {
             return null;
         }
-        var control = servcieLocator.ControlFactory.Create(argument.ValueType);
+        var control = servcieLocator.ControlFactory.Create(argument.AwaitResultType);
         if (control is IArgumentControl argumentControl)
         {
             argumentControl.Configure(servcieLocator, argument, IsReadOnly);

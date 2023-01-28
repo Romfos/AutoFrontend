@@ -47,7 +47,7 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
         {
             throw new Exception($"Field {nameof(argument)} is required");
         }
-        return JsonSerializer.Deserialize(textBox.Text, argument.ValueType);
+        return JsonSerializer.Deserialize(textBox.Text, argument.AwaitResultType);
     }
 
     private void SetRandomData()
@@ -56,7 +56,7 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
         {
             throw new Exception($"Fields {nameof(argument)}, {nameof(serviceLocator)} are required");
         }
-        var fixture = serviceLocator.Fixture.Create(argument.ValueType);
+        var fixture = serviceLocator.Fixture.Create(argument.AwaitResultType);
         textBox.Text = JsonSerializer.Serialize(fixture, JsonSerializerOptions);
     }
 

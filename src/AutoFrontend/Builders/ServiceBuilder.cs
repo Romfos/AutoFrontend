@@ -23,10 +23,7 @@ public sealed class ServiceBuilder
         var function = new Function(target, methodInfo);
         var functionBuilder = new FunctionBuilder(function);
 
-        if (methodInfo.ReturnParameter.ParameterType != typeof(void))
-        {
-            functionBuilder.Result(methodInfo.ReturnParameter.ParameterType);
-        }
+        functionBuilder.Result(methodInfo.ReturnParameter.ParameterType);
 
         foreach (var parameterInfo in methodInfo.GetParameters())
         {
@@ -34,10 +31,7 @@ public sealed class ServiceBuilder
             {
                 throw new Exception($"Unable to get parameter for {methodInfo.Name}");
             }
-            if (parameterInfo.ParameterType != typeof(void))
-            {
-                functionBuilder.Argument(parameterInfo.Name, parameterInfo.ParameterType);
-            }
+            functionBuilder.Argument(parameterInfo.Name, parameterInfo.ParameterType);
         }
 
         service.Functions.Add(function);
