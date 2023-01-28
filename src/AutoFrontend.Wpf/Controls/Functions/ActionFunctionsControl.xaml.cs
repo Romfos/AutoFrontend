@@ -34,7 +34,7 @@ public partial class ActionFunctionsControl : UserControl
     private async void Execute(ServiceLocator serviceLocator, Function function)
     {
         grid.IsEnabled = false;
-        exceptionGroup.Visibility = Visibility.Collapsed;
+        exceptionControl.Reset();
         progressBar.Visibility = Visibility.Visible;
 
         try
@@ -46,8 +46,7 @@ public partial class ActionFunctionsControl : UserControl
         {
             exceptionGroup.Header = function.Name;
             exceptionGroup.Visibility = Visibility.Visible;
-            exceptionTextBox.Text = exception.ToString();
-            exceptionTextBox.Visibility = Visibility.Visible;
+            exceptionControl.Exception(exception);
         }
 
         progressBar.Visibility = Visibility.Collapsed;

@@ -1,4 +1,5 @@
-<UserControl x:Class="AutoFrontend.Wpf.Controls.Functions.DefaultFunctionControl"
+<UserControl xmlns:Design="clr-namespace:AutoFrontend.Wpf.Controls.Design"  
+             x:Class="AutoFrontend.Wpf.Controls.Functions.DefaultFunctionControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,11 +18,6 @@
                     Padding="5"/>
         <ProgressBar x:Name="progressBar" IsIndeterminate="True" Visibility="Collapsed" Height="10" />
         <StackPanel x:Name="resultStack" Visibility="Collapsed" />
-        <TextBox x:Name="exceptionTextBox" 
-                     IsReadOnly="True" 
-                     Visibility="Collapsed"
-                     VerticalScrollBarVisibility="Auto"
-                     HorizontalScrollBarVisibility="Auto"
-                     TextWrapping="WrapWithOverflow"/>
+        <Design:ExceptionControl x:Name="exceptionControl"/>
     </StackPanel>
 </UserControl>

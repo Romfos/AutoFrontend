@@ -66,8 +66,8 @@ public partial class DefaultFunctionControl : UserControl
 
         executeButton.IsEnabled = false;
         resultStack.Visibility = Visibility.Collapsed;
-        exceptionTextBox.Visibility = Visibility.Collapsed;
         progressBar.Visibility = Visibility.Visible;
+        exceptionControl.Reset();
 
         var parameters = argumentStack.Children
             .Cast<IArgumentControl>()
@@ -89,8 +89,7 @@ public partial class DefaultFunctionControl : UserControl
         }
         catch (Exception exception)
         {
-            exceptionTextBox.Text = exception.ToString();
-            exceptionTextBox.Visibility = Visibility.Visible;
+            exceptionControl.Exception(exception);
         }
 
         progressBar.Visibility = Visibility.Collapsed;

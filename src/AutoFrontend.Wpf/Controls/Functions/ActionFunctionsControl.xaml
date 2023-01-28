@@ -1,4 +1,5 @@
-<UserControl x:Class="AutoFrontend.Wpf.Controls.Functions.ActionFunctionsControl"
+<UserControl xmlns:Design="clr-namespace:AutoFrontend.Wpf.Controls.Design"  
+             x:Class="AutoFrontend.Wpf.Controls.Functions.ActionFunctionsControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,10 +9,7 @@
     <StackPanel>
         <UniformGrid x:Name="grid"/>
         <GroupBox x:Name="exceptionGroup" Visibility="Collapsed">
-            <TextBox x:Name="exceptionTextBox" 
-                     IsReadOnly="True" 
-                     VerticalScrollBarVisibility="Auto"
-                     TextWrapping="WrapWithOverflow"/>
+            <Design:ExceptionControl x:Name="exceptionControl"/>
         </GroupBox>
         <ProgressBar x:Name="progressBar" IsIndeterminate="True" Visibility="Collapsed" Height="10" />
     </StackPanel>
