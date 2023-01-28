@@ -48,7 +48,7 @@ public sealed class UserService
     public async ValueTask<string> ValueTaskResult()
     {
         await Task.Delay(1000);
-        return nameof(TaskResult);
+        return new string('$', 10000);
     }
 
     public async ValueTask ValueTaskException()

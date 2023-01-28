@@ -23,11 +23,21 @@ public partial class ServiceControl : UserControl
             function.Arguments.Count == 0
                 && function.Result.AwaitResultType != typeof(void));
 
-        actions.Configure(servcieLocator, actionFunctions);
+        var defaultFunctions = service.Functions.Where(function => function.Arguments.Count > 0);
 
-        var functions = service.Functions.Where(function => function.Arguments.Count > 0);
+        if (actionFunctions.Any())
+        {
+            actions.Configure(servcieLocator, actionFunctions);
+        }
 
-        foreach (var function in functions.Concat(queryFunctions))
+        foreach (var function in queryFunctions)
+        {
+            var functionControl = new QueryFunctionControl();
+            functionControl.Configure(servcieLocator, function);
+            stackPanel.Children.Add(functionControl);
+        }
+
+        foreach (var function in defaultFunctions)
         {
             var functionControl = new DefaultFunctionControl();
             functionControl.Configure(servcieLocator, function);

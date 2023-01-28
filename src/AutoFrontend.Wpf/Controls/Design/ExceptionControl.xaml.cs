@@ -13,12 +13,12 @@ public partial class ExceptionControl : UserControl
 
     public void Reset()
     {
-        textBox.Visibility = Visibility.Collapsed;
+        Visibility = Visibility.Collapsed;
     }
 
     public void Exception(Exception exception)
     {
         textBox.Text = exception.ToString();
-        textBox.Visibility = Visibility.Visible;
+        Visibility = Visibility.Visible;
     }
 }
