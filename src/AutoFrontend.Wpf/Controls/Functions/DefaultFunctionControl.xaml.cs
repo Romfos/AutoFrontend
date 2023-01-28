@@ -77,10 +77,12 @@ public partial class DefaultFunctionControl : UserControl
         {
             var functionTask = serviceLocator.FunctionExecutor.ExecuteFunctionAsync(function, parameters);
             await Task.Delay(300);
+            var result = await functionTask;
+
             if (function.Result.AwaitResultType != typeof(void))
             {
                 var resultArgumentControl = resultStack.Children.Cast<IArgumentControl>().Single();
-                resultArgumentControl.SetArgumentValue(await functionTask);
+                resultArgumentControl.SetArgumentValue(result);
                 resultStack.Visibility = Visibility.Visible;
             }
         }
