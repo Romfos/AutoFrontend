@@ -6,12 +6,12 @@
              mc:Ignorable="d"
              d:DesignHeight="100" 
              Width="800"
-             VerticalAlignment="Top">
-    <GroupBox x:Name="groupBox" VerticalAlignment="Top">
+             VerticalAlignment="Stretch">
+    <GroupBox x:Name="groupBox">
         <StackPanel>
             <StackPanel x:Name="argumentStack" />
             <Button x:Name="executeButton" Content="Execute" Height="30" Width="80" Click="Execute" HorizontalAlignment="Right" />
-            <StackPanel x:Name="resultStack" />
+            <StackPanel x:Name="resultStack" Visibility="Collapsed" />
         </StackPanel>
     </GroupBox>
 </UserControl>

@@ -24,8 +24,16 @@ public partial class MainWindow : Window
 
             tabs.Items.Add(new TabItem
             {
-                Header = service.Name,
-                Content = serviceControl
+                Header = new TextBlock
+                {
+                    TextWrapping = TextWrapping.WrapWithOverflow,
+                    TextAlignment = TextAlignment.Center,
+                    MinWidth = 150,
+                    Text = service.Name,
+                    TextTrimming = TextTrimming.WordEllipsis,
+                },
+                Content = serviceControl,
+                Padding = new Thickness(5, 10, 5, 10),
             });
         }
     }

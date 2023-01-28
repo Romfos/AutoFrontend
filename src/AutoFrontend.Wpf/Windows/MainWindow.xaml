@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="AutoFrontend" 
-        Height="600"
-        Width="1000"
+        MinHeight="600"
+        MinWidth="1000"
         WindowStartupLocation="CenterScreen">
-    <TabControl x:Name="tabs" TabStripPlacement="Left" />
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <TabControl x:Name="tabs" TabStripPlacement="Left" />
+    </ScrollViewer>
 </Window>

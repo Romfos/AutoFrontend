@@ -77,5 +77,6 @@ public partial class DefaultFunctionControl : UserControl
 
         var resultArgumentControl = resultStack.Children.Cast<IArgumentControl>().Single();
         resultArgumentControl.SetArgumentValue(result);
+        resultStack.Visibility = Visibility.Visible;
     }
 }
