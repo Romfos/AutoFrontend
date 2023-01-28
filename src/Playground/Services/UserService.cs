@@ -30,30 +30,30 @@ public sealed class UserService
 
     public async Task<string> TaskResult()
     {
-        await Task.Delay(2000);
+        await Task.Delay(1000);
         return nameof(TaskResult);
     }
 
     public async Task TaskException()
     {
-        await Task.Delay(2000);
+        await Task.Delay(1000);
         throw new Exception(nameof(TaskException));
     }
 
     public async ValueTask ValueTaskVoid()
     {
-        await Task.Delay(2000);
+        await Task.Delay(1000);
     }
 
     public async ValueTask<string> ValueTaskResult()
     {
-        await Task.Delay(2000);
+        await Task.Delay(1000);
         return nameof(TaskResult);
     }
 
     public async ValueTask ValueTaskException()
     {
-        await Task.Delay(2000);
-        throw new Exception(nameof(TaskException));
+        await Task.Delay(1000);
+        throw new Exception(nameof(ValueTaskException));
     }
 }

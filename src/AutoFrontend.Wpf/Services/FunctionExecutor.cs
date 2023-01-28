@@ -5,7 +5,7 @@ namespace AutoFrontend.Wpf.Services;
 
 public sealed class FunctionExecutor
 {
-    public async Task<object?> ExecuteFunctionAsync(Function function, object?[] parameters)
+    public async Task<object?> ExecuteFunctionAsync(Function function, object?[]? parameters)
     {
         if (function.Result.IsTask || function.Result.IsValueTask)
         {

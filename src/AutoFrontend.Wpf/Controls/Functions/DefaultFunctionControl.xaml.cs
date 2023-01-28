@@ -64,6 +64,7 @@ public partial class DefaultFunctionControl : UserControl
             throw new Exception($"Field {nameof(serviceLocator)} is requried");
         }
 
+        executeButton.IsEnabled = false;
         resultStack.Visibility = Visibility.Collapsed;
         exceptionTextBox.Visibility = Visibility.Collapsed;
         progressBar.Visibility = Visibility.Visible;
@@ -93,5 +94,6 @@ public partial class DefaultFunctionControl : UserControl
         }
 
         progressBar.Visibility = Visibility.Collapsed;
+        executeButton.IsEnabled = true;
     }
 }
