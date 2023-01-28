@@ -10,8 +10,19 @@
     <GroupBox x:Name="groupBox">
         <StackPanel>
             <StackPanel x:Name="argumentStack" />
-            <Button x:Name="executeButton" Content="Execute" Height="30" Width="80" Click="Execute" HorizontalAlignment="Right" />
+            <Button x:Name="executeButton" 
+                    Content="Execute" 
+                    Height="30" 
+                    MinWidth="80" 
+                    Click="Execute" 
+                    HorizontalAlignment="Right"
+                    Padding="5"/>
             <StackPanel x:Name="resultStack" Visibility="Collapsed" />
+            <TextBox x:Name="exceptionTextBox" 
+                     IsReadOnly="True" 
+                     Visibility="Collapsed"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"/>
         </StackPanel>
     </GroupBox>
 </UserControl>

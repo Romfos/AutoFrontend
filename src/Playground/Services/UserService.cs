@@ -1,24 +1,39 @@
 using Playground.Models;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Playground.Services;
 
 public sealed class UserService
 {
-    private readonly List<User> users = new();
-
-    public List<User> GetUsers()
+    public IEnumerable<User> ReturnEnumerableOfModels()
     {
-        return users;
+        yield return new User("abcd", 123);
     }
 
-    public void AddUser(User user)
+    public void ModelArgument(User user)
     {
-        users.Add(user);
     }
 
-    public void DeleteUser(string name)
+    public void StringArgument(string name)
     {
-        users.RemoveAll(x => x.Name == name);
+    }
+
+    public void Exception()
+    {
+        throw new Exception("Exception messgae");
+    }
+
+    public async Task<string> AsyncString()
+    {
+        await Task.Delay(2000);
+        return nameof(AsyncString);
+    }
+
+    public async Task AsyncException()
+    {
+        await Task.Delay(2000);
+        throw new Exception(nameof(AsyncException));
     }
 }

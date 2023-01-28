@@ -64,19 +64,28 @@ public partial class DefaultFunctionControl : UserControl
             throw new Exception($"Field {nameof(serviceLocator)} is requried");
         }
 
+        resultStack.Visibility = Visibility.Collapsed;
+        exceptionTextBox.Visibility = Visibility.Collapsed;
+
         var parameters = argumentStack.Children
             .Cast<IArgumentControl>()
             .Select(x => x.GetArgumentValue())
             .ToArray();
 
-        var result = await serviceLocator.FunctionExecutor.ExecuteFunctionAsync(function, parameters);
-        if (function.Result == null)
+        try
         {
-            return;
+            var result = await serviceLocator.FunctionExecutor.ExecuteFunctionAsync(function, parameters);
+            if (function.Result != null)
+            {
+                var resultArgumentControl = resultStack.Children.Cast<IArgumentControl>().Single();
+                resultArgumentControl.SetArgumentValue(result);
+                resultStack.Visibility = Visibility.Visible;
+            }
         }
-
-        var resultArgumentControl = resultStack.Children.Cast<IArgumentControl>().Single();
-        resultArgumentControl.SetArgumentValue(result);
-        resultStack.Visibility = Visibility.Visible;
+        catch (Exception exception)
+        {
+            exceptionTextBox.Text = exception.ToString();
+            exceptionTextBox.Visibility = Visibility.Visible;
+        }
     }
 }
