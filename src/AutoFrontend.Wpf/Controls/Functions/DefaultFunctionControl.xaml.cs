@@ -23,7 +23,6 @@ public partial class DefaultFunctionControl : UserControl
         this.serviceLocator = serviceLocator;
         this.function = function;
 
-        groupBox.Header = function.Name;
         executeButton.Content = function.Name;
 
         foreach (var argument in function.Arguments)
@@ -66,6 +65,7 @@ public partial class DefaultFunctionControl : UserControl
 
         resultStack.Visibility = Visibility.Collapsed;
         exceptionTextBox.Visibility = Visibility.Collapsed;
+        progressBar.Visibility = Visibility.Visible;
 
         var parameters = argumentStack.Children
             .Cast<IArgumentControl>()
@@ -87,5 +87,7 @@ public partial class DefaultFunctionControl : UserControl
             exceptionTextBox.Text = exception.ToString();
             exceptionTextBox.Visibility = Visibility.Visible;
         }
+
+        progressBar.Visibility = Visibility.Collapsed;
     }
 }

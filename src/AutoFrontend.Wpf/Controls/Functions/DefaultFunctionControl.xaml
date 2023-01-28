@@ -6,23 +6,23 @@
              mc:Ignorable="d"
              d:DesignHeight="100" 
              Width="800"
-             VerticalAlignment="Stretch">
-    <GroupBox x:Name="groupBox">
-        <StackPanel>
-            <StackPanel x:Name="argumentStack" />
-            <Button x:Name="executeButton" 
+             VerticalAlignment="Stretch"
+             Margin="5">
+    <StackPanel>
+        <StackPanel x:Name="argumentStack" />
+        <Button x:Name="executeButton" 
                     Content="Execute" 
                     Height="30" 
                     MinWidth="80" 
                     Click="Execute" 
-                    HorizontalAlignment="Right"
+                    HorizontalAlignment="Stretch"
                     Padding="5"/>
-            <StackPanel x:Name="resultStack" Visibility="Collapsed" />
-            <TextBox x:Name="exceptionTextBox" 
+        <ProgressBar x:Name="progressBar" IsIndeterminate="True" Visibility="Collapsed" Height="10" />
+        <StackPanel x:Name="resultStack" Visibility="Collapsed" />
+        <TextBox x:Name="exceptionTextBox" 
                      IsReadOnly="True" 
                      Visibility="Collapsed"
                      VerticalScrollBarVisibility="Auto"
                      HorizontalScrollBarVisibility="Auto"/>
-        </StackPanel>
-    </GroupBox>
+    </StackPanel>
 </UserControl>
