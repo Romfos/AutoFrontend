@@ -9,6 +9,8 @@ public sealed class ServiceLocator
 
     public ControlFactory ControlFactory { get; }
 
+    public FunctionExecutor FunctionExecutor { get; } = new();
+
     public ServiceLocator(Frontend frontend)
     {
         ControlFactory = new ControlFactory(frontend.Components);

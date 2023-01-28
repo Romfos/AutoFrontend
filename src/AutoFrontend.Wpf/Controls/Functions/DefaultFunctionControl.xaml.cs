@@ -11,14 +11,16 @@ namespace AutoFrontend.Wpf.Controls.Functions;
 public partial class DefaultFunctionControl : UserControl
 {
     private Function? function;
+    private ServiceLocator? serviceLocator;
 
     public DefaultFunctionControl()
     {
         InitializeComponent();
     }
 
-    public void Configure(ServiceLocator servcieLocator, Function function)
+    public void Configure(ServiceLocator serviceLocator, Function function)
     {
+        this.serviceLocator = serviceLocator;
         this.function = function;
 
         groupBox.Header = function.Name;
@@ -26,13 +28,13 @@ public partial class DefaultFunctionControl : UserControl
 
         foreach (var argument in function.Arguments)
         {
-            var control = CreateArgumentControl(argument, servcieLocator, false);
+            var control = CreateArgumentControl(argument, serviceLocator, false);
             argumentStack.Children.Add(control);
         }
 
         if (function.Result != null)
         {
-            var control = CreateArgumentControl(function.Result, servcieLocator, true);
+            var control = CreateArgumentControl(function.Result, serviceLocator, true);
             resultStack.Children.Add(control);
         }
     }
@@ -51,21 +53,29 @@ public partial class DefaultFunctionControl : UserControl
         return control;
     }
 
-    private void Execute(object sender, RoutedEventArgs e)
+    private async void Execute(object sender, RoutedEventArgs e)
     {
         if (function == null)
         {
-            throw new Exception($"Field {function} is requried");
+            throw new Exception($"Field {nameof(function)} is requried");
+        }
+        if (serviceLocator == null)
+        {
+            throw new Exception($"Field {nameof(serviceLocator)} is requried");
         }
 
-        var parameters = argumentStack.Children.Cast<IArgumentControl>().Select(x => x.GetArgumentValue()).ToArray();
-        var result = function.MethodInfo.Invoke(function.Target, parameters);
+        var parameters = argumentStack.Children
+            .Cast<IArgumentControl>()
+            .Select(x => x.GetArgumentValue())
+            .ToArray();
 
+        var result = await serviceLocator.FunctionExecutor.ExecuteFunctionAsync(function, parameters);
         if (function.Result == null)
         {
             return;
         }
 
-        resultStack.Children.Cast<IArgumentControl>().Single().SetArgumentValue(result);
+        var resultArgumentControl = resultStack.Children.Cast<IArgumentControl>().Single();
+        resultArgumentControl.SetArgumentValue(result);
     }
 }
