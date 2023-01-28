@@ -1,39 +1,59 @@
 using Playground.Models;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Playground.Services;
 
 public sealed class UserService
 {
-    public IEnumerable<User> ReturnEnumerableOfModels()
-    {
-        yield return new User("abcd", 123);
-    }
-
-    public void ModelArgument(User user)
+    public void Void()
     {
     }
 
-    public void StringArgument(string name)
+    public void ModelArgument(Model model)
+    {
+    }
+
+    public void StringArgument(string stringValue)
     {
     }
 
     public void Exception()
     {
-        throw new Exception("Exception messgae");
+        throw new Exception(nameof(Exception));
     }
 
-    public async Task<string> AsyncString()
+    public Task TaskVoid()
     {
-        await Task.Delay(2000);
-        return nameof(AsyncString);
+        return Task.CompletedTask;
     }
 
-    public async Task AsyncException()
+    public async Task<string> TaskResult()
     {
         await Task.Delay(2000);
-        throw new Exception(nameof(AsyncException));
+        return nameof(TaskResult);
+    }
+
+    public async Task TaskException()
+    {
+        await Task.Delay(2000);
+        throw new Exception(nameof(TaskException));
+    }
+
+    public async ValueTask ValueTaskVoid()
+    {
+        await Task.Delay(2000);
+    }
+
+    public async ValueTask<string> ValueTaskResult()
+    {
+        await Task.Delay(2000);
+        return nameof(TaskResult);
+    }
+
+    public async ValueTask ValueTaskException()
+    {
+        await Task.Delay(2000);
+        throw new Exception(nameof(TaskException));
     }
 }

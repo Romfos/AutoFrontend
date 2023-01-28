@@ -31,10 +31,6 @@ public partial class DefaultFunctionControl : UserControl
             argumentStack.Children.Add(argumentControl);
         }
 
-        if (function.Result == null)
-        {
-            throw new Exception($"Function cannot be null");
-        }
         var resultControl = CreateArgumentControl(function.Result, serviceLocator, true);
         if (resultControl != null)
         {
@@ -79,7 +75,7 @@ public partial class DefaultFunctionControl : UserControl
         try
         {
             var result = await serviceLocator.FunctionExecutor.ExecuteFunctionAsync(function, parameters);
-            if (function.Result != null)
+            if (function.Result.AwaitResultType != typeof(void))
             {
                 var resultArgumentControl = resultStack.Children.Cast<IArgumentControl>().Single();
                 resultArgumentControl.SetArgumentValue(result);
