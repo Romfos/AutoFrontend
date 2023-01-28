@@ -11,9 +11,6 @@ namespace AutoFrontend.Wpf.Controls.Functions;
 
 public partial class DefaultFunctionControl : UserControl
 {
-    private Function? function;
-    private ServiceLocator? serviceLocator;
-
     public DefaultFunctionControl()
     {
         InitializeComponent();
@@ -21,10 +18,8 @@ public partial class DefaultFunctionControl : UserControl
 
     public void Configure(ServiceLocator serviceLocator, Function function)
     {
-        this.serviceLocator = serviceLocator;
-        this.function = function;
-
         executeButton.Content = function.Name;
+        executeButton.Click += (_, _) => Execute(serviceLocator, function);
 
         foreach (var argument in function.Arguments)
         {
@@ -53,17 +48,8 @@ public partial class DefaultFunctionControl : UserControl
         return control;
     }
 
-    private async void Execute(object sender, RoutedEventArgs e)
+    private async void Execute(ServiceLocator serviceLocator, Function function)
     {
-        if (function == null)
-        {
-            throw new Exception($"Field {nameof(function)} is requried");
-        }
-        if (serviceLocator == null)
-        {
-            throw new Exception($"Field {nameof(serviceLocator)} is requried");
-        }
-
         executeButton.IsEnabled = false;
         resultStack.Visibility = Visibility.Collapsed;
         progressBar.Visibility = Visibility.Visible;

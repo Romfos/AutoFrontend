@@ -13,7 +13,6 @@
                     Content="Execute" 
                     Height="30" 
                     MinWidth="80" 
-                    Click="Execute" 
                     HorizontalAlignment="Stretch"
                     Padding="5"/>
         <ProgressBar x:Name="progressBar" IsIndeterminate="True" Visibility="Collapsed" Height="10" />
