@@ -16,9 +16,9 @@ public partial class ExceptionControl : UserControl
         Visibility = Visibility.Collapsed;
     }
 
-    public void Exception(string functionName, Exception exception)
+    public void Exception(string? header, Exception exception)
     {
-        groupBox.Header = functionName;
+        groupBox.Header = header;
         textBox.Text = exception.ToString();
         Visibility = Visibility.Visible;
     }

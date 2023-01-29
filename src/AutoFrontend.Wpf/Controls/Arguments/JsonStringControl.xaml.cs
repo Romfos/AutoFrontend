@@ -6,13 +6,13 @@ using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Arguments;
 
-public partial class DefaultArgumentControl : UserControl, IArgumentControl
+public partial class JsonStringControl : UserControl, IArgumentControl
 {
     private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions { WriteIndented = true };
 
     private Argument? argument;
 
-    public DefaultArgumentControl()
+    public JsonStringControl()
     {
         InitializeComponent();
     }
@@ -23,6 +23,7 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
         {
             label.Content = argument.Name;
         }
+
         this.argument = argument;
 
         if (isReadOnly)
@@ -34,6 +35,7 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
         {
             generateRandomValue.Click += (_, _) => SetRandomData(serviceLocator, argument);
             SetRandomData(serviceLocator, argument);
+            textBox.TextChanged += TextBox_TextChanged;
         }
     }
 
@@ -61,6 +63,23 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
         catch (Exception)
         {
             textBox.Text = "Unable to generate random value";
+        }
+    }
+
+    private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (argument == null)
+        {
+            return;
+        }
+        try
+        {
+            JsonSerializer.Deserialize(textBox.Text, argument.AwaitResultType);
+            exceptionControl.Reset();
+        }
+        catch (Exception exception)
+        {
+            exceptionControl.Exception(argument.AwaitResultType.FullName, exception);
         }
     }
 }

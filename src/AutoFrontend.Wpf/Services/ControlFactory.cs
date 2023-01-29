@@ -24,7 +24,7 @@ public sealed class ControlFactory
         }
         else
         {
-            return new DefaultArgumentControl();
+            return new JsonStringControl();
         }
     }
 

@@ -1,4 +1,4 @@
-<UserControl x:Class="AutoFrontend.Wpf.Controls.Arguments.DefaultArgumentControl"
+<UserControl xmlns:Design="clr-namespace:AutoFrontend.Wpf.Controls.Design"  x:Class="AutoFrontend.Wpf.Controls.Arguments.JsonStringControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -20,5 +20,6 @@
                 </ContextMenu>
             </TextBox.ContextMenu>
         </TextBox>
+        <Design:ExceptionControl x:Name="exceptionControl"/>
     </StackPanel>
 </UserControl>
