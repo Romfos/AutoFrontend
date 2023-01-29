@@ -8,7 +8,7 @@ namespace AutoFrontend.Wpf.Controls.Arguments;
 
 public partial class CustomStringControl : UserControl, IArgumentControl
 {
-    public Func<string, object?>? ParseFunction { get; set; }
+    public Func<string, object?>? TryParseDelegate { get; set; }
 
     private Argument? argument;
 
@@ -30,7 +30,7 @@ public partial class CustomStringControl : UserControl, IArgumentControl
 
     public object? GetArgumentValue()
     {
-        var result = ParseFunction?.Invoke(textBox.Text);
+        var result = TryParseDelegate?.Invoke(textBox.Text);
         if (result == null)
         {
             throw new Exception($"Unable to parse {argument?.AwaitResultType.FullName}");
@@ -45,7 +45,7 @@ public partial class CustomStringControl : UserControl, IArgumentControl
 
     private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
-        if (ParseFunction?.Invoke(textBox.Text) != null)
+        if (TryParseDelegate?.Invoke(textBox.Text) != null)
         {
             errorLabel.Visibility = Visibility.Collapsed;
         }
