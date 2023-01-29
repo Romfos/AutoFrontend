@@ -15,7 +15,7 @@ public partial class ServiceControl : UserControl
 
     public void Configure(ServiceLocator servcieLocator, Service service)
     {
-        var actionFunctions = service.Functions
+        var simpleFunctons = service.Functions
             .Where(function => function.Arguments.Count == 0 && function.Result.AwaitResultType == typeof(void))
             .ToList();
 
@@ -25,9 +25,9 @@ public partial class ServiceControl : UserControl
 
         var defaultFunctions = service.Functions.Where(function => function.Arguments.Count > 0);
 
-        if (actionFunctions.Any())
+        if (simpleFunctons.Any())
         {
-            actions.Configure(servcieLocator, actionFunctions);
+            simpleFunctionsControl.Configure(servcieLocator, simpleFunctons);
         }
 
         foreach (var function in queryFunctions)

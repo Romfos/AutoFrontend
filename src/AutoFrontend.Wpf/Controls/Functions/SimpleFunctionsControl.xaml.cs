@@ -8,9 +8,9 @@ using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Functions;
 
-public partial class ActionFunctionsControl : UserControl
+public partial class SimpleFunctionsControl : UserControl
 {
-    public ActionFunctionsControl()
+    public SimpleFunctionsControl()
     {
         InitializeComponent();
     }

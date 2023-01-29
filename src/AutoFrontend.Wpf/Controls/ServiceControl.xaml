@@ -10,6 +10,6 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Top"
                 MaxWidth="800" >
-        <Functions:ActionFunctionsControl x:Name="actions"/>
+        <Functions:SimpleFunctionsControl x:Name="simpleFunctionsControl"/>
     </StackPanel>
 </UserControl>
