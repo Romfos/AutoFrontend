@@ -37,6 +37,46 @@ public sealed class ControlFactory
             {
                 TryParseFunction = x => int.TryParse(x, out var value) ? value : null
             },
+            [typeof(byte)] = () => new DefaultParserControl()
+            {
+                TryParseFunction = x => byte.TryParse(x, out var value) ? value : null
+            },
+            [typeof(sbyte)] = () => new DefaultParserControl()
+            {
+                TryParseFunction = x => sbyte.TryParse(x, out var value) ? value : null
+            },
+            [typeof(short)] = () => new DefaultParserControl()
+            {
+                TryParseFunction = x => short.TryParse(x, out var value) ? value : null
+            },
+            [typeof(ushort)] = () => new DefaultParserControl()
+            {
+                TryParseFunction = x => ushort.TryParse(x, out var value) ? value : null
+            },
+            [typeof(uint)] = () => new DefaultParserControl()
+            {
+                TryParseFunction = x => uint.TryParse(x, out var value) ? value : null
+            },
+            [typeof(long)] = () => new DefaultParserControl()
+            {
+                TryParseFunction = x => long.TryParse(x, out var value) ? value : null
+            },
+            [typeof(ulong)] = () => new DefaultParserControl()
+            {
+                TryParseFunction = x => ulong.TryParse(x, out var value) ? value : null
+            },
+            [typeof(float)] = () => new DefaultParserControl()
+            {
+                TryParseFunction = x => float.TryParse(x, out var value) ? value : null
+            },
+            [typeof(double)] = () => new DefaultParserControl()
+            {
+                TryParseFunction = x => double.TryParse(x, out var value) ? value : null
+            },
+            [typeof(decimal)] = () => new DefaultParserControl()
+            {
+                TryParseFunction = x => decimal.TryParse(x, out var value) ? value : null
+            },
         };
     }
 
