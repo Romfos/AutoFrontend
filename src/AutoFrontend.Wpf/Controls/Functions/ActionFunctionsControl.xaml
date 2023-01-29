@@ -8,9 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <UniformGrid x:Name="grid"/>
-        <GroupBox x:Name="exceptionGroup" Visibility="Collapsed">
-            <Design:ExceptionControl x:Name="exceptionControl"/>
-        </GroupBox>
+        <Design:ExceptionControl x:Name="exceptionControl"/>
         <ProgressBar x:Name="progressBar" IsIndeterminate="True" Visibility="Collapsed" Height="10" />
     </StackPanel>
 </UserControl>

@@ -78,7 +78,7 @@ public partial class DefaultFunctionControl : UserControl
         }
         catch (Exception exception)
         {
-            exceptionControl.Exception(exception);
+            exceptionControl.Exception(function.Name, exception);
         }
 
         progressBar.Visibility = Visibility.Collapsed;

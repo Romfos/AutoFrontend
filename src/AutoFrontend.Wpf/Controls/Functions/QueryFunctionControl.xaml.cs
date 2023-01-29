@@ -67,7 +67,7 @@ public partial class QueryFunctionControl : UserControl
         }
         catch (Exception exception)
         {
-            exceptionControl.Exception(exception);
+            exceptionControl.Exception(function.Name, exception);
             resultStack.Visibility = Visibility.Collapsed;
         }
 
