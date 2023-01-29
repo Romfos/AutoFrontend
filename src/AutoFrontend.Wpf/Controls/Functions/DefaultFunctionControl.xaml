@@ -7,16 +7,18 @@
              mc:Ignorable="d"
              d:DesignHeight="100"
              Margin="0,5,0,5">
-    <StackPanel>
-        <StackPanel x:Name="argumentStack" />
-        <Button x:Name="executeButton" 
+    <GroupBox x:Name="groupBox">
+        <StackPanel>
+            <StackPanel x:Name="argumentStack" />
+            <Button x:Name="executeButton" 
                     Content="Execute" 
                     Height="30" 
                     MinWidth="80" 
                     HorizontalAlignment="Stretch"
                     Padding="5"/>
-        <ProgressBar x:Name="progressBar" IsIndeterminate="True" Visibility="Collapsed" Height="10" />
-        <StackPanel x:Name="resultStack" Visibility="Collapsed" />
-        <Design:ExceptionControl x:Name="exceptionControl"/>
-    </StackPanel>
+            <ProgressBar x:Name="progressBar" IsIndeterminate="True" Visibility="Collapsed" Height="10" />
+            <StackPanel x:Name="resultStack" Visibility="Collapsed" />
+            <Design:ExceptionControl x:Name="exceptionControl"/>
+        </StackPanel>
+    </GroupBox>
 </UserControl>

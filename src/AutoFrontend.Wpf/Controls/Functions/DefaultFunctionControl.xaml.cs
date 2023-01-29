@@ -18,6 +18,7 @@ public partial class DefaultFunctionControl : UserControl
 
     public void Configure(ServiceLocator serviceLocator, Function function)
     {
+        groupBox.Header = function.Name;
         executeButton.Content = function.Name;
         executeButton.Click += (_, _) => Execute(serviceLocator, function);
 
