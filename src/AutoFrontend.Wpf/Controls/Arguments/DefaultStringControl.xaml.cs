@@ -13,6 +13,7 @@ public partial class DefaultStringControl : UserControl, IArgumentControl
 
     public void Configure(ServiceLocator serviceLocator, Argument argument, bool isReadOnly)
     {
+        label.Content = argument.Name;
         textBox.IsReadOnly = isReadOnly;
     }
 

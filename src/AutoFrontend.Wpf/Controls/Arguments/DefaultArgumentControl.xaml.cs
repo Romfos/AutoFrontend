@@ -19,6 +19,10 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
 
     public void Configure(ServiceLocator serviceLocator, Argument argument, bool isReadOnly)
     {
+        if (argument.Name != null)
+        {
+            label.Content = argument.Name;
+        }
         this.argument = argument;
 
         if (isReadOnly)

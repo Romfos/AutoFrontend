@@ -21,7 +21,8 @@ public partial class DefaultParserControl : UserControl, IArgumentControl
     {
         this.argument = argument;
 
-        label.Content = $"Relevant {argument.AwaitResultType.FullName} is expected";
+        label.Content = argument.Name;
+        errorLabel.Content = $"Relevant {argument.AwaitResultType.FullName} is expected";
 
         textBox.IsReadOnly = isReadOnly;
         textBox.TextChanged += TextBox_TextChanged;
@@ -46,11 +47,11 @@ public partial class DefaultParserControl : UserControl, IArgumentControl
     {
         if (TryParseFunction?.Invoke(textBox.Text) != null)
         {
-            label.Visibility = Visibility.Collapsed;
+            errorLabel.Visibility = Visibility.Collapsed;
         }
         else
         {
-            label.Visibility = Visibility.Visible;
+            errorLabel.Visibility = Visibility.Visible;
         }
     }
 }
