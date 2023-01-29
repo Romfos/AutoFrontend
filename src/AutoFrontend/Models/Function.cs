@@ -12,11 +12,11 @@ public sealed class Function
     public List<Argument> Arguments { get; } = new();
     public Argument Result { get; set; }
 
-    public Function(object? target, MethodInfo methodInfo)
+    public Function(object? target, MethodInfo methodInfo, string name)
     {
         Target = target;
         MethodInfo = methodInfo;
-        Name = methodInfo.Name;
+        Name = name;
 
         Result = new Argument(null, typeof(void), false, false);
     }

@@ -20,7 +20,12 @@ public sealed class ServiceBuilder
 
     public FunctionBuilder Function(object? target, MethodInfo methodInfo)
     {
-        var function = new Function(target, methodInfo);
+        return Function(target, methodInfo, methodInfo.Name);
+    }
+
+    public FunctionBuilder Function(object? target, MethodInfo methodInfo, string name)
+    {
+        var function = new Function(target, methodInfo, name);
         var functionBuilder = new FunctionBuilder(function);
 
         functionBuilder.Result(methodInfo.ReturnParameter.ParameterType);
