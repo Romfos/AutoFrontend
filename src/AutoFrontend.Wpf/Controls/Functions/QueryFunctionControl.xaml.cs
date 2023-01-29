@@ -23,11 +23,7 @@ public partial class QueryFunctionControl : UserControl
         executeButton.Click += (_, _) => Execute(serviceLocator, function);
 
         var resultControl = CreateArgumentControl(function.Result, serviceLocator, true);
-        resultStack.Children.Add(new GroupBox
-        {
-            Header = function.Name,
-            Content = resultControl,
-        });
+        resultStack.Children.Add(resultControl);
 
         serviceLocator.FunctionExecutor.OnFunctionExecuted += () =>
         {
@@ -63,8 +59,6 @@ public partial class QueryFunctionControl : UserControl
             if (function.Result.AwaitResultType != typeof(void))
             {
                 var resultArgumentControl = resultStack.Children
-                    .Cast<GroupBox>()
-                    .Select(x => x.Content)
                     .Cast<IArgumentControl>()
                     .Single();
 
