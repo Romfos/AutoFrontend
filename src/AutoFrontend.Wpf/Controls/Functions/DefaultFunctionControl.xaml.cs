@@ -59,7 +59,7 @@ public partial class DefaultFunctionControl : UserControl
         {
             var parameters = argumentStack.Children
                .Cast<IArgumentControl>()
-               .Select(x => x.GetArgumentValue())
+               .Select(x => x.ArgumentValue)
                .ToArray();
 
             var result = await serviceLocator.FunctionExecutor.ExecuteFunctionAsync(function, parameters);
@@ -70,7 +70,7 @@ public partial class DefaultFunctionControl : UserControl
                     .Cast<IArgumentControl>()
                     .Single();
 
-                resultArgumentControl.SetArgumentValue(result);
+                resultArgumentControl.ArgumentValue = result;
                 resultStack.Visibility = Visibility.Visible;
             }
         }

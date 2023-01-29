@@ -17,13 +17,9 @@ public partial class DefaultBoolControl : UserControl, IArgumentControl
         checkBox.IsEnabled = !isReadOnly;
     }
 
-    public object? GetArgumentValue()
+    public object? ArgumentValue
     {
-        return checkBox.IsChecked == true;
-    }
-
-    public void SetArgumentValue(object? value)
-    {
-        checkBox.IsChecked = (bool?)value == true;
+        get => checkBox.IsChecked == true;
+        set => checkBox.IsChecked = (bool?)value == true;
     }
 }

@@ -7,6 +7,5 @@ public interface IArgumentControl
 {
     void Configure(ServiceLocator serviceLocator, Argument argument, bool isReadOnly);
 
-    void SetArgumentValue(object? value);
-    object? GetArgumentValue();
+    object? ArgumentValue { get; set; }
 }

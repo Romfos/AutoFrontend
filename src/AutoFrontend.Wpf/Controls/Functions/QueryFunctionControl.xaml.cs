@@ -62,7 +62,7 @@ public partial class QueryFunctionControl : UserControl
                     .Cast<IArgumentControl>()
                     .Single();
 
-                resultArgumentControl.SetArgumentValue(result);
+                resultArgumentControl.ArgumentValue = result;
             }
         }
         catch (Exception exception)

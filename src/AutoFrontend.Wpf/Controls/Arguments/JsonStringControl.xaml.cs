@@ -39,18 +39,17 @@ public partial class JsonStringControl : UserControl, IArgumentControl
         }
     }
 
-    public void SetArgumentValue(object? value)
+    public object? ArgumentValue
     {
-        textBox.Text = JsonSerializer.Serialize(value, JsonSerializerOptions);
-    }
-
-    public object? GetArgumentValue()
-    {
-        if (argument == null)
+        get
         {
-            throw new Exception($"Field {nameof(argument)} is required");
+            if (argument == null)
+            {
+                throw new Exception($"Field {nameof(argument)} is required");
+            }
+            return JsonSerializer.Deserialize(textBox.Text, argument.AwaitResultType);
         }
-        return JsonSerializer.Deserialize(textBox.Text, argument.AwaitResultType);
+        set => textBox.Text = JsonSerializer.Serialize(value, JsonSerializerOptions);
     }
 
     private void SetRandomData(ServiceLocator serviceLocator, Argument argument)

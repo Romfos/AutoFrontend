@@ -17,13 +17,9 @@ public partial class DefaultStringControl : UserControl, IArgumentControl
         textBox.IsReadOnly = isReadOnly;
     }
 
-    public object? GetArgumentValue()
+    public object? ArgumentValue
     {
-        return textBox.Text;
-    }
-
-    public void SetArgumentValue(object? value)
-    {
-        textBox.Text = value as string;
+        get => textBox.Text;
+        set => textBox.Text = value as string;
     }
 }

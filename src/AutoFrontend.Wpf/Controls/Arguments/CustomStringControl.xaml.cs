@@ -29,19 +29,18 @@ public partial class CustomStringControl : UserControl, IArgumentControl
         SetRandomData(serviceLocator, argument);
     }
 
-    public object? GetArgumentValue()
+    public object? ArgumentValue
     {
-        var result = TryParseDelegate?.Invoke(textBox.Text);
-        if (result == null)
+        get
         {
-            throw new Exception($"Unable to parse {argument?.AwaitResultType.FullName}");
+            var result = TryParseDelegate?.Invoke(textBox.Text);
+            if (result == null)
+            {
+                throw new Exception($"Unable to parse {argument?.AwaitResultType.FullName}");
+            }
+            return result;
         }
-        return result;
-    }
-
-    public void SetArgumentValue(object? value)
-    {
-        textBox.Text = value?.ToString();
+        set => textBox.Text = value?.ToString();
     }
 
     private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
