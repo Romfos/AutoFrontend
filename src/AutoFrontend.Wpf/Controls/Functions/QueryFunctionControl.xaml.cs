@@ -25,7 +25,7 @@ public partial class QueryFunctionControl : UserControl
         var resultControl = CreateArgumentControl(function.Result, serviceLocator, true);
         resultStack.Children.Add(resultControl);
 
-        serviceLocator.FunctionExecutor.OnFunctionExecuted += () =>
+        serviceLocator.GlobalFunctionService.OnFunctionExecuted += () =>
         {
             if (autoRefresh.IsChecked == true && expander.IsExpanded)
             {
@@ -54,7 +54,7 @@ public partial class QueryFunctionControl : UserControl
 
         try
         {
-            var result = await serviceLocator.FunctionExecutor.ExecuteAsync(function, null);
+            var result = await serviceLocator.GlobalFunctionService.ExecuteAsync(function, null);
 
             if (function.Result.AwaitResultType != typeof(void))
             {

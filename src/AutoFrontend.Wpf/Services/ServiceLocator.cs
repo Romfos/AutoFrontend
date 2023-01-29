@@ -9,7 +9,7 @@ public sealed class ServiceLocator
 
     public ControlFactory ControlFactory { get; }
 
-    public FunctionExecutor FunctionExecutor { get; } = new();
+    public GlobalFunctionService GlobalFunctionService { get; } = new();
 
     public ServiceLocator(Frontend frontend)
     {

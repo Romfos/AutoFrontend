@@ -39,7 +39,7 @@ public partial class SimpleFunctionsControl : UserControl
 
         try
         {
-            var functionTask = serviceLocator.FunctionExecutor.ExecuteWithNotificationAsync(function, null);
+            var functionTask = serviceLocator.GlobalFunctionService.ExecuteWithNotificationAsync(function, null);
             await Task.WhenAll(Task.Delay(300), functionTask);
         }
         catch (Exception exception)
