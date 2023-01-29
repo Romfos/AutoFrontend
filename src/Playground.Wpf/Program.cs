@@ -9,9 +9,11 @@ internal class Program
     public static void Main()
     {
         var demoStateService = new UserService();
+        var calculatorService = new CalculatorService();
 
         var applicationBuilder = new FrontendBuilder();
         applicationBuilder.Service(demoStateService);
+        applicationBuilder.Service(calculatorService);
         applicationBuilder.RunWpfApplication();
     }
 }
