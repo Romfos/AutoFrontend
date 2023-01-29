@@ -34,49 +34,49 @@ public sealed class ControlFactory
         {
             [typeof(string)] = () => new DefaultStringControl(),
             [typeof(bool)] = () => new DefaultBoolControl(),
-            [typeof(int)] = () => new DefaultParserControl()
+            [typeof(int)] = () => new CustomStringControl
             {
-                TryParseFunction = x => int.TryParse(x, out var value) ? value : null
+                ParseFunction = x => int.TryParse(x, out var value) ? value : null
             },
-            [typeof(byte)] = () => new DefaultParserControl()
+            [typeof(byte)] = () => new CustomStringControl
             {
-                TryParseFunction = x => byte.TryParse(x, out var value) ? value : null
+                ParseFunction = x => byte.TryParse(x, out var value) ? value : null
             },
-            [typeof(sbyte)] = () => new DefaultParserControl()
+            [typeof(sbyte)] = () => new CustomStringControl
             {
-                TryParseFunction = x => sbyte.TryParse(x, out var value) ? value : null
+                ParseFunction = x => sbyte.TryParse(x, out var value) ? value : null
             },
-            [typeof(short)] = () => new DefaultParserControl()
+            [typeof(short)] = () => new CustomStringControl
             {
-                TryParseFunction = x => short.TryParse(x, out var value) ? value : null
+                ParseFunction = x => short.TryParse(x, out var value) ? value : null
             },
-            [typeof(ushort)] = () => new DefaultParserControl()
+            [typeof(ushort)] = () => new CustomStringControl
             {
-                TryParseFunction = x => ushort.TryParse(x, out var value) ? value : null
+                ParseFunction = x => ushort.TryParse(x, out var value) ? value : null
             },
-            [typeof(uint)] = () => new DefaultParserControl()
+            [typeof(uint)] = () => new CustomStringControl
             {
-                TryParseFunction = x => uint.TryParse(x, out var value) ? value : null
+                ParseFunction = x => uint.TryParse(x, out var value) ? value : null
             },
-            [typeof(long)] = () => new DefaultParserControl()
+            [typeof(long)] = () => new CustomStringControl
             {
-                TryParseFunction = x => long.TryParse(x, out var value) ? value : null
+                ParseFunction = x => long.TryParse(x, out var value) ? value : null
             },
-            [typeof(ulong)] = () => new DefaultParserControl()
+            [typeof(ulong)] = () => new CustomStringControl
             {
-                TryParseFunction = x => ulong.TryParse(x, out var value) ? value : null
+                ParseFunction = x => ulong.TryParse(x, out var value) ? value : null
             },
-            [typeof(float)] = () => new DefaultParserControl()
+            [typeof(float)] = () => new CustomStringControl
             {
-                TryParseFunction = x => float.TryParse(x, out var value) ? value : null
+                ParseFunction = x => float.TryParse(x, out var value) ? value : null
             },
-            [typeof(double)] = () => new DefaultParserControl()
+            [typeof(double)] = () => new CustomStringControl
             {
-                TryParseFunction = x => double.TryParse(x, out var value) ? value : null
+                ParseFunction = x => double.TryParse(x, out var value) ? value : null
             },
-            [typeof(decimal)] = () => new DefaultParserControl()
+            [typeof(decimal)] = () => new CustomStringControl
             {
-                TryParseFunction = x => decimal.TryParse(x, out var value) ? value : null
+                ParseFunction = x => decimal.TryParse(x, out var value) ? value : null
             },
         };
     }

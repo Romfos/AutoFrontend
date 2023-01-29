@@ -6,13 +6,13 @@ using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Arguments;
 
-public partial class DefaultParserControl : UserControl, IArgumentControl
+public partial class CustomStringControl : UserControl, IArgumentControl
 {
-    public Func<string, object?>? TryParseFunction { get; set; }
+    public Func<string, object?>? ParseFunction { get; set; }
 
     private Argument? argument;
 
-    public DefaultParserControl()
+    public CustomStringControl()
     {
         InitializeComponent();
     }
@@ -30,7 +30,7 @@ public partial class DefaultParserControl : UserControl, IArgumentControl
 
     public object? GetArgumentValue()
     {
-        var result = TryParseFunction?.Invoke(textBox.Text);
+        var result = ParseFunction?.Invoke(textBox.Text);
         if (result == null)
         {
             throw new Exception($"Unable to parse {argument?.AwaitResultType.FullName}");
@@ -45,7 +45,7 @@ public partial class DefaultParserControl : UserControl, IArgumentControl
 
     private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
-        if (TryParseFunction?.Invoke(textBox.Text) != null)
+        if (ParseFunction?.Invoke(textBox.Text) != null)
         {
             errorLabel.Visibility = Visibility.Collapsed;
         }
