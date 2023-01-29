@@ -53,7 +53,14 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
 
     private void SetRandomData(ServiceLocator serviceLocator, Argument argument)
     {
-        var fixture = serviceLocator.Fixture.Create(argument.AwaitResultType);
-        textBox.Text = JsonSerializer.Serialize(fixture, JsonSerializerOptions);
+        try
+        {
+            var fixture = serviceLocator.Fixture.Create(argument.AwaitResultType);
+            textBox.Text = JsonSerializer.Serialize(fixture, JsonSerializerOptions);
+        }
+        catch (Exception)
+        {
+            textBox.Text = "Unable to generate random value";
+        }
     }
 }
