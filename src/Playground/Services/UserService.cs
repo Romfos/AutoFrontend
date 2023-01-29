@@ -19,6 +19,10 @@ public sealed class UserService
     {
     }
 
+    public void GuidArgument(Guid guidValue)
+    {
+    }
+
     public void BoolArgument(bool value)
     {
     }

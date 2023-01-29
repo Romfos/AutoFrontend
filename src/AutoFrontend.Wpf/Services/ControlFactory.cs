@@ -78,6 +78,10 @@ public sealed class ControlFactory
             {
                 TryParseDelegate = x => decimal.TryParse(x, out var value) ? value : null
             },
+            [typeof(Guid)] = () => new CustomStringControl
+            {
+                TryParseDelegate = x => Guid.TryParse(x, out var value) ? value : null
+            },
         };
     }
 

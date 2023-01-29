@@ -10,7 +10,6 @@
     <StackPanel Orientation="Vertical">
         <Label x:Name="label" Margin="0" Padding="0"/>
         <TextBox x:Name="textBox"
-                 Text="0"
                  VerticalScrollBarVisibility="Disabled" 
                  HorizontalScrollBarVisibility="Disabled"/>
         <Label x:Name="errorLabel" Foreground="Red" Visibility="Collapsed" />

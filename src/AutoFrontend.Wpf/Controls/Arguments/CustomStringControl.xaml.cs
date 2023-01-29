@@ -26,6 +26,7 @@ public partial class CustomStringControl : UserControl, IArgumentControl
 
         textBox.IsReadOnly = isReadOnly;
         textBox.TextChanged += TextBox_TextChanged;
+        SetRandomData(serviceLocator, argument);
     }
 
     public object? GetArgumentValue()
@@ -52,6 +53,19 @@ public partial class CustomStringControl : UserControl, IArgumentControl
         else
         {
             errorLabel.Visibility = Visibility.Visible;
+        }
+    }
+
+    private void SetRandomData(ServiceLocator serviceLocator, Argument argument)
+    {
+        try
+        {
+            var fixture = serviceLocator.Fixture.Create(argument.AwaitResultType);
+            textBox.Text = fixture.ToString();
+        }
+        catch (Exception)
+        {
+            textBox.Text = "Unable to generate random value";
         }
     }
 }
