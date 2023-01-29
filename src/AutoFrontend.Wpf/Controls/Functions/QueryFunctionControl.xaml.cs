@@ -54,7 +54,7 @@ public partial class QueryFunctionControl : UserControl
 
         try
         {
-            var result = await serviceLocator.FunctionExecutor.ExecuteQueryAsync(function, null);
+            var result = await serviceLocator.FunctionExecutor.ExecuteAsync(function, null);
 
             if (function.Result.AwaitResultType != typeof(void))
             {

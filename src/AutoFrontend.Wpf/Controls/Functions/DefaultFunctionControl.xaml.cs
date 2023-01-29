@@ -62,7 +62,7 @@ public partial class DefaultFunctionControl : UserControl
                .Select(x => x.ArgumentValue)
                .ToArray();
 
-            var result = await serviceLocator.FunctionExecutor.ExecuteFunctionAsync(function, parameters);
+            var result = await serviceLocator.FunctionExecutor.ExecuteWithNotificationAsync(function, parameters);
 
             if (function.Result.AwaitResultType != typeof(void))
             {
