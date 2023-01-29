@@ -5,21 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <GroupBox x:Name="label">
-        <StackPanel>
-            <TextBox 
-                x:Name="textBox"
-                VerticalScrollBarVisibility="Disabled" 
-                HorizontalScrollBarVisibility="Auto"
-                AcceptsReturn="True" 
-                AcceptsTab="True" 
-                MinHeight="50">
-                <TextBox.ContextMenu>
-                    <ContextMenu x:Name="contextMenu">
-                        <MenuItem Header="Generate random value" Click="GenerateRandomValue_Click"/>
-                    </ContextMenu>
-                </TextBox.ContextMenu>
-            </TextBox>
-        </StackPanel>
-    </GroupBox>
+    <TextBox x:Name="textBox"
+             VerticalScrollBarVisibility="Disabled" 
+             HorizontalScrollBarVisibility="Auto"
+             AcceptsReturn="True" 
+             AcceptsTab="True" 
+             MinHeight="50">
+        <TextBox.ContextMenu>
+            <ContextMenu>
+                <MenuItem x:Name="generateRandomValue" Header="Generate random value"/>
+            </ContextMenu>
+        </TextBox.ContextMenu>
+    </TextBox>
 </UserControl>

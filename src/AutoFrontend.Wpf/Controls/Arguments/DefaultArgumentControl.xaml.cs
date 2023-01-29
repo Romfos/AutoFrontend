@@ -11,7 +11,6 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
     private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions { WriteIndented = true };
 
     private Argument? argument;
-    private ServiceLocator? serviceLocator;
 
     public DefaultArgumentControl()
     {
@@ -21,18 +20,16 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
     public void Configure(ServiceLocator serviceLocator, Argument argument, bool isReadOnly)
     {
         this.argument = argument;
-        this.serviceLocator = serviceLocator;
-
-        label.Header = argument.Name;
 
         if (isReadOnly)
         {
             textBox.IsReadOnly = true;
-            contextMenu.IsEnabled = false;
+            generateRandomValue.IsEnabled = false;
         }
         else
         {
-            SetRandomData();
+            generateRandomValue.Click += (_, _) => SetRandomData(serviceLocator, argument);
+            SetRandomData(serviceLocator, argument);
         }
     }
 
@@ -50,18 +47,9 @@ public partial class DefaultArgumentControl : UserControl, IArgumentControl
         return JsonSerializer.Deserialize(textBox.Text, argument.AwaitResultType);
     }
 
-    private void SetRandomData()
+    private void SetRandomData(ServiceLocator serviceLocator, Argument argument)
     {
-        if (argument == null || serviceLocator == null)
-        {
-            throw new Exception($"Fields {nameof(argument)}, {nameof(serviceLocator)} are required");
-        }
         var fixture = serviceLocator.Fixture.Create(argument.AwaitResultType);
         textBox.Text = JsonSerializer.Serialize(fixture, JsonSerializerOptions);
-    }
-
-    private void GenerateRandomValue_Click(object sender, System.Windows.RoutedEventArgs e)
-    {
-        SetRandomData();
     }
 }

@@ -24,13 +24,21 @@ public partial class DefaultFunctionControl : UserControl
         foreach (var argument in function.Arguments)
         {
             var argumentControl = CreateArgumentControl(argument, serviceLocator, false);
-            argumentStack.Children.Add(argumentControl);
+            argumentStack.Children.Add(new GroupBox
+            {
+                Header = argument.Name,
+                Content = argumentControl,
+            });
         }
 
         var resultControl = CreateArgumentControl(function.Result, serviceLocator, true);
         if (resultControl != null)
         {
-            resultStack.Children.Add(resultControl);
+            resultStack.Children.Add(new GroupBox
+            {
+                Header = function.Name,
+                Content = resultControl,
+            });
         }
     }
 
@@ -56,6 +64,8 @@ public partial class DefaultFunctionControl : UserControl
         exceptionControl.Reset();
 
         var parameters = argumentStack.Children
+            .Cast<GroupBox>()
+            .Select(x => x.Content)
             .Cast<IArgumentControl>()
             .Select(x => x.GetArgumentValue())
             .ToArray();
@@ -68,7 +78,12 @@ public partial class DefaultFunctionControl : UserControl
 
             if (function.Result.AwaitResultType != typeof(void))
             {
-                var resultArgumentControl = resultStack.Children.Cast<IArgumentControl>().Single();
+                var resultArgumentControl = resultStack.Children
+                    .Cast<GroupBox>()
+                    .Select(x => x.Content)
+                    .Cast<IArgumentControl>()
+                    .Single();
+
                 resultArgumentControl.SetArgumentValue(result);
                 resultStack.Visibility = Visibility.Visible;
             }

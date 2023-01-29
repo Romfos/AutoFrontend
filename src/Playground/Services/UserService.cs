@@ -10,8 +10,9 @@ public sealed class UserService
     {
     }
 
-    public void ModelArgument(Model model)
+    public Model ModelArgument(Model model)
     {
+        return model;
     }
 
     public void StringArgument(string stringValue)

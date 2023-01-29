@@ -18,11 +18,17 @@ public partial class QueryFunctionControl : UserControl
 
     public void Configure(ServiceLocator serviceLocator, Function function)
     {
-        groupBox.Header = function.Name;
+        expander.Header = function.Name;
+
+        expander.Expanded += (_, _) => Execute(serviceLocator, function);
         executeButton.Click += (_, _) => Execute(serviceLocator, function);
 
         var resultControl = CreateArgumentControl(function.Result, serviceLocator, true);
-        resultStack.Children.Add(resultControl);
+        resultStack.Children.Add(new GroupBox
+        {
+            Header = function.Name,
+            Content = resultControl,
+        });
     }
 
     private Control CreateArgumentControl(Argument argument, ServiceLocator servcieLocator, bool IsReadOnly)
@@ -51,7 +57,12 @@ public partial class QueryFunctionControl : UserControl
 
             if (function.Result.AwaitResultType != typeof(void))
             {
-                var resultArgumentControl = resultStack.Children.Cast<IArgumentControl>().Single();
+                var resultArgumentControl = resultStack.Children
+                    .Cast<GroupBox>()
+                    .Select(x => x.Content)
+                    .Cast<IArgumentControl>()
+                    .Single();
+
                 resultArgumentControl.SetArgumentValue(result);
             }
         }

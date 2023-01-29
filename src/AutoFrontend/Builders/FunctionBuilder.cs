@@ -25,7 +25,7 @@ public sealed class FunctionBuilder
     public ArgumentBuilder Result(Type valueType)
     {
         var (awaitResultType, isTask, isValueTask) = GetAsyncInformation(valueType);
-        function.Result = new Argument("Result", awaitResultType, isTask, isValueTask);
+        function.Result = new Argument(null, awaitResultType, isTask, isValueTask);
         return new ArgumentBuilder(function.Result);
     }
 
