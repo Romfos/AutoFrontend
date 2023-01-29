@@ -17,7 +17,9 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <CheckBox Content="Auto refresh"
+                <CheckBox x:Name="autoRefresh"
+                          Content="Auto refresh"
+                          IsChecked="True"
                           Grid.Column="0"
                           VerticalContentAlignment="Center"
                           Margin="2"/>

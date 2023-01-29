@@ -29,6 +29,14 @@ public partial class QueryFunctionControl : UserControl
             Header = function.Name,
             Content = resultControl,
         });
+
+        serviceLocator.FunctionExecutor.OnFunctionExecuted += () =>
+        {
+            if (autoRefresh.IsChecked == true && expander.IsExpanded)
+            {
+                Execute(serviceLocator, function);
+            }
+        };
     }
 
     private Control CreateArgumentControl(Argument argument, ServiceLocator servcieLocator, bool IsReadOnly)
@@ -51,7 +59,7 @@ public partial class QueryFunctionControl : UserControl
 
         try
         {
-            var functionTask = serviceLocator.FunctionExecutor.ExecuteFunctionAsync(function, null);
+            var functionTask = serviceLocator.FunctionExecutor.ExecuteQueryAsync(function, null);
             await Task.Delay(300);
             var result = await functionTask;
 
