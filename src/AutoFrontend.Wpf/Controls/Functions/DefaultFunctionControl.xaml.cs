@@ -63,15 +63,15 @@ public partial class DefaultFunctionControl : UserControl
         progressBar.Visibility = Visibility.Visible;
         exceptionControl.Reset();
 
-        var parameters = argumentStack.Children
-            .Cast<GroupBox>()
-            .Select(x => x.Content)
-            .Cast<IArgumentControl>()
-            .Select(x => x.GetArgumentValue())
-            .ToArray();
-
         try
         {
+            var parameters = argumentStack.Children
+               .Cast<GroupBox>()
+               .Select(x => x.Content)
+               .Cast<IArgumentControl>()
+               .Select(x => x.GetArgumentValue())
+               .ToArray();
+
             var functionTask = serviceLocator.FunctionExecutor.ExecuteFunctionAsync(function, parameters);
             await Task.Delay(300);
             var result = await functionTask;

@@ -39,5 +39,6 @@ public sealed class ControlFactory
     private IEnumerable<Component> GetDefaultComponents()
     {
         yield return new Component(typeof(DefaultStringControl), typeof(string));
+        yield return new Component(typeof(DefaultIntegerControl), typeof(int));
     }
 }
