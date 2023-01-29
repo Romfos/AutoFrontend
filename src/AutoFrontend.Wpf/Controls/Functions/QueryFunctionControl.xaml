@@ -8,8 +8,8 @@
              Margin="0,5,0,5">
     <Expander x:Name="expander">
         <StackPanel Grid.Row="1">
-            <ProgressBar x:Name="progressBar" IsIndeterminate="True" Visibility="Collapsed" Height="10" />
             <StackPanel x:Name="resultStack" />
+            <ProgressBar x:Name="progressBar" IsIndeterminate="True" Visibility="Collapsed" Height="10" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
