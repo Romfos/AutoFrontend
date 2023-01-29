@@ -3,7 +3,6 @@ using AutoFrontend.Wpf.Controls.Arguments;
 using AutoFrontend.Wpf.Services;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -59,9 +58,7 @@ public partial class QueryFunctionControl : UserControl
 
         try
         {
-            var functionTask = serviceLocator.FunctionExecutor.ExecuteQueryAsync(function, null);
-            await Task.Delay(300);
-            var result = await functionTask;
+            var result = await serviceLocator.FunctionExecutor.ExecuteQueryAsync(function, null);
 
             if (function.Result.AwaitResultType != typeof(void))
             {
