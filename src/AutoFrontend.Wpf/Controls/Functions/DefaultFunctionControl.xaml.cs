@@ -62,9 +62,7 @@ public partial class DefaultFunctionControl : UserControl
                .Select(x => x.GetArgumentValue())
                .ToArray();
 
-            var functionTask = serviceLocator.FunctionExecutor.ExecuteFunctionAsync(function, parameters);
-            await Task.Delay(300);
-            var result = await functionTask;
+            var result = await serviceLocator.FunctionExecutor.ExecuteFunctionAsync(function, parameters);
 
             if (function.Result.AwaitResultType != typeof(void))
             {
@@ -81,7 +79,9 @@ public partial class DefaultFunctionControl : UserControl
             exceptionControl.Exception(function.Name, exception);
         }
 
-        progressBar.Visibility = Visibility.Collapsed;
         executeButton.IsEnabled = true;
+
+        await Task.Delay(300);
+        progressBar.Visibility = Visibility.Collapsed;
     }
 }
