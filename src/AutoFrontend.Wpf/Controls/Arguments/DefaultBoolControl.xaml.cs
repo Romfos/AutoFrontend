@@ -14,7 +14,7 @@ public partial class DefaultBoolControl : UserControl, IArgumentControl
     public void Configure(ServiceLocator serviceLocator, Argument argument, bool isReadOnly)
     {
         checkBox.Content = argument.Name;
-        checkBox.IsEnabled = isReadOnly;
+        checkBox.IsEnabled = !isReadOnly;
     }
 
     public object? GetArgumentValue()
