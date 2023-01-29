@@ -10,10 +10,10 @@ public sealed class ControlFactory
 {
     private readonly Dictionary<Type, Func<Control>> factories;
 
-    public ControlFactory(List<Component> customComponents)
+    public ControlFactory(List<Component> components)
     {
         factories = CreateDefaultFactories();
-        OverrideFactories(factories, customComponents);
+        OverrideFactories(factories, components);
     }
 
     public Control? Create(Type valueType)
@@ -85,19 +85,19 @@ public sealed class ControlFactory
         };
     }
 
-    private void OverrideFactories(Dictionary<Type, Func<Control>> overriede, IEnumerable<Component> customComponents)
+    private void OverrideFactories(Dictionary<Type, Func<Control>> overriede, IEnumerable<Component> components)
     {
-        foreach (var customComponent in customComponents)
+        foreach (var component in components)
         {
-            overriede[customComponent.ValueType] = () =>
+            overriede[component.ValueType] = () =>
             {
-                if (Activator.CreateInstance(customComponent.ComponentType) is not Control control)
+                if (Activator.CreateInstance(component.ComponentType) is not Control control)
                 {
-                    throw new Exception($"Component {customComponent.ComponentType} should be wpf control");
+                    throw new Exception($"Component {component.ComponentType} should be wpf control");
                 }
                 if (control is not IArgumentControl)
                 {
-                    throw new Exception($"Component {customComponent.ComponentType} should implement {nameof(IArgumentControl)}");
+                    throw new Exception($"Component {component.ComponentType} should implement {nameof(IArgumentControl)}");
                 }
                 return control;
             };
