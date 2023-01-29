@@ -33,6 +33,7 @@ public sealed class ControlFactory
         return new()
         {
             [typeof(string)] = () => new DefaultStringControl(),
+            [typeof(bool)] = () => new DefaultBoolControl(),
             [typeof(int)] = () => new DefaultParserControl()
             {
                 TryParseFunction = x => int.TryParse(x, out var value) ? value : null

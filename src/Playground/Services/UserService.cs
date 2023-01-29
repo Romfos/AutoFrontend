@@ -19,6 +19,10 @@ public sealed class UserService
     {
     }
 
+    public void BoolArgument(bool value)
+    {
+    }
+
     public void Exception()
     {
         throw new Exception(nameof(Exception));
