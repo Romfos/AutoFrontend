@@ -20,6 +20,6 @@
                      Visibility="Collapsed"
                      Height="10" />
         <StackPanel x:Name="resultStack" Visibility="Collapsed" />
-        <Design:ExceptionControl x:Name="exceptionControl"/>
+        <Design:ValidationControl x:Name="validationControl"/>
     </StackPanel>
 </UserControl>

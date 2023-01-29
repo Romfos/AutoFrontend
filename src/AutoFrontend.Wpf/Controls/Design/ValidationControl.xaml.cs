@@ -4,9 +4,9 @@ using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Design;
 
-public partial class ExceptionControl : UserControl
+public partial class ValidationControl : UserControl
 {
-    public ExceptionControl()
+    public ValidationControl()
     {
         InitializeComponent();
     }
@@ -16,10 +16,17 @@ public partial class ExceptionControl : UserControl
         Visibility = Visibility.Collapsed;
     }
 
-    public void Exception(string? header, Exception exception)
+    public void Validation(string? header, Exception exception)
     {
         groupBox.Header = header;
         textBox.Text = exception.ToString();
+        Visibility = Visibility.Visible;
+    }
+
+    public void Validation(string? header, string error)
+    {
+        groupBox.Header = header;
+        textBox.Text = error;
         Visibility = Visibility.Visible;
     }
 }

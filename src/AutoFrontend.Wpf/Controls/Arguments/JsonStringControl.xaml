@@ -20,6 +20,6 @@
                 </ContextMenu>
             </TextBox.ContextMenu>
         </TextBox>
-        <Design:ExceptionControl x:Name="exceptionControl"/>
+        <Design:ValidationControl x:Name="validationControl"/>
     </StackPanel>
 </UserControl>

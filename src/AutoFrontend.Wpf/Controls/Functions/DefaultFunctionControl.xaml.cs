@@ -53,7 +53,7 @@ public partial class DefaultFunctionControl : UserControl
         executeButton.IsEnabled = false;
         resultStack.Visibility = Visibility.Collapsed;
         progressBar.Visibility = Visibility.Visible;
-        exceptionControl.Reset();
+        validationControl.Reset();
 
         try
         {
@@ -76,7 +76,7 @@ public partial class DefaultFunctionControl : UserControl
         }
         catch (Exception exception)
         {
-            exceptionControl.Exception(function.Name, exception);
+            validationControl.Validation(function.Name, exception);
         }
 
         executeButton.IsEnabled = true;

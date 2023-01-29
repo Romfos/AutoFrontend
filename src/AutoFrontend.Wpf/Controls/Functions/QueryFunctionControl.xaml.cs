@@ -50,7 +50,7 @@ public partial class QueryFunctionControl : UserControl
         executeButton.IsEnabled = false;
         progressBar.Visibility = Visibility.Visible;
         resultStack.Visibility = Visibility.Visible;
-        exceptionControl.Reset();
+        validationControl.Reset();
 
         try
         {
@@ -67,7 +67,7 @@ public partial class QueryFunctionControl : UserControl
         }
         catch (Exception exception)
         {
-            exceptionControl.Exception(function.Name, exception);
+            validationControl.Validation(function.Name, exception);
             resultStack.Visibility = Visibility.Collapsed;
         }
 

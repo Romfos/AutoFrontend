@@ -75,11 +75,11 @@ public partial class JsonStringControl : UserControl, IArgumentControl
         try
         {
             JsonSerializer.Deserialize(textBox.Text, argument.AwaitResultType);
-            exceptionControl.Reset();
+            validationControl.Reset();
         }
         catch (Exception exception)
         {
-            exceptionControl.Exception(argument.AwaitResultType.FullName, exception);
+            validationControl.Validation(argument.AwaitResultType.FullName, exception.Message);
         }
     }
 }

@@ -34,7 +34,7 @@
                         Margin="5" 
                         Grid.Column="2"/>
             </Grid>
-            <Design:ExceptionControl x:Name="exceptionControl"/>
+            <Design:ValidationControl x:Name="validationControl"/>
         </StackPanel>
     </Expander>
 </UserControl>
