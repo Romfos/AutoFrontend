@@ -16,20 +16,20 @@ public sealed class FunctionBuilder
 
     public ArgumentBuilder Argument(string? name, Type valueType)
     {
-        var (awaitResultType, isTask, isValueTask) = GetAsyncInformation(valueType);
-        var argument = new Argument(name, awaitResultType, isTask, isValueTask);
+        var (argumentType, isTask, isValueTask) = GetAsyncInformation(valueType);
+        var argument = new Argument(name, argumentType, false, isTask, isValueTask);
         function.Arguments.Add(argument);
         return new ArgumentBuilder(argument);
     }
 
     public ArgumentBuilder Result(Type valueType)
     {
-        var (awaitResultType, isTask, isValueTask) = GetAsyncInformation(valueType);
-        function.Result = new Argument(function.Name, awaitResultType, isTask, isValueTask);
+        var (argumentType, isTask, isValueTask) = GetAsyncInformation(valueType);
+        function.Result = new Argument(function.Name, argumentType, true, isTask, isValueTask);
         return new ArgumentBuilder(function.Result);
     }
 
-    private (Type awaitResultType, bool isTask, bool isValueTask) GetAsyncInformation(Type valueType)
+    private (Type argumentType, bool isTask, bool isValueTask) GetAsyncInformation(Type valueType)
     {
         if (valueType == typeof(Task))
         {

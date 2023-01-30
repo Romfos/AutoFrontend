@@ -22,7 +22,7 @@ public partial class QueryFunctionControl : UserControl
         expander.Expanded += (_, _) => Execute(serviceLocator, function);
         executeButton.Click += (_, _) => Execute(serviceLocator, function);
 
-        var resultControl = CreateArgumentControl(function.Result, serviceLocator, true);
+        var resultControl = CreateArgumentControl(function.Result, serviceLocator);
         resultStack.Children.Add(resultControl);
 
         serviceLocator.GlobalFunctionService.OnFunctionExecuted += () =>
@@ -34,14 +34,14 @@ public partial class QueryFunctionControl : UserControl
         };
     }
 
-    private Control CreateArgumentControl(Argument argument, ServiceLocator servcieLocator, bool IsReadOnly)
+    private Control CreateArgumentControl(Argument argument, ServiceLocator servcieLocator)
     {
-        var control = servcieLocator.ControlFactory.Create(argument.AwaitResultType);
+        var control = servcieLocator.ControlFactory.Create(argument.ArgumentType);
         if (control is not IArgumentControl argumentControl)
         {
             throw new Exception("Unable to resolve control");
         }
-        argumentControl.Configure(servcieLocator, argument, IsReadOnly);
+        argumentControl.Configure(servcieLocator, argument);
         return control;
     }
 
@@ -56,7 +56,7 @@ public partial class QueryFunctionControl : UserControl
         {
             var result = await serviceLocator.GlobalFunctionService.ExecuteAsync(function, null);
 
-            if (function.Result.AwaitResultType != typeof(void))
+            if (function.Result.ArgumentType != typeof(void))
             {
                 var resultArgumentControl = resultStack.Children
                     .Cast<IArgumentControl>()

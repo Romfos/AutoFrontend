@@ -17,31 +17,25 @@ public partial class CustomStringControl : UserControl, IArgumentControl
         InitializeComponent();
     }
 
-    public void Configure(ServiceLocator serviceLocator, Argument argument, bool isReadOnly)
+    public void Configure(ServiceLocator serviceLocator, Argument argument)
     {
         this.argument = argument;
 
         label.Content = argument.Name;
-        errorLabel.Content = $"Relevant {argument.AwaitResultType.FullName} is expected";
+        errorLabel.Content = $"Relevant {argument.ArgumentType.FullName} is expected";
 
-        textBox.IsReadOnly = isReadOnly;
+        textBox.IsReadOnly = argument.IsResult;
         textBox.TextChanged += TextBox_TextChanged;
         SetRandomData(serviceLocator, argument);
     }
 
     public object? ArgumentValue
     {
-        get
-        {
-            var result = TryParseDelegate?.Invoke(textBox.Text);
-            if (result == null)
-            {
-                throw new Exception($"Unable to parse {argument?.AwaitResultType.FullName}");
-            }
-            return result;
-        }
+        get => TryParseDelegate?.Invoke(textBox.Text);
         set => textBox.Text = value?.ToString();
     }
+
+    public bool IsValid => TryParseDelegate?.Invoke(textBox.Text) != null;
 
     private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -59,7 +53,7 @@ public partial class CustomStringControl : UserControl, IArgumentControl
     {
         try
         {
-            var fixture = serviceLocator.Fixture.Create(argument.AwaitResultType);
+            var fixture = serviceLocator.Fixture.Create(argument.ArgumentType);
             textBox.Text = fixture.ToString();
         }
         catch (Exception)

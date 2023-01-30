@@ -11,10 +11,10 @@ public partial class DefaultStringControl : UserControl, IArgumentControl
         InitializeComponent();
     }
 
-    public void Configure(ServiceLocator serviceLocator, Argument argument, bool isReadOnly)
+    public void Configure(ServiceLocator serviceLocator, Argument argument)
     {
         label.Content = argument.Name;
-        textBox.IsReadOnly = isReadOnly;
+        textBox.IsReadOnly = argument.IsResult;
     }
 
     public object? ArgumentValue
@@ -22,4 +22,6 @@ public partial class DefaultStringControl : UserControl, IArgumentControl
         get => textBox.Text;
         set => textBox.Text = value as string;
     }
+
+    public bool IsValid { get; } = true;
 }

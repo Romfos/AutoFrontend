@@ -23,48 +23,55 @@ public partial class DefaultFunctionControl : UserControl
 
         foreach (var argument in function.Arguments)
         {
-            var argumentControl = CreateArgumentControl(argument, serviceLocator, false);
+            var argumentControl = CreateArgumentControl(argument, serviceLocator);
             argumentStack.Children.Add(argumentControl);
         }
 
-        var resultControl = CreateArgumentControl(function.Result, serviceLocator, true);
+        var resultControl = CreateArgumentControl(function.Result, serviceLocator);
         if (resultControl != null)
         {
             resultStack.Children.Add(resultControl);
         }
     }
 
-    private Control? CreateArgumentControl(Argument argument, ServiceLocator servcieLocator, bool IsReadOnly)
+    private Control? CreateArgumentControl(Argument argument, ServiceLocator servcieLocator)
     {
-        if (argument.AwaitResultType == typeof(void))
+        if (argument.ArgumentType == typeof(void))
         {
             return null;
         }
-        var control = servcieLocator.ControlFactory.Create(argument.AwaitResultType);
+        var control = servcieLocator.ControlFactory.Create(argument.ArgumentType);
         if (control is IArgumentControl argumentControl)
         {
-            argumentControl.Configure(servcieLocator, argument, IsReadOnly);
+            argumentControl.Configure(servcieLocator, argument);
         }
         return control;
     }
 
     private async void Execute(ServiceLocator serviceLocator, Function function)
     {
-        executeButton.IsEnabled = false;
         resultStack.Visibility = Visibility.Collapsed;
+
+        if (argumentStack.Children.Cast<IArgumentControl>().Any(x => !x.IsValid))
+        {
+            validationControl.Validation(function.Name, "Some arguments are not valid");
+            return;
+        }
+
+        executeButton.IsEnabled = false;
         progressBar.Visibility = Visibility.Visible;
         validationControl.Reset();
 
+        var parameters = argumentStack.Children
+            .Cast<IArgumentControl>()
+            .Select(x => x.ArgumentValue)
+            .ToArray();
+
         try
         {
-            var parameters = argumentStack.Children
-               .Cast<IArgumentControl>()
-               .Select(x => x.ArgumentValue)
-               .ToArray();
-
             var result = await serviceLocator.GlobalFunctionService.ExecuteWithNotificationAsync(function, parameters);
 
-            if (function.Result.AwaitResultType != typeof(void))
+            if (function.Result.ArgumentType != typeof(void))
             {
                 var resultArgumentControl = resultStack.Children
                     .Cast<IArgumentControl>()

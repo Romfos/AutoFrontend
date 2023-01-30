@@ -18,6 +18,6 @@ public sealed class Function
         MethodInfo = methodInfo;
         Name = name;
 
-        Result = new Argument(null, typeof(void), false, false);
+        Result = new Argument(null, typeof(void), true, false, false);
     }
 }

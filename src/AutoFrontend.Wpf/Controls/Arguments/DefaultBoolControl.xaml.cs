@@ -11,10 +11,10 @@ public partial class DefaultBoolControl : UserControl, IArgumentControl
         InitializeComponent();
     }
 
-    public void Configure(ServiceLocator serviceLocator, Argument argument, bool isReadOnly)
+    public void Configure(ServiceLocator serviceLocator, Argument argument)
     {
         checkBox.Content = argument.Name;
-        checkBox.IsEnabled = !isReadOnly;
+        checkBox.IsEnabled = !argument.IsResult;
     }
 
     public object? ArgumentValue
@@ -22,4 +22,6 @@ public partial class DefaultBoolControl : UserControl, IArgumentControl
         get => checkBox.IsChecked == true;
         set => checkBox.IsChecked = (bool?)value == true;
     }
+
+    public bool IsValid { get; } = true;
 }

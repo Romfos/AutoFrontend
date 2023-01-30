@@ -17,7 +17,7 @@ public partial class JsonStringControl : UserControl, IArgumentControl
         InitializeComponent();
     }
 
-    public void Configure(ServiceLocator serviceLocator, Argument argument, bool isReadOnly)
+    public void Configure(ServiceLocator serviceLocator, Argument argument)
     {
         if (argument.Name != null)
         {
@@ -26,15 +26,15 @@ public partial class JsonStringControl : UserControl, IArgumentControl
 
         this.argument = argument;
 
-        if (isReadOnly)
+        if (argument.IsResult)
         {
             textBox.IsReadOnly = true;
             generateRandomValue.IsEnabled = false;
         }
         else
         {
-            generateRandomValue.Click += (_, _) => SetRandomData(serviceLocator, argument);
-            SetRandomData(serviceLocator, argument);
+            generateRandomValue.Click += (_, _) => GenerateRandomData(serviceLocator, argument);
+            GenerateRandomData(serviceLocator, argument);
             textBox.TextChanged += TextBox_TextChanged;
         }
     }
@@ -47,16 +47,18 @@ public partial class JsonStringControl : UserControl, IArgumentControl
             {
                 throw new Exception($"Field {nameof(argument)} is required");
             }
-            return JsonSerializer.Deserialize(textBox.Text, argument.AwaitResultType);
+            return JsonSerializer.Deserialize(textBox.Text, argument.ArgumentType);
         }
         set => textBox.Text = JsonSerializer.Serialize(value, JsonSerializerOptions);
     }
 
-    private void SetRandomData(ServiceLocator serviceLocator, Argument argument)
+    public bool IsValid => UpdateValidationState();
+
+    private void GenerateRandomData(ServiceLocator serviceLocator, Argument argument)
     {
         try
         {
-            var fixture = serviceLocator.Fixture.Create(argument.AwaitResultType);
+            var fixture = serviceLocator.Fixture.Create(argument.ArgumentType);
             textBox.Text = JsonSerializer.Serialize(fixture, JsonSerializerOptions);
         }
         catch (Exception)
@@ -67,18 +69,25 @@ public partial class JsonStringControl : UserControl, IArgumentControl
 
     private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
+        UpdateValidationState();
+    }
+
+    private bool UpdateValidationState()
+    {
         if (argument == null)
         {
-            return;
+            return false;
         }
         try
         {
-            JsonSerializer.Deserialize(textBox.Text, argument.AwaitResultType);
+            JsonSerializer.Deserialize(textBox.Text, argument.ArgumentType);
             validationControl.Reset();
+            return true;
         }
         catch (Exception exception)
         {
-            validationControl.Validation(argument.AwaitResultType.FullName, exception.Message);
+            validationControl.Validation(argument.ArgumentType.FullName, exception.Message);
+            return false;
         }
     }
 }

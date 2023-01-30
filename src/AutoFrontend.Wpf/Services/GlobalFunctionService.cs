@@ -19,7 +19,7 @@ public sealed class GlobalFunctionService
     {
         if (function.Result.IsTask || function.Result.IsValueTask)
         {
-            if (function.Result.AwaitResultType == typeof(void))
+            if (function.Result.ArgumentType == typeof(void))
             {
                 await (dynamic?)function.MethodInfo.Invoke(function.Target, parameters);
                 return null;
@@ -30,7 +30,7 @@ public sealed class GlobalFunctionService
             }
         }
 
-        if (function.Result.AwaitResultType == typeof(void))
+        if (function.Result.ArgumentType == typeof(void))
         {
             await Task.Run(() =>
             {

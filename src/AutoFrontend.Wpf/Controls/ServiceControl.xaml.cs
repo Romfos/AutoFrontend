@@ -16,12 +16,12 @@ public partial class ServiceControl : UserControl
     public void Configure(ServiceLocator servcieLocator, Service service)
     {
         var simpleFunctons = service.Functions
-            .Where(function => function.Arguments.Count == 0 && function.Result.AwaitResultType == typeof(void))
+            .Where(function => function.Arguments.Count == 0 && function.Result.ArgumentType == typeof(void))
             .ToList();
 
         var queryFunctions = service.Functions.Where(function =>
             function.Arguments.Count == 0
-                && function.Result.AwaitResultType != typeof(void));
+                && function.Result.ArgumentType != typeof(void));
 
         var defaultFunctions = service.Functions.Where(function => function.Arguments.Count > 0);
 
