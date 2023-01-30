@@ -3,9 +3,9 @@ using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Arguments;
 
-public partial class DefaultStringControl : UserControl, IArgumentControl
+public partial class StringArgumentControl : UserControl, IArgumentControl
 {
-    public DefaultStringControl(Argument argument)
+    public StringArgumentControl(Argument argument)
     {
         InitializeComponent();
 

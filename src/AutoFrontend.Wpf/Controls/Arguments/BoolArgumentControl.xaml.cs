@@ -3,9 +3,9 @@ using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Arguments;
 
-public partial class DefaultBoolControl : UserControl, IArgumentControl
+public partial class BoolArgumentControl : UserControl, IArgumentControl
 {
-    public DefaultBoolControl(Argument argument)
+    public BoolArgumentControl(Argument argument)
     {
         InitializeComponent();
 

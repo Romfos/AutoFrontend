@@ -5,11 +5,11 @@ using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Arguments;
 
-public partial class CustomDateTimeControl : UserControl, IArgumentControl
+public partial class DateTimeControl : UserControl, IArgumentControl
 {
     private readonly Argument argument;
 
-    public CustomDateTimeControl(Argument argument)
+    public DateTimeControl(Argument argument)
     {
         InitializeComponent();
         this.argument = argument;

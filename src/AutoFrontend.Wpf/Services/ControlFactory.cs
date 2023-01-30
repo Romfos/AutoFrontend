@@ -35,29 +35,29 @@ public sealed class ControlFactory
     private IEnumerable<Func<Argument, Control?>> CreateDefaultFactories()
     {
         yield return argument => argument.ArgumentType == typeof(string)
-            ? new DefaultStringControl(argument)
+            ? new StringArgumentControl(argument)
             : null;
         yield return argument => argument.ArgumentType == typeof(bool) && argument.IsResult
-            ? new DefaultTrueFalseControl(argument)
+            ? new BoolResultControl(argument)
             : null;
         yield return argument => argument.ArgumentType == typeof(bool) && !argument.IsResult
-            ? new DefaultBoolControl(argument)
+            ? new BoolArgumentControl(argument)
             : null;
         yield return argument => argument.ArgumentType == typeof(DateTime)
-            ? new CustomDateTimeControl(argument)
+            ? new DateTimeControl(argument)
             : null;
         yield return argument => argument.ArgumentType == typeof(DateTimeOffset)
-            ? new CustomDateTimeControl(argument)
+            ? new DateTimeControl(argument)
             : null;
         yield return argument => argument.ArgumentType == typeof(TimeSpan)
-            ? new CustomDateTimeControl(argument)
+            ? new DateTimeControl(argument)
             : null;
 #if NET6_0_OR_GREATER
         yield return argument => argument.ArgumentType == typeof(TimeOnly)
-            ? new CustomDateTimeControl(argument)
+            ? new DateTimeControl(argument)
             : null;
         yield return argument => argument.ArgumentType == typeof(DateOnly)
-            ? new CustomDateTimeControl(argument)
+            ? new DateTimeControl(argument)
             : null;
 #endif
         yield return argument => argument.ArgumentType == typeof(int)
