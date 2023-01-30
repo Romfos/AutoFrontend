@@ -1,3 +1,4 @@
+using Playground.Enums;
 using Playground.Models;
 using System;
 using System.Threading.Tasks;
@@ -65,6 +66,11 @@ public sealed class UserService
     public bool Bool(bool value)
     {
         return value;
+    }
+
+    public Enum1 Enum(Enum1 @enum)
+    {
+        return @enum;
     }
 
     public void Exception()

@@ -154,5 +154,8 @@ public sealed class ControlFactory
                 }
             }
             : null;
+        yield return argument => argument.ArgumentType.IsEnum
+            ? new EnumControl(argument)
+            : null;
     }
 }
