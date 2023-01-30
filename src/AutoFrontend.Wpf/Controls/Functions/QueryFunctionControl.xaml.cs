@@ -10,42 +10,37 @@ namespace AutoFrontend.Wpf.Controls.Functions;
 
 public partial class QueryFunctionControl : UserControl
 {
-    public QueryFunctionControl()
+    private readonly Function function;
+    private readonly GlobalFunctionService globalFunctionService;
+
+    public QueryFunctionControl(
+        Function function,
+        GlobalFunctionService globalFunctionService,
+        ControlFactory controlFactory)
     {
         InitializeComponent();
-    }
 
-    public void Configure(ServiceLocator serviceLocator, Function function)
-    {
+        this.function = function;
+        this.globalFunctionService = globalFunctionService;
+
         expander.Header = function.Name;
 
-        expander.Expanded += (_, _) => Execute(serviceLocator, function);
-        executeButton.Click += (_, _) => Execute(serviceLocator, function);
+        var argumentControl = controlFactory.Create(function.Result);
+        resultStack.Children.Add(argumentControl);
 
-        var resultControl = CreateArgumentControl(function.Result, serviceLocator);
-        resultStack.Children.Add(resultControl);
+        expander.Expanded += (_, _) => Execute();
+        executeButton.Click += (_, _) => Execute();
 
-        serviceLocator.GlobalFunctionService.OnFunctionExecuted += () =>
+        globalFunctionService.OnFunctionExecuted += () =>
         {
             if (autoRefresh.IsChecked == true && expander.IsExpanded)
             {
-                Execute(serviceLocator, function);
+                Execute();
             }
         };
     }
 
-    private Control CreateArgumentControl(Argument argument, ServiceLocator servcieLocator)
-    {
-        var control = servcieLocator.ControlFactory.Create(argument.ArgumentType);
-        if (control is not IArgumentControl argumentControl)
-        {
-            throw new Exception("Unable to resolve control");
-        }
-        argumentControl.Configure(servcieLocator, argument);
-        return control;
-    }
-
-    private async void Execute(ServiceLocator serviceLocator, Function function)
+    private async void Execute()
     {
         executeButton.IsEnabled = false;
         progressBar.Visibility = Visibility.Visible;
@@ -54,7 +49,7 @@ public partial class QueryFunctionControl : UserControl
 
         try
         {
-            var result = await serviceLocator.GlobalFunctionService.ExecuteAsync(function, null);
+            var result = await globalFunctionService.ExecuteAsync(function, null);
 
             if (function.Result.ArgumentType != typeof(void))
             {

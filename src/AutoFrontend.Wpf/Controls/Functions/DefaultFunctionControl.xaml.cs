@@ -11,44 +11,36 @@ namespace AutoFrontend.Wpf.Controls.Functions;
 
 public partial class DefaultFunctionControl : UserControl
 {
-    public DefaultFunctionControl()
+    private readonly Function function;
+    private readonly GlobalFunctionService globalFunctionService;
+
+    public DefaultFunctionControl(
+        Function function,
+        GlobalFunctionService globalFunctionService,
+        ControlFactory controlFactory)
     {
         InitializeComponent();
-    }
 
-    public void Configure(ServiceLocator serviceLocator, Function function)
-    {
+        this.function = function;
+        this.globalFunctionService = globalFunctionService;
+
         executeButton.Content = function.Name;
-        executeButton.Click += (_, _) => Execute(serviceLocator, function);
+        executeButton.Click += (_, _) => Execute();
 
         foreach (var argument in function.Arguments)
         {
-            var argumentControl = CreateArgumentControl(argument, serviceLocator);
+            var argumentControl = controlFactory.Create(argument);
             argumentStack.Children.Add(argumentControl);
         }
 
-        var resultControl = CreateArgumentControl(function.Result, serviceLocator);
-        if (resultControl != null)
+        if (function.Result.ArgumentType != typeof(void))
         {
-            resultStack.Children.Add(resultControl);
+            var argumentControl = controlFactory.Create(function.Result);
+            resultStack.Children.Add(argumentControl);
         }
     }
 
-    private Control? CreateArgumentControl(Argument argument, ServiceLocator servcieLocator)
-    {
-        if (argument.ArgumentType == typeof(void))
-        {
-            return null;
-        }
-        var control = servcieLocator.ControlFactory.Create(argument.ArgumentType);
-        if (control is IArgumentControl argumentControl)
-        {
-            argumentControl.Configure(servcieLocator, argument);
-        }
-        return control;
-    }
-
-    private async void Execute(ServiceLocator serviceLocator, Function function)
+    private async void Execute()
     {
         resultStack.Visibility = Visibility.Collapsed;
 
@@ -69,7 +61,7 @@ public partial class DefaultFunctionControl : UserControl
 
         try
         {
-            var result = await serviceLocator.GlobalFunctionService.ExecuteWithNotificationAsync(function, parameters);
+            var result = await globalFunctionService.ExecuteWithNotificationAsync(function, parameters);
 
             if (function.Result.ArgumentType != typeof(void))
             {

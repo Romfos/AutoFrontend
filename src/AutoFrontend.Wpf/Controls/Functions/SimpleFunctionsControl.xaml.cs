@@ -10,13 +10,14 @@ namespace AutoFrontend.Wpf.Controls.Functions;
 
 public partial class SimpleFunctionsControl : UserControl
 {
-    public SimpleFunctionsControl()
+    private readonly GlobalFunctionService globalFunctionService;
+
+    public SimpleFunctionsControl(GlobalFunctionService globalFunctionService, List<Function> functions)
     {
         InitializeComponent();
-    }
 
-    public void Configure(ServiceLocator serviceLocator, List<Function> functions)
-    {
+        this.globalFunctionService = globalFunctionService;
+
         grid.Rows = (functions.Count / 5) + 1;
 
         foreach (var function in functions)
@@ -26,12 +27,13 @@ public partial class SimpleFunctionsControl : UserControl
                 Content = function.Name,
                 Padding = new Thickness(5)
             };
-            actionbutton.Click += (s, e) => Execute(serviceLocator, function);
+            actionbutton.Click += (s, e) => Execute(function);
             grid.Children.Add(actionbutton);
         }
     }
 
-    private async void Execute(ServiceLocator serviceLocator, Function function)
+
+    private async void Execute(Function function)
     {
         grid.IsEnabled = false;
         validationControl.Reset();
@@ -39,7 +41,7 @@ public partial class SimpleFunctionsControl : UserControl
 
         try
         {
-            var functionTask = serviceLocator.GlobalFunctionService.ExecuteWithNotificationAsync(function, null);
+            var functionTask = globalFunctionService.ExecuteWithNotificationAsync(function, null);
             await Task.WhenAll(Task.Delay(300), functionTask);
         }
         catch (Exception exception)

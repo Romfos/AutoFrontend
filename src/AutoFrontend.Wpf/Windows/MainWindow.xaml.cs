@@ -8,17 +8,13 @@ namespace AutoFrontend.Wpf.Windows;
 
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    public MainWindow(Frontend frontend, GlobalFunctionService globalFunctionService, ControlFactory controlFactory)
     {
         InitializeComponent();
-    }
 
-    public void Setup(Frontend frontend, ServiceLocator servcieLocator)
-    {
         foreach (var service in frontend.Services)
         {
-            var serviceControl = new ServiceControl();
-            serviceControl.Configure(servcieLocator, service);
+            var serviceControl = new ServiceControl(service, globalFunctionService, controlFactory);
 
             tabs.Items.Add(new TabItem
             {

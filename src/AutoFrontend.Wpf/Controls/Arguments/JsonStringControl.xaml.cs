@@ -1,8 +1,8 @@
 using AutoFrontend.Models;
-using AutoFrontend.Wpf.Services;
 using System;
 using System.Text.Json;
 using System.Windows.Controls;
+using TestFixture;
 
 namespace AutoFrontend.Wpf.Controls.Arguments;
 
@@ -10,22 +10,20 @@ public partial class JsonStringControl : UserControl, IArgumentControl
 {
     private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions { WriteIndented = true };
 
-    private Argument? argument;
+    private readonly Argument argument;
+    private readonly Fixture fixture;
 
-    public JsonStringControl()
+    public JsonStringControl(Argument argument, Fixture fixture)
     {
         InitializeComponent();
-    }
 
-    public void Configure(ServiceLocator serviceLocator, Argument argument)
-    {
+        this.argument = argument;
+        this.fixture = fixture;
+
         if (argument.Name != null)
         {
             label.Content = argument.Name;
         }
-
-        this.argument = argument;
-
         if (argument.IsResult)
         {
             textBox.IsReadOnly = true;
@@ -33,33 +31,26 @@ public partial class JsonStringControl : UserControl, IArgumentControl
         }
         else
         {
-            generateRandomValue.Click += (_, _) => GenerateRandomData(serviceLocator, argument);
-            GenerateRandomData(serviceLocator, argument);
+            generateRandomValue.Click += (_, _) => GenerateRandomValue();
             textBox.TextChanged += TextBox_TextChanged;
+            GenerateRandomValue();
         }
     }
 
     public object? ArgumentValue
     {
-        get
-        {
-            if (argument == null)
-            {
-                throw new Exception($"Field {nameof(argument)} is required");
-            }
-            return JsonSerializer.Deserialize(textBox.Text, argument.ArgumentType);
-        }
+        get => JsonSerializer.Deserialize(textBox.Text, argument.ArgumentType);
         set => textBox.Text = JsonSerializer.Serialize(value, JsonSerializerOptions);
     }
 
     public bool IsValid => UpdateValidationState();
 
-    private void GenerateRandomData(ServiceLocator serviceLocator, Argument argument)
+    private void GenerateRandomValue()
     {
         try
         {
-            var fixture = serviceLocator.Fixture.Create(argument.ArgumentType);
-            textBox.Text = JsonSerializer.Serialize(fixture, JsonSerializerOptions);
+            var value = fixture.Create(argument.ArgumentType);
+            textBox.Text = JsonSerializer.Serialize(value, JsonSerializerOptions);
         }
         catch (Exception)
         {
@@ -74,10 +65,6 @@ public partial class JsonStringControl : UserControl, IArgumentControl
 
     private bool UpdateValidationState()
     {
-        if (argument == null)
-        {
-            return false;
-        }
         try
         {
             JsonSerializer.Deserialize(textBox.Text, argument.ArgumentType);

@@ -1,4 +1,4 @@
-<UserControl xmlns:Functions="clr-namespace:AutoFrontend.Wpf.Controls.Functions"  x:Class="AutoFrontend.Wpf.Controls.ServiceControl"
+<UserControl x:Class="AutoFrontend.Wpf.Controls.ServiceControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,6 +10,5 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Top"
                 MaxWidth="800" >
-        <Functions:SimpleFunctionsControl x:Name="simpleFunctionsControl"/>
     </StackPanel>
 </UserControl>

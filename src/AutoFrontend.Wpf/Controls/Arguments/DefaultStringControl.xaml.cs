@@ -1,18 +1,14 @@
 using AutoFrontend.Models;
-using AutoFrontend.Wpf.Services;
 using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Arguments;
 
 public partial class DefaultStringControl : UserControl, IArgumentControl
 {
-    public DefaultStringControl()
+    public DefaultStringControl(Argument argument)
     {
         InitializeComponent();
-    }
 
-    public void Configure(ServiceLocator serviceLocator, Argument argument)
-    {
         label.Content = argument.Name;
         textBox.IsReadOnly = argument.IsResult;
     }

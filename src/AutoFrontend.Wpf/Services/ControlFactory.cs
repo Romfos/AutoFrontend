@@ -1,86 +1,96 @@
+using AutoFrontend.Models;
 using AutoFrontend.Wpf.Controls.Arguments;
 using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using TestFixture;
 
 namespace AutoFrontend.Wpf.Services;
 
 public sealed class ControlFactory
 {
-    private readonly Dictionary<Type, Func<Control>> factories = CreateDefaultFactories();
+    private readonly Fixture fixture;
+    private readonly Dictionary<Type, Func<Argument, Control>> factories;
 
-    public Control? Create(Type valueType)
+    public ControlFactory(Fixture fixture)
     {
-        if (factories.TryGetValue(valueType, out var factory))
+        this.fixture = fixture;
+
+        factories = CreateDefaultFactories();
+    }
+
+    public Control Create(Argument argument)
+    {
+        if (factories.TryGetValue(argument.ArgumentType, out var factory))
         {
-            return factory();
+            return factory(argument);
         }
         else
         {
-            return new JsonStringControl();
+            return new JsonStringControl(argument, fixture);
         }
     }
 
-    private static Dictionary<Type, Func<Control>> CreateDefaultFactories()
+    private Dictionary<Type, Func<Argument, Control>> CreateDefaultFactories()
     {
         return new()
         {
-            [typeof(string)] = () => new DefaultStringControl(),
-            [typeof(bool)] = () => new DefaultBoolControl(),
-            [typeof(int)] = () => new CustomStringControl
+            [typeof(string)] = argument => new DefaultStringControl(argument),
+            [typeof(bool)] = argument => new DefaultBoolControl(argument),
+            [typeof(int)] = argument => new CustomStringControl(argument, fixture)
             {
                 TryParseDelegate = x => int.TryParse(x, out var value) ? value : null
             },
-            [typeof(byte)] = () => new CustomStringControl
+            [typeof(byte)] = argument => new CustomStringControl(argument, fixture)
             {
                 TryParseDelegate = x => byte.TryParse(x, out var value) ? value : null
             },
-            [typeof(sbyte)] = () => new CustomStringControl
+            [typeof(sbyte)] = argument => new CustomStringControl(argument, fixture)
             {
                 TryParseDelegate = x => sbyte.TryParse(x, out var value) ? value : null
             },
-            [typeof(short)] = () => new CustomStringControl
+            [typeof(short)] = argument => new CustomStringControl(argument, fixture)
             {
                 TryParseDelegate = x => short.TryParse(x, out var value) ? value : null
             },
-            [typeof(ushort)] = () => new CustomStringControl
+            [typeof(ushort)] = argument => new CustomStringControl(argument, fixture)
             {
                 TryParseDelegate = x => ushort.TryParse(x, out var value) ? value : null
             },
-            [typeof(uint)] = () => new CustomStringControl
+            [typeof(uint)] = argument => new CustomStringControl(argument, fixture)
             {
                 TryParseDelegate = x => uint.TryParse(x, out var value) ? value : null
             },
-            [typeof(long)] = () => new CustomStringControl
+            [typeof(long)] = argument => new CustomStringControl(argument, fixture)
             {
                 TryParseDelegate = x => long.TryParse(x, out var value) ? value : null
             },
-            [typeof(ulong)] = () => new CustomStringControl
+            [typeof(ulong)] = argument => new CustomStringControl(argument, fixture)
             {
                 TryParseDelegate = x => ulong.TryParse(x, out var value) ? value : null
             },
-            [typeof(float)] = () => new CustomStringControl
+            [typeof(float)] = argument => new CustomStringControl(argument, fixture)
             {
                 TryParseDelegate = x => float.TryParse(x, out var value) ? value : null
             },
-            [typeof(double)] = () => new CustomStringControl
+            [typeof(double)] = argument => new CustomStringControl(argument, fixture)
             {
                 TryParseDelegate = x => double.TryParse(x, out var value) ? value : null
             },
-            [typeof(decimal)] = () => new CustomStringControl
+            [typeof(decimal)] = argument => new CustomStringControl(argument, fixture)
             {
                 TryParseDelegate = x => decimal.TryParse(x, out var value) ? value : null
             },
-            [typeof(Guid)] = () => new CustomStringControl
+            [typeof(Guid)] = argument => new CustomStringControl(argument, fixture)
             {
                 TryParseDelegate = x => Guid.TryParse(x, out var value) ? value : null
             },
         };
     }
 
-    public void AddCustomControl<TControl, TValue>()
-        where TControl : Control, IArgumentControl, new()
+    public void AddCustomControl<TControl, TValue>(Func<Argument, TControl> factory)
+        where TControl : Control, IArgumentControl
     {
-        factories[typeof(TValue)] = () => new TControl();
+        factories[typeof(TValue)] = factory;
     }
 }

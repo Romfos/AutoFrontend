@@ -8,39 +8,48 @@ namespace AutoFrontend.Wpf.Controls;
 
 public partial class ServiceControl : UserControl
 {
-    public ServiceControl()
+    public ServiceControl(Service service, GlobalFunctionService globalFunctionService, ControlFactory controlFactory)
     {
         InitializeComponent();
+
+        ConfigureSimpleFunctions(service, globalFunctionService);
+        ConfigureQueryFunctions(service, globalFunctionService, controlFactory);
+        ConfigureDefaultFunctions(service, globalFunctionService, controlFactory);
     }
 
-    public void Configure(ServiceLocator servcieLocator, Service service)
+    private void ConfigureSimpleFunctions(Service service, GlobalFunctionService globalFunctionService)
     {
-        var simpleFunctons = service.Functions
+        var functions = service.Functions
             .Where(function => function.Arguments.Count == 0 && function.Result.ArgumentType == typeof(void))
             .ToList();
 
-        var queryFunctions = service.Functions.Where(function =>
-            function.Arguments.Count == 0
-                && function.Result.ArgumentType != typeof(void));
-
-        var defaultFunctions = service.Functions.Where(function => function.Arguments.Count > 0);
-
-        if (simpleFunctons.Any())
+        if (functions.Any())
         {
-            simpleFunctionsControl.Configure(servcieLocator, simpleFunctons);
+            var simpleFunctionsControl = new SimpleFunctionsControl(globalFunctionService, functions);
+            stackPanel.Children.Add(simpleFunctionsControl);
         }
+    }
 
-        foreach (var function in queryFunctions)
+    private void ConfigureQueryFunctions(Service service, GlobalFunctionService globalFunctionService, ControlFactory controlFactory)
+    {
+        var functionControls = service.Functions
+            .Where(function => function.Arguments.Count == 0 && function.Result.ArgumentType != typeof(void))
+            .Select(function => new QueryFunctionControl(function, globalFunctionService, controlFactory));
+
+        foreach (var functionControl in functionControls)
         {
-            var functionControl = new QueryFunctionControl();
-            functionControl.Configure(servcieLocator, function);
             stackPanel.Children.Add(functionControl);
         }
+    }
 
-        foreach (var function in defaultFunctions)
+    private void ConfigureDefaultFunctions(Service service, GlobalFunctionService globalFunctionService, ControlFactory controlFactory)
+    {
+        var functionControls = service.Functions
+            .Where(function => function.Arguments.Count > 0)
+            .Select(function => new DefaultFunctionControl(function, globalFunctionService, controlFactory));
+
+        foreach (var functionControl in functionControls)
         {
-            var functionControl = new DefaultFunctionControl();
-            functionControl.Configure(servcieLocator, function);
             stackPanel.Children.Add(functionControl);
         }
     }
