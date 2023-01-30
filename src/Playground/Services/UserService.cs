@@ -15,24 +15,51 @@ public sealed class UserService
         return model;
     }
 
-    public void String(string stringValue)
+    public string String(string stringValue)
     {
+        return stringValue;
     }
 
-    public void Char(char charValue)
+    public char Char(char charValue)
     {
+        return charValue;
     }
 
-    public void Uri(Uri uriValue)
+    public Uri Uri(Uri uriValue)
     {
+        return uriValue;
     }
 
-    public void DateTime(DateTime dateTime)
+    public DateTime DateTime(DateTime dateTime)
     {
+        return dateTime;
     }
 
-    public void Guid(Guid guidValue)
+    public DateTimeOffset DateTimeOffset(DateTimeOffset dateTimeOffset)
     {
+        return dateTimeOffset;
+    }
+
+    public TimeSpan DateTimeOffset(TimeSpan timeSpan)
+    {
+        return timeSpan;
+    }
+
+#if NET6_0_OR_GREATER
+    public TimeOnly TimeOnly(TimeOnly timeOnly)
+    {
+        return timeOnly;
+    }
+
+    public DateOnly DateOnly(DateOnly dateOnly)
+    {
+        return dateOnly;
+    }
+#endif
+
+    public Guid Guid(Guid guidValue)
+    {
+        return guidValue;
     }
 
     public bool Bool(bool value)
