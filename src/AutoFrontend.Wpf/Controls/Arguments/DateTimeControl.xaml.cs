@@ -33,11 +33,11 @@ public partial class DateTimeControl : UserControl, IArgumentControl
             timeTextBox.Visibility = Visibility.Collapsed;
         }
 #endif
-
-        timeTextBox.TextChanged += TimeTextBox_TextChanged;
+        datePicker.SelectedDateChanged += (_, _) => Validate();
+        timeTextBox.TextChanged += (_, _) => Validate();
     }
 
-    private void TimeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    private void Validate()
     {
         if (IsValid)
         {
