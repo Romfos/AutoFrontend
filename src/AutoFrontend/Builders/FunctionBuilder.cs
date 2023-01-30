@@ -16,28 +16,26 @@ public sealed class FunctionBuilder
 
     public ArgumentBuilder Argument(string? name, Type valueType)
     {
-        var (argumentType, isTask, isValueTask) = GetAsyncInformation(valueType);
-        var argument = new Argument(name, argumentType, false, isTask, isValueTask);
+        var argument = CreateArgument(name, false, valueType);
         function.Arguments.Add(argument);
         return new ArgumentBuilder(argument);
     }
 
     public ArgumentBuilder Result(Type valueType)
     {
-        var (argumentType, isTask, isValueTask) = GetAsyncInformation(valueType);
-        function.Result = new Argument(function.Name, argumentType, true, isTask, isValueTask);
+        function.Result = CreateArgument(null, true, valueType);
         return new ArgumentBuilder(function.Result);
     }
 
-    private (Type argumentType, bool isTask, bool isValueTask) GetAsyncInformation(Type valueType)
+    private Argument CreateArgument(string? name, bool isResult, Type valueType)
     {
         if (valueType == typeof(Task))
         {
-            return (typeof(void), true, false);
+            return new(name, typeof(void), isResult, true, false);
         }
         if (valueType == typeof(ValueTask))
         {
-            return (typeof(void), false, true);
+            return new(name, typeof(void), isResult, false, true);
         }
 
         if (valueType.IsGenericType)
@@ -48,14 +46,14 @@ public sealed class FunctionBuilder
                 var genericType = genericArguments.Single();
                 if (valueType == typeof(Task<>).MakeGenericType(genericType))
                 {
-                    return (genericType, true, false);
+                    return new(name, genericType, isResult, true, false);
                 }
                 if (valueType == typeof(ValueTask<>).MakeGenericType(genericType))
                 {
-                    return (genericType, false, true);
+                    return new(name, genericType, isResult, false, true);
                 }
             }
         }
-        return (valueType, false, false);
+        return new(name, valueType, isResult, false, false);
     }
 }
