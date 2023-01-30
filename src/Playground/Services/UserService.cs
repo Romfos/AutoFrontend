@@ -10,28 +10,32 @@ public sealed class UserService
     {
     }
 
-    public Model ModelArgument(Model model)
+    public Model Model(Model model)
     {
         return model;
     }
 
-    public void StringArgument(string stringValue)
+    public void String(string stringValue)
     {
     }
 
-    public void CharArgument(char charValue)
+    public void Char(char charValue)
     {
     }
 
-    public void UriArgument(Uri uriValue)
+    public void Uri(Uri uriValue)
     {
     }
 
-    public void GuidArgument(Guid guidValue)
+    public void DateTime(DateTime dateTime)
     {
     }
 
-    public void BoolArgument(bool value)
+    public void Guid(Guid guidValue)
+    {
+    }
+
+    public void Bool(bool value)
     {
     }
 

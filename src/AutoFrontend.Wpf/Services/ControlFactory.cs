@@ -37,6 +37,13 @@ public sealed class ControlFactory
         {
             [typeof(string)] = argument => new DefaultStringControl(argument),
             [typeof(bool)] = argument => new DefaultBoolControl(argument),
+            [typeof(DateTime)] = argument => new CustomDateTimeControl(argument),
+            [typeof(DateTimeOffset)] = argument => new CustomDateTimeControl(argument),
+            [typeof(TimeSpan)] = argument => new CustomDateTimeControl(argument),
+#if NET6_0_OR_GREATER
+            [typeof(TimeOnly)] = argument => new CustomDateTimeControl(argument),
+            [typeof(DateOnly)] = argument => new CustomDateTimeControl(argument),
+#endif
             [typeof(int)] = argument => new CustomStringControl(argument, fixture)
             {
                 TryParseDelegate = x => int.TryParse(x, out var value) ? value : null
