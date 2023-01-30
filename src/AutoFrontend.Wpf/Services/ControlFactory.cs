@@ -85,6 +85,24 @@ public sealed class ControlFactory
             {
                 TryParseDelegate = x => Guid.TryParse(x, out var value) ? value : null
             },
+            [typeof(char)] = argument => new CustomStringControl(argument, fixture)
+            {
+                TryParseDelegate = x => char.TryParse(x, out var value) ? value : null
+            },
+            [typeof(Uri)] = argument => new CustomStringControl(argument, fixture)
+            {
+                TryParseDelegate = x =>
+                {
+                    try
+                    {
+                        return new Uri(x);
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+            },
         };
     }
 

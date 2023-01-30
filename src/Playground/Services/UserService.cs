@@ -19,6 +19,14 @@ public sealed class UserService
     {
     }
 
+    public void CharArgument(char charValue)
+    {
+    }
+
+    public void UriArgument(Uri uriValue)
+    {
+    }
+
     public void GuidArgument(Guid guidValue)
     {
     }
