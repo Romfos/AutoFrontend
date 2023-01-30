@@ -32,11 +32,4 @@ public sealed class FrontendBuilder
 
         return serviceBuilder;
     }
-
-    public ComponentBuilder Component<TComponent, TValue>()
-    {
-        var component = new Component(typeof(TComponent), typeof(TValue));
-        frontend.Components.Add(component);
-        return new ComponentBuilder(component);
-    }
 }

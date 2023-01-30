@@ -14,6 +14,7 @@ internal class Program
         var applicationBuilder = new FrontendBuilder();
         applicationBuilder.Service(demoStateService);
         applicationBuilder.Service(calculatorService);
-        applicationBuilder.RunWpfApplication();
+        var wpfFrontendBuilder = applicationBuilder.BuildWpfFrontend();
+        wpfFrontendBuilder.RunWpfApplication();
     }
 }

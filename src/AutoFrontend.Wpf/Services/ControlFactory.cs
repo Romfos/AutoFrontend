@@ -1,4 +1,3 @@
-using AutoFrontend.Models;
 using AutoFrontend.Wpf.Controls.Arguments;
 using System;
 using System.Collections.Generic;
@@ -8,13 +7,7 @@ namespace AutoFrontend.Wpf.Services;
 
 public sealed class ControlFactory
 {
-    private readonly Dictionary<Type, Func<Control>> factories;
-
-    public ControlFactory(List<Component> components)
-    {
-        factories = CreateDefaultFactories();
-        OverrideFactories(factories, components);
-    }
+    private readonly Dictionary<Type, Func<Control>> factories = CreateDefaultFactories();
 
     public Control? Create(Type valueType)
     {
@@ -28,7 +21,7 @@ public sealed class ControlFactory
         }
     }
 
-    private Dictionary<Type, Func<Control>> CreateDefaultFactories()
+    private static Dictionary<Type, Func<Control>> CreateDefaultFactories()
     {
         return new()
         {
@@ -85,22 +78,9 @@ public sealed class ControlFactory
         };
     }
 
-    private void OverrideFactories(Dictionary<Type, Func<Control>> overriede, IEnumerable<Component> components)
+    public void AddCustomControl<TControl, TValue>()
+        where TControl : Control, IArgumentControl, new()
     {
-        foreach (var component in components)
-        {
-            overriede[component.ValueType] = () =>
-            {
-                if (Activator.CreateInstance(component.ComponentType) is not Control control)
-                {
-                    throw new Exception($"Component {component.ComponentType} should be wpf control");
-                }
-                if (control is not IArgumentControl)
-                {
-                    throw new Exception($"Component {component.ComponentType} should implement {nameof(IArgumentControl)}");
-                }
-                return control;
-            };
-        }
+        factories[typeof(TValue)] = () => new TControl();
     }
 }

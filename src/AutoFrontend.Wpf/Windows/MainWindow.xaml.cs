@@ -13,10 +13,8 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
-    public void Setup(Frontend frontend)
+    public void Setup(Frontend frontend, ServiceLocator servcieLocator)
     {
-        var servcieLocator = new ServiceLocator(frontend);
-
         foreach (var service in frontend.Services)
         {
             var serviceControl = new ServiceControl();
