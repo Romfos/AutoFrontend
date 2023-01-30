@@ -35,8 +35,9 @@ public sealed class UserService
     {
     }
 
-    public void Bool(bool value)
+    public bool Bool(bool value)
     {
+        return value;
     }
 
     public void Exception()

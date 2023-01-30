@@ -36,7 +36,7 @@ public sealed class ControlFactory
         return new()
         {
             [typeof(string)] = argument => new DefaultStringControl(argument),
-            [typeof(bool)] = argument => new DefaultBoolControl(argument),
+            [typeof(bool)] = (Argument argument) => argument.IsResult ? new DefaultTrueFalseControl(argument) : new DefaultBoolControl(argument),
             [typeof(DateTime)] = argument => new CustomDateTimeControl(argument),
             [typeof(DateTimeOffset)] = argument => new CustomDateTimeControl(argument),
             [typeof(TimeSpan)] = argument => new CustomDateTimeControl(argument),
