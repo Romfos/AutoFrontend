@@ -50,7 +50,7 @@ internal class Program
 
         var applicationBuilder = new FrontendBuilder();
         applicationBuilder.Service(customService);
-        applicationBuilder.RunWpfApplication();
+        applicationBuilder.BuildWpfFrontend().RunWpfApplication();
     }
 }
 ```
