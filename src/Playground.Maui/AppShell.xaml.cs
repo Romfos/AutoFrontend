@@ -1,4 +1,4 @@
-﻿namespace Playground.Maui;
+namespace Playground.Maui;
 
 public partial class AppShell : Shell
 {
