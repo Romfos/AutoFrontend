@@ -8,16 +8,17 @@ public sealed class Function
     public object? Target { get; }
     public MethodInfo MethodInfo { get; }
     public string Name { get; }
+    public Definition Result { get; }
+    public bool IsAsync { get; }
 
     public List<Argument> Arguments { get; } = new();
-    public Argument Result { get; set; }
 
-    public Function(object? target, MethodInfo methodInfo, string name)
+    public Function(object? target, MethodInfo methodInfo, string name, Definition result, bool isAsync)
     {
         Target = target;
         MethodInfo = methodInfo;
         Name = name;
-
-        Result = new Argument(null, typeof(void), true, false, false);
+        Result = result;
+        IsAsync = isAsync;
     }
 }
