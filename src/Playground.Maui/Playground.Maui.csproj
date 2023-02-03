@@ -35,5 +35,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\AutoFrontend.Maui\AutoFrontend.Maui.csproj" />
+		<ProjectReference Include="..\Playground\Playground.csproj" />
 	</ItemGroup>
 </Project>

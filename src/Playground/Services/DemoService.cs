@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Playground.Services;
 
-public sealed class UserService
+public sealed class DemoService
 {
     public void Void()
     {
