@@ -1,56 +1,25 @@
 using AutoFrontend.Models;
-using AutoFrontend.Wpf.Controls.Functions;
 using AutoFrontend.Wpf.Services;
-using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace AutoFrontend.Wpf.Controls;
 
 public partial class ServiceControl : UserControl
 {
-    public ServiceControl(Service service, GlobalFunctionService globalFunctionService, ControlFactory controlFactory)
+    public ServiceControl(Service service, EditorControlFactory editorControlFactory)
     {
         InitializeComponent();
 
-        ConfigureSimpleFunctions(service, globalFunctionService);
-        ConfigureQueryFunctions(service, globalFunctionService, controlFactory);
-        ConfigureDefaultFunctions(service, globalFunctionService, controlFactory);
-    }
-
-    private void ConfigureSimpleFunctions(Service service, GlobalFunctionService globalFunctionService)
-    {
-        var functions = service.Functions
-            .Where(function => function.Arguments.Count == 0 && function.Result.ArgumentType == typeof(void))
-            .ToList();
-
-        if (functions.Any())
+        foreach (var operation in service.Operations)
         {
-            var simpleFunctionsControl = new SimpleFunctionsControl(globalFunctionService, functions);
-            stackPanel.Children.Add(simpleFunctionsControl);
-        }
-    }
+            var border = new Border
+            {
+                Background = operationsStackPanel.Children.Count % 2 == 0 ? Brushes.White : Brushes.LightGray,
+                Child = new OperationControl(operation, editorControlFactory)
+            };
 
-    private void ConfigureQueryFunctions(Service service, GlobalFunctionService globalFunctionService, ControlFactory controlFactory)
-    {
-        var functionControls = service.Functions
-            .Where(function => function.Arguments.Count == 0 && function.Result.ArgumentType != typeof(void))
-            .Select(function => new QueryFunctionControl(function, globalFunctionService, controlFactory));
-
-        foreach (var functionControl in functionControls)
-        {
-            stackPanel.Children.Add(functionControl);
-        }
-    }
-
-    private void ConfigureDefaultFunctions(Service service, GlobalFunctionService globalFunctionService, ControlFactory controlFactory)
-    {
-        var functionControls = service.Functions
-            .Where(function => function.Arguments.Count > 0)
-            .Select(function => new DefaultFunctionControl(function, globalFunctionService, controlFactory));
-
-        foreach (var functionControl in functionControls)
-        {
-            stackPanel.Children.Add(functionControl);
+            operationsStackPanel.Children.Add(border);
         }
     }
 }

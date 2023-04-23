@@ -1,37 +1,28 @@
 using AutoFrontend.Models;
-using AutoFrontend.Wpf.Controls.Arguments;
+using AutoFrontend.Wpf.Controls;
+using AutoFrontend.Wpf.Controls.Editors;
 using AutoFrontend.Wpf.Services;
-using AutoFrontend.Wpf.Windows;
 using System;
-using System.Windows.Controls;
 using System.Windows.Media;
-using TestFixture;
 
 namespace AutoFrontend.Wpf;
 
 public sealed class WpfFrontendBuilder
 {
-    private readonly Frontend frontend;
-
-    private readonly ControlFactory controlFactory;
-    private readonly GlobalFunctionService globalFunctionService;
+    private readonly ApplicationFrontend applicationFrontend;
+    private readonly EditorControlFactory controlFactory = new();
 
     private string title = "AutoFrontend";
     private ImageSource? icon;
 
-    public WpfFrontendBuilder(Frontend frontend)
+    public WpfFrontendBuilder(ApplicationFrontend applicationFrontend)
     {
-        this.frontend = frontend;
-
-        var fixture = new Fixture();
-        controlFactory = new ControlFactory(fixture);
-        globalFunctionService = new GlobalFunctionService();
+        this.applicationFrontend = applicationFrontend;
     }
 
-    public WpfFrontendBuilder AddCustomControl<TControl, TValue>(Func<Argument, TControl> factory)
-        where TControl : Control, IArgumentControl
+    public WpfFrontendBuilder RegisterCustomEditorFactory(Func<Type, IEditorControl?> factory)
     {
-        controlFactory.AddCustomControl<TControl, TValue>(factory);
+        controlFactory.Register(factory);
         return this;
     }
 
@@ -49,7 +40,7 @@ public sealed class WpfFrontendBuilder
 
     public void RunWpfApplication()
     {
-        var mainWindow = new MainWindow(frontend, globalFunctionService, controlFactory);
+        var mainWindow = new AutoFrontendWindow(applicationFrontend, controlFactory);
         mainWindow.Title = title;
         mainWindow.Icon = icon;
         mainWindow.ShowDialog();

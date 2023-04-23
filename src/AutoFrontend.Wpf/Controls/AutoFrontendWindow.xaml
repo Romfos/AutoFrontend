@@ -1,0 +1,35 @@
+<Window x:Class="AutoFrontend.Wpf.Controls.AutoFrontendWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="AutoFrontend.Wpf" 
+        Height="500" 
+        Width="1000"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" MinWidth="100" MaxWidth="400"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto" 
+                      Grid.Column="0">
+            <StackPanel x:Name="servicesStackPanel" Orientation="Vertical" />
+        </ScrollViewer>
+
+        <GridSplitter Grid.Column="1"
+                      VerticalAlignment="Stretch" 
+                      HorizontalAlignment="Stretch"/>
+
+        <ScrollViewer x:Name="contentViewer"
+                      Grid.Column="2"
+                      HorizontalScrollBarVisibility="Auto" 
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch" />
+    </Grid>
+</Window>

@@ -3,21 +3,24 @@ using System.Reflection;
 
 namespace AutoFrontend.Models;
 
-public sealed class Function
+public sealed class Operation
 {
+    public string Name { get; }
     public object? Target { get; }
     public MethodInfo MethodInfo { get; }
-    public string Name { get; }
 
     public List<Argument> Arguments { get; } = new();
-    public Argument Result { get; set; }
+    public OperationResult Result { get; }
 
-    public Function(object? target, MethodInfo methodInfo, string name)
+    public Operation(
+        string name,
+        object? target,
+        MethodInfo methodInfo,
+        OperationResult result)
     {
+        Name = name;
         Target = target;
         MethodInfo = methodInfo;
-        Name = name;
-
-        Result = new Argument(null, typeof(void), true, false, false);
+        Result = result;
     }
 }

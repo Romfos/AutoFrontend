@@ -11,13 +11,13 @@ internal class Program
         var demoStateService = new UserService();
         var calculatorService = new CalculatorService();
 
-        var applicationBuilder = new FrontendBuilder();
-        applicationBuilder.Service(demoStateService);
-        applicationBuilder.Service(calculatorService);
+        var applicationFrontendBuilder = new ApplicationFrontendBuilder();
+        applicationFrontendBuilder.Service(demoStateService);
+        applicationFrontendBuilder.Service(calculatorService);
 
-        var wpfFrontendBuilder = applicationBuilder
+        var wpfFrontendBuilder = applicationFrontendBuilder
             .BuildWpfFrontend()
-            .Title($"Playground wpf application. Dotnet runtime: {Environment.Version}");
+            .Title($"Playground wpf application. Runtime version: {Environment.Version}");
         wpfFrontendBuilder.RunWpfApplication();
     }
 }

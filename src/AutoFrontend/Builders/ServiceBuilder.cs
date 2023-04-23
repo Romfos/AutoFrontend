@@ -1,6 +1,8 @@
 using AutoFrontend.Models;
 using System;
+using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace AutoFrontend.Builders;
 
@@ -13,33 +15,64 @@ public sealed class ServiceBuilder
         this.service = service;
     }
 
-    public FunctionBuilder Function(Delegate @delegate)
+    public OperationBuilder Operation(Delegate @delegate)
     {
-        return Function(@delegate.Target, @delegate.Method);
+        return Operation(@delegate.Target, @delegate.Method);
     }
 
-    public FunctionBuilder Function(object? target, MethodInfo methodInfo)
+    public OperationBuilder Operation(object? target, MethodInfo methodInfo)
     {
-        return Function(target, methodInfo, methodInfo.Name);
+        return Operation(target, methodInfo, methodInfo.Name);
     }
 
-    public FunctionBuilder Function(object? target, MethodInfo methodInfo, string name)
+    public OperationBuilder Operation(object? target, MethodInfo methodInfo, string name)
     {
-        var function = new Function(target, methodInfo, name);
-        var functionBuilder = new FunctionBuilder(function);
-
-        functionBuilder.Result(methodInfo.ReturnParameter.ParameterType);
+        var operationResult = CreateOperationResult(methodInfo.ReturnType);
+        var operation = new Operation(name, target, methodInfo, operationResult);
+        var operationBuilder = new OperationBuilder(operation);
 
         foreach (var parameterInfo in methodInfo.GetParameters())
         {
-            if (parameterInfo == null)
+            if (parameterInfo?.Name == null)
             {
                 throw new Exception($"Unable to get parameter for {methodInfo.Name}");
             }
-            functionBuilder.Argument(parameterInfo.Name, parameterInfo.ParameterType);
+            operationBuilder.Argument(parameterInfo.Name, parameterInfo.ParameterType);
         }
 
-        service.Functions.Add(function);
-        return functionBuilder;
+        service.Operations.Add(operation);
+        return operationBuilder;
+    }
+
+    private OperationResult CreateOperationResult(Type valueType)
+    {
+        if (valueType == typeof(Task))
+        {
+            return new(typeof(void), true);
+        }
+        if (valueType == typeof(ValueTask))
+        {
+            return new(typeof(void), true);
+        }
+
+        if (valueType.IsGenericType)
+        {
+            var genericArguments = valueType.GetGenericArguments();
+            if (genericArguments.Length == 1)
+            {
+                var genericType = genericArguments.Single();
+                if (valueType == typeof(Task<>).MakeGenericType(genericType))
+                {
+                    return new(genericType, true);
+                }
+                if (valueType == typeof(ValueTask<>).MakeGenericType(genericType))
+                {
+                    return new(genericType, true);
+                }
+            }
+        }
+
+        return new(valueType, false);
     }
 }
+

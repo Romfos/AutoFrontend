@@ -5,7 +5,7 @@ namespace AutoFrontend.Models;
 public sealed class Service
 {
     public string Name { get; }
-    public List<Function> Functions { get; } = new();
+    public List<Operation> Operations { get; } = new();
 
     public Service(string name)
     {

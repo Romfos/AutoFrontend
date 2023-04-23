@@ -3,20 +3,20 @@ using System.Reflection;
 
 namespace AutoFrontend.Builders;
 
-public sealed class FrontendBuilder
+public sealed class ApplicationFrontendBuilder
 {
-    private readonly Frontend frontend = new();
+    private readonly ApplicationFrontend applicationFrontend = new();
 
-    public Frontend ToFrontend()
+    public ApplicationFrontend ToApplicationFrontend()
     {
-        return frontend;
+        return applicationFrontend;
     }
 
     public ServiceBuilder Service(string name)
     {
-        var service = new Service(name);
-        frontend.Services.Add(service);
-        return new ServiceBuilder(service);
+        var serivce = new Service(name);
+        applicationFrontend.Services.Add(serivce);
+        return new ServiceBuilder(serivce);
     }
 
     public ServiceBuilder Service(object service)
@@ -27,7 +27,7 @@ public sealed class FrontendBuilder
         var bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly;
         foreach (var method in type.GetMethods(bindingFlags))
         {
-            serviceBuilder.Function(service, method);
+            serviceBuilder.Operation(service, method);
         }
 
         return serviceBuilder;
