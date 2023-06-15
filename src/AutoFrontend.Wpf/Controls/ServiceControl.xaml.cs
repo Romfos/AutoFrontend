@@ -15,7 +15,7 @@ public partial class ServiceControl : UserControl
         {
             var border = new Border
             {
-                Background = operationsStackPanel.Children.Count % 2 == 0 ? Brushes.White : Brushes.LightGray,
+                Background = operationsStackPanel.Children.Count % 2 == 0 ? Brushes.White : Brushes.WhiteSmoke,
                 Child = new OperationControl(operation, editorControlFactory)
             };
 
