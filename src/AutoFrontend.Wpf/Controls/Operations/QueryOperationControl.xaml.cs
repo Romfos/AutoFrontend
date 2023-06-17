@@ -1,5 +1,4 @@
 using AutoFrontend.Models;
-using AutoFrontend.Wpf.Controls.Arguments;
 using AutoFrontend.Wpf.Controls.Results;
 using System;
 using System.Linq;
@@ -9,29 +8,29 @@ using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Operations;
 
-public partial class DefaultOperationControl : UserControl, IOperationControl
+public partial class QueryOperationControl : UserControl, IOperationControl
 {
     private readonly OperationModel operation;
 
     public event Action? OnExectued;
 
-    public DefaultOperationControl(ControlFactory controlFactory, OperationModel operation)
+    public QueryOperationControl(ControlFactory controlFactory, OperationModel operation)
     {
         InitializeComponent();
 
         this.operation = operation;
 
-        button.Content = operation.Name;
-
-        foreach (var argument in operation.Arguments)
-        {
-            arguments.Children.Add(controlFactory.Resolve<Control>(argument));
-        }
+        expander.Header = operation.Name;
 
         results.Children.Add(controlFactory.Resolve<Control>(operation.Result));
     }
 
-    private async void Execute(object sender, RoutedEventArgs e)
+    private void Expanded(object sender, RoutedEventArgs e)
+    {
+        Exectue();
+    }
+
+    private async void Exectue()
     {
         try
         {
@@ -39,15 +38,9 @@ public partial class DefaultOperationControl : UserControl, IOperationControl
             results.Visibility = Visibility.Collapsed;
             progress.Visibility = Visibility.Visible;
 
-            var parameters = arguments.Children.OfType<IArgumentControl>()
-                .Select(x => x.GetValue())
-                .ToArray();
+            var result = await ExectueAsync();
 
-            var task = ExectueAsync(parameters);
-
-            await Task.WhenAll(task, Task.Delay(200));
-
-            results.Children.OfType<IResultControl>().Single().SetValue(task.Result);
+            results.Children.OfType<IResultControl>().Single().SetValue(result);
             results.Visibility = Visibility.Visible;
 
             OnExectued?.Invoke();
@@ -63,27 +56,31 @@ public partial class DefaultOperationControl : UserControl, IOperationControl
         }
     }
 
-    private async Task<object?> ExectueAsync(object?[]? parameters)
+    private async Task<object?> ExectueAsync()
     {
         if (operation.Result.IsAsync)
         {
             if (operation.Result.Type == typeof(void))
             {
-                await (dynamic?)operation.MethodInfo.Invoke(operation.Target, parameters);
+                await (dynamic?)operation.MethodInfo.Invoke(operation.Target, null);
                 return null;
             }
             else
             {
-                return await (dynamic?)operation.MethodInfo.Invoke(operation.Target, parameters);
+                return await (dynamic?)operation.MethodInfo.Invoke(operation.Target, null);
             }
         }
         else
         {
-            return await Task.Factory.StartNew(() => operation.MethodInfo.Invoke(operation.Target, parameters));
+            return await Task.Factory.StartNew(() => operation.MethodInfo.Invoke(operation.Target, null));
         }
     }
 
     public void Refresh()
     {
+        if (expander.IsExpanded && isAutoRefresh.IsChecked == true)
+        {
+            Exectue();
+        }
     }
 }

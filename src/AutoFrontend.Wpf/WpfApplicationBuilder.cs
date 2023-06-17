@@ -25,6 +25,8 @@ public sealed class WpfApplicationBuilder
     private void RegsiterDefaults()
     {
         controlFactory.Register<ServiceModel>(service => new DefaultServiceControl(controlFactory, service));
+
+        controlFactory.Register<OperationModel>(operation => operation.Arguments.Count == 0 && operation.Result.Type != typeof(void) ? new QueryOperationControl(controlFactory, operation) : null);
         controlFactory.Register<OperationModel>(operation => new DefaultOperationControl(controlFactory, operation));
 
         controlFactory.Register<ArgumentModel>(argument => argument.Type == typeof(byte) ? new TextArgumentControl(argument, x => byte.Parse(x), "0") : null);
