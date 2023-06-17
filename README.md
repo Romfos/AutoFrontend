@@ -48,9 +48,9 @@ internal class Program
     {
         var customService = new CustomService(); //Get instance of your service somehow
 
-        var applicationBuilder = new FrontendBuilder();
-        applicationBuilder.Service(customService);
-        applicationBuilder.BuildWpfFrontend().Run();
+        var frontendBuilder = new FrontendBuilder();
+        frontendBuilder.Service(customService);
+        frontendBuilder.BuildWpfApplication().Run();
     }
 }
 ```
