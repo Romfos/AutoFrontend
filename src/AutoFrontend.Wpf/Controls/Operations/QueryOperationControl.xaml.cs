@@ -8,11 +8,9 @@ using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Operations;
 
-public partial class QueryOperationControl : UserControl, IOperationControl
+public partial class QueryOperationControl : UserControl, IExecutedNotification
 {
     private readonly OperationModel operation;
-
-    public event Action? OnExectued;
 
     public QueryOperationControl(ControlFactory controlFactory, OperationModel operation)
     {
@@ -42,8 +40,6 @@ public partial class QueryOperationControl : UserControl, IOperationControl
 
             results.Children.OfType<IResultControl>().Single().SetValue(result);
             results.Visibility = Visibility.Visible;
-
-            OnExectued?.Invoke();
         }
         catch (Exception ex)
         {
@@ -76,9 +72,9 @@ public partial class QueryOperationControl : UserControl, IOperationControl
         }
     }
 
-    public void Refresh()
+    public void OnExecuted()
     {
-        if (expander.IsExpanded && isAutoRefresh.IsChecked == true)
+        if (expander.IsExpanded && autoRefresh.IsChecked == true)
         {
             Exectue();
         }

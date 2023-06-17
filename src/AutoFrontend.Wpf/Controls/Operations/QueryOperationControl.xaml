@@ -23,7 +23,7 @@
                  HorizontalScrollBarVisibility="Auto"
                  Visibility="Collapsed"/>
 
-            <CheckBox x:Name="isAutoRefresh" 
+            <CheckBox x:Name="autoRefresh" 
                       Content="Refresh" 
                       IsChecked="True" 
                       Grid.Column="1" 

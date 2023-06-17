@@ -9,11 +9,11 @@ using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Operations;
 
-public partial class DefaultOperationControl : UserControl, IOperationControl
+public partial class DefaultOperationControl : UserControl, INotifyWhenExecuted
 {
     private readonly OperationModel operation;
 
-    public event Action? OnExectued;
+    public event Action? Executed;
 
     public DefaultOperationControl(ControlFactory controlFactory, OperationModel operation)
     {
@@ -50,7 +50,7 @@ public partial class DefaultOperationControl : UserControl, IOperationControl
             results.Children.OfType<IResultControl>().Single().SetValue(task.Result);
             results.Visibility = Visibility.Visible;
 
-            OnExectued?.Invoke();
+            Executed?.Invoke();
         }
         catch (Exception ex)
         {
@@ -81,9 +81,5 @@ public partial class DefaultOperationControl : UserControl, IOperationControl
         {
             return await Task.Factory.StartNew(() => operation.MethodInfo.Invoke(operation.Target, parameters));
         }
-    }
-
-    public void Refresh()
-    {
     }
 }

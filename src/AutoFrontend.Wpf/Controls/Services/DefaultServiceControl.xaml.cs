@@ -25,20 +25,20 @@ public partial class DefaultServiceControl : UserControl
             var control = controlFactory.Resolve<Control>(operation);
 
             control.Background = operations.Children.Count % 2 == 0 ? Brushes.WhiteSmoke : Brushes.White;
-            if (control is IOperationControl operationControl)
+            if (control is INotifyWhenExecuted notifyWhenExecutedControl)
             {
-                operationControl.OnExectued += () => Refresh(operationControl);
+                notifyWhenExecutedControl.Executed += OnExecuted;
             }
 
             operations.Children.Add(control);
         }
     }
 
-    private void Refresh(IOperationControl sender)
+    private void OnExecuted()
     {
-        foreach (var controls in operations.Children.OfType<IOperationControl>().Where(x => x != sender))
+        foreach (var controls in operations.Children.OfType<IExecutedNotification>())
         {
-            controls.Refresh();
+            controls.OnExecuted();
         }
     }
 }
