@@ -15,9 +15,9 @@ internal class Program
         frontendBuilder.Service(demoStateService);
         frontendBuilder.Service(calculatorService);
 
-        var wpfFrontendBuilder = frontendBuilder
+        var wpfApplicationBuilder = frontendBuilder
             .BuildWpfApplication()
             .Title($"Playground wpf application. Runtime: {Environment.Version}");
-        wpfFrontendBuilder.Run();
+        wpfApplicationBuilder.Run();
     }
 }
