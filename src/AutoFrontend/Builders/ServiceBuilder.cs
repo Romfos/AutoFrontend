@@ -8,9 +8,9 @@ namespace AutoFrontend.Builders;
 
 public sealed class ServiceBuilder
 {
-    private readonly Service service;
+    private readonly ServiceModel service;
 
-    public ServiceBuilder(Service service)
+    public ServiceBuilder(ServiceModel service)
     {
         this.service = service;
     }
@@ -27,8 +27,8 @@ public sealed class ServiceBuilder
 
     public OperationBuilder Operation(object? target, MethodInfo methodInfo, string name)
     {
-        var operationResult = CreateOperationResult(methodInfo.ReturnType);
-        var operation = new Operation(name, target, methodInfo, operationResult);
+        var operationResult = CreateResultModel(methodInfo.ReturnType);
+        var operation = new OperationModel(name, target, methodInfo, operationResult);
         var operationBuilder = new OperationBuilder(operation);
 
         foreach (var parameterInfo in methodInfo.GetParameters())
@@ -44,35 +44,35 @@ public sealed class ServiceBuilder
         return operationBuilder;
     }
 
-    private OperationResult CreateOperationResult(Type valueType)
+    private ResultModel CreateResultModel(Type returnType)
     {
-        if (valueType == typeof(Task))
+        if (returnType == typeof(Task))
         {
             return new(typeof(void), true);
         }
-        if (valueType == typeof(ValueTask))
+        if (returnType == typeof(ValueTask))
         {
             return new(typeof(void), true);
         }
 
-        if (valueType.IsGenericType)
+        if (returnType.IsGenericType)
         {
-            var genericArguments = valueType.GetGenericArguments();
+            var genericArguments = returnType.GetGenericArguments();
             if (genericArguments.Length == 1)
             {
                 var genericType = genericArguments.Single();
-                if (valueType == typeof(Task<>).MakeGenericType(genericType))
+                if (returnType == typeof(Task<>).MakeGenericType(genericType))
                 {
                     return new(genericType, true);
                 }
-                if (valueType == typeof(ValueTask<>).MakeGenericType(genericType))
+                if (returnType == typeof(ValueTask<>).MakeGenericType(genericType))
                 {
                     return new(genericType, true);
                 }
             }
         }
 
-        return new(valueType, false);
+        return new(returnType, false);
     }
 }
 

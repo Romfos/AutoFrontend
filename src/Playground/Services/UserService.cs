@@ -11,66 +11,66 @@ public sealed class UserService
     {
     }
 
-    public Model Model(Model model)
+    public Model Model(Model argument)
     {
-        return model;
+        return argument;
     }
 
-    public string String(string stringValue)
+    public string String(string argument)
     {
-        return stringValue;
+        return argument;
     }
 
-    public char Char(char charValue)
+    public char Char(char argument)
     {
-        return charValue;
+        return argument;
     }
 
-    public Uri Uri(Uri uriValue)
+    public Uri Uri(Uri argument)
     {
-        return uriValue;
+        return argument;
     }
 
-    public DateTime DateTime(DateTime dateTime)
+    public DateTime DateTime(DateTime argument)
     {
-        return dateTime;
+        return argument;
     }
 
-    public DateTimeOffset DateTimeOffset(DateTimeOffset dateTimeOffset)
+    public DateTimeOffset DateTimeOffset(DateTimeOffset argument)
     {
-        return dateTimeOffset;
+        return argument;
     }
 
-    public TimeSpan DateTimeOffset(TimeSpan timeSpan)
+    public TimeSpan TimeSpan(TimeSpan argument)
     {
-        return timeSpan;
+        return argument;
     }
 
 #if NET6_0_OR_GREATER
-    public TimeOnly TimeOnly(TimeOnly timeOnly)
+    public TimeOnly TimeOnly(TimeOnly argument)
     {
-        return timeOnly;
+        return argument;
     }
 
-    public DateOnly DateOnly(DateOnly dateOnly)
+    public DateOnly DateOnly(DateOnly argument)
     {
-        return dateOnly;
+        return argument;
     }
 #endif
 
-    public Guid Guid(Guid guidValue)
+    public Guid Guid(Guid argument)
     {
-        return guidValue;
+        return argument;
     }
 
-    public bool Bool(bool value)
+    public bool Bool(bool argument)
     {
-        return value;
+        return argument;
     }
 
-    public Enum1 Enum(Enum1 @enum)
+    public Enum1 Enum(Enum1 argument)
     {
-        return @enum;
+        return argument;
     }
 
     public void Exception()

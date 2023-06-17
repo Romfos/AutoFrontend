@@ -1,0 +1,27 @@
+<UserControl x:Class="AutoFrontend.Wpf.Controls.Operations.DefaultOperationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+
+    <StackPanel MaxWidth="1280" Margin="5,0,5,0">
+
+        <StackPanel x:Name="arguments"/>
+
+        <Button x:Name="button" Height="30" Click="Execute" Margin="0,2,0,0"/>
+        <ProgressBar x:Name="progress" IsIndeterminate="True" Visibility="Collapsed" />
+
+        <StackPanel x:Name="results" Visibility="Collapsed" />
+        <TextBox x:Name="exception" 
+                 IsReadOnly="True"
+                 BorderBrush="Red"
+                 BorderThickness="1"
+                 MaxHeight="300" 
+                 VerticalScrollBarVisibility="Auto" 
+                 HorizontalScrollBarVisibility="Auto"
+                 Visibility="Collapsed"/>
+
+    </StackPanel>
+    
+</UserControl>

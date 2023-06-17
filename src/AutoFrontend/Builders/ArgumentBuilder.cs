@@ -4,9 +4,9 @@ namespace AutoFrontend.Builders;
 
 public sealed class ArgumentBuilder
 {
-    private readonly Argument argument;
+    private readonly ArgumentModel argument;
 
-    public ArgumentBuilder(Argument argument)
+    public ArgumentBuilder(ArgumentModel argument)
     {
         this.argument = argument;
     }
