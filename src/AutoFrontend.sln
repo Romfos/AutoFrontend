@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".global", ".global", "{AF18
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		Directory.Build.props = Directory.Build.props
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{56D977FE-195D-40C8-BB1E-E8A4F44321FD}"
@@ -21,9 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Playground.Wpf", "Playgroun
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoFrontend.Wpf", "AutoFrontend.Wpf\AutoFrontend.Wpf.csproj", "{58E6DFF1-65B4-4A92-954E-FD100C8CF5D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFrontend.BlazorServer", "AutoFrontend.BlazorServer\AutoFrontend.BlazorServer.csproj", "{704F403D-579F-44D4-85FF-DF1EA5629624}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoFrontend.BlazorServer", "AutoFrontend.BlazorServer\AutoFrontend.BlazorServer.csproj", "{704F403D-579F-44D4-85FF-DF1EA5629624}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground.BlazorServer", "Playground.BlazorServer\Playground.BlazorServer.csproj", "{A1E76CB9-07FC-49DD-BF09-C274306D6DE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Playground.BlazorServer", "Playground.BlazorServer\Playground.BlazorServer.csproj", "{A1E76CB9-07FC-49DD-BF09-C274306D6DE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
