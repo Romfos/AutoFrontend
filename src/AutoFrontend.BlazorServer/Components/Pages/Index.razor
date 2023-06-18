@@ -1,0 +1,16 @@
+@page "/"
+@using AutoFrontend.Models
+
+@inject NavigationManager navigationManager
+@inject FrontendModel frontendModel
+
+@code {
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (frontendModel.Services.Any())
+        {
+            var serviceName = frontendModel.Services.First().Name;
+            navigationManager.NavigateTo($"/service/{serviceName}");
+        }
+    }
+}
