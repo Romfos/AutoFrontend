@@ -22,9 +22,10 @@ Some use cases:
 
 ## Supported platforms
 
-| Technology | Supported platforms                           | Nuget                                                               |
-| ---------- | --------------------------------------------- | ------------------------------------------------------------------- |
-| Wpf        | .NET 6+ (Recomended) or .NET Framework 4.6.2+ | [AutoFrontend.Wpf](https://www.nuget.org/packages/AutoFrontend.Wpf) |
+| Technology    | Supported platforms                           | Nuget                                                                                 |
+| ------------- | --------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Wpf           | .NET 6+ (Recomended) or .NET Framework 4.6.2+ | [AutoFrontend.Wpf](https://www.nuget.org/packages/AutoFrontend.Wpf)                   |
+| Blazor Server | .NET 6+                                       | [AutoFrontend.BlazorServer](https://www.nuget.org/packages/AutoFrontend.BlazorServer) |
 
 ## How to use
 
@@ -41,7 +42,7 @@ public class CustomService
 }
 ```
 
-Program.cs
+Program.cs for WPF
 
 ```csharp
 internal class Program
@@ -56,4 +57,14 @@ internal class Program
         frontendBuilder.BuildWpfApplication().Run();
     }
 }
+```
+
+Program.cs for Blazor Server
+
+```csharp
+var customService = new CustomService(); //Get instance of your service somehow
+
+var frontendBuilder = new FrontendBuilder();
+frontendBuilder.Service(customService);
+frontendBuilder.BuildBlazorServerApplication().Run();
 ```
