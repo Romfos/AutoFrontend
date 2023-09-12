@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Nullable>enable</Nullable>
-    <LangVersion>11</LangVersion>
+    <LangVersion>12</LangVersion>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
