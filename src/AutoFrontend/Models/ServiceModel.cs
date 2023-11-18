@@ -2,13 +2,8 @@ using System.Collections.Generic;
 
 namespace AutoFrontend.Models;
 
-public sealed class ServiceModel
+public sealed class ServiceModel(string name)
 {
-    public string Name { get; }
+    public string Name { get; } = name;
     public List<OperationModel> Operations { get; } = new();
-
-    public ServiceModel(string name)
-    {
-        Name = name;
-    }
 }

@@ -2,14 +2,8 @@ using System;
 
 namespace AutoFrontend.Models;
 
-public sealed class ResultModel
+public sealed class ResultModel(Type type, bool isAsync)
 {
-    public Type Type { get; }
-    public bool IsAsync { get; }
-
-    public ResultModel(Type type, bool isAsync)
-    {
-        Type = type;
-        IsAsync = isAsync;
-    }
+    public Type Type { get; } = type;
+    public bool IsAsync { get; } = isAsync;
 }

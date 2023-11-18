@@ -6,15 +6,8 @@ using System.Threading.Tasks;
 
 namespace AutoFrontend.Builders;
 
-public sealed class ServiceBuilder
+public sealed class ServiceBuilder(ServiceModel service)
 {
-    private readonly ServiceModel service;
-
-    public ServiceBuilder(ServiceModel service)
-    {
-        this.service = service;
-    }
-
     public OperationBuilder Operation(Delegate @delegate)
     {
         return Operation(@delegate.Target, @delegate.Method);

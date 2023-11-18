@@ -45,6 +45,7 @@ dotnet_style_namespace_match_folder=true:error
 csharp_style_namespace_declarations=file_scoped:error
 csharp_style_prefer_null_check_over_type_check=true:error
 dotnet_style_require_accessibility_modifiers=for_non_interface_members:error
+csharp_style_prefer_primary_constructors=true:error
 
 csharp_new_line_before_open_brace=all
 csharp_new_line_before_else=true

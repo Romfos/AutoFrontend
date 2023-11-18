@@ -1,13 +1,7 @@
 namespace Playground.Models;
 
-public sealed class Model
+public sealed class Model(string stringProperty, int intProperty)
 {
-    public string StringProperty { get; }
-    public int IntProperty { get; }
-
-    public Model(string stringProperty, int intProperty)
-    {
-        StringProperty = stringProperty;
-        IntProperty = intProperty;
-    }
+    public string StringProperty { get; } = stringProperty;
+    public int IntProperty { get; } = intProperty;
 }
