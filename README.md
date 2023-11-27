@@ -1,7 +1,7 @@
 # Owerview
 
 [![.github/workflows/build.yml](https://github.com/Romfos/AutoFrontend/actions/workflows/build.yml/badge.svg)](https://github.com/Romfos/AutoFrontend/actions/workflows/build.yml)
-[![AutoFrontend.Wpf](https://img.shields.io/nuget/v/AutoFrontend.Wpf?label=AutoFrontend.Wpfs)](https://www.nuget.org/packages/AutoFrontend.Wpf)
+[![AutoFrontend.Wpf](https://img.shields.io/nuget/v/AutoFrontend.Wpf?label=AutoFrontend.Wpf)](https://www.nuget.org/packages/AutoFrontend.Wpf)
 
 AutoFrontend is a framework for automatically building UI applications based on custom business logic
 
