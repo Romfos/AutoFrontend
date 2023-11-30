@@ -14,9 +14,9 @@ public sealed class FrontendBuilder
 
     public ServiceBuilder Service(string name)
     {
-        var serivce = new ServiceModel(name);
-        frontendModel.Services.Add(serivce);
-        return new ServiceBuilder(serivce);
+        var service = new ServiceModel(name);
+        frontendModel.Services.Add(service);
+        return new ServiceBuilder(service);
     }
 
     public ServiceBuilder Service(object service)

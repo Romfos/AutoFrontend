@@ -2,25 +2,25 @@ namespace Playground.Services;
 
 public sealed class CalculatorService
 {
-    private int acumulator;
+    private int accumulator;
 
     public int Get()
     {
-        return acumulator;
+        return accumulator;
     }
 
     public void Set(int value)
     {
-        acumulator = value;
+        accumulator = value;
     }
 
     public void Add(int value)
     {
-        acumulator += value;
+        accumulator += value;
     }
 
-    public void Substract(int value)
+    public void Subtract(int value)
     {
-        acumulator -= value;
+        accumulator -= value;
     }
 }
