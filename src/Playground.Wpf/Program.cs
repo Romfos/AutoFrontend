@@ -3,7 +3,7 @@ using AutoFrontend.Wpf;
 using Playground.Services;
 using System;
 
-internal class Program
+internal sealed class Program
 {
     [STAThread]
     public static void Main()
