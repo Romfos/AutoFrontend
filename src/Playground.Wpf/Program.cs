@@ -1,7 +1,6 @@
 using AutoFrontend.Builders;
 using AutoFrontend.Wpf;
 using Playground.Services;
-using System;
 
 internal sealed class Program
 {

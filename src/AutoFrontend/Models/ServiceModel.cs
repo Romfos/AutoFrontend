@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace AutoFrontend.Models;
 
 public sealed class ServiceModel(string name)

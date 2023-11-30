@@ -1,5 +1,3 @@
-using System;
-
 namespace AutoFrontend.Models;
 
 public sealed class ResultModel(Type type, bool isAsync)

@@ -1,9 +1,6 @@
 using AutoFrontend.Models;
 using AutoFrontend.Wpf.Controls.Arguments;
 using AutoFrontend.Wpf.Controls.Results;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 

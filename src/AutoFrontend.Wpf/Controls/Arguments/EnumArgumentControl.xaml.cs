@@ -1,5 +1,4 @@
 using AutoFrontend.Models;
-using System;
 using System.Windows.Controls;
 
 namespace AutoFrontend.Wpf.Controls.Arguments;
