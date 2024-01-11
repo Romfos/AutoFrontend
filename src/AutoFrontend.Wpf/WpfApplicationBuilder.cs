@@ -18,10 +18,10 @@ public sealed class WpfApplicationBuilder
     {
         this.frontendModel = frontendModel;
 
-        RegsiterDefaults();
+        RegisterDefaults();
     }
 
-    private void RegsiterDefaults()
+    private void RegisterDefaults()
     {
         controlFactory.Register<ServiceModel>(service => new DefaultServiceControl(controlFactory, service));
 
