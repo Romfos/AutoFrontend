@@ -19,7 +19,7 @@ AutoFrontend is a framework for automatically building UI applications based on 
 
 | Technology | Supported platforms                            | Nuget                                                               |
 |------------|------------------------------------------------|---------------------------------------------------------------------|
-| Wpf        | .NET 8+ (Recommended) or .NET Framework 4.6.2+ | [AutoFrontend.Wpf](https://www.nuget.org/packages/AutoFrontend.Wpf) |
+| Wpf        | .NET 8+ (Recommended) or .NET Framework 4.7.2+ | [AutoFrontend.Wpf](https://www.nuget.org/packages/AutoFrontend.Wpf) |
 
 ## How to use and more info
 
