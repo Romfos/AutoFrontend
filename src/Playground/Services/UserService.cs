@@ -44,7 +44,7 @@ public sealed class UserService
         return argument;
     }
 
-#if NET6_0_OR_GREATER
+#if NET
     public TimeOnly TimeOnly(TimeOnly argument)
     {
         return argument;

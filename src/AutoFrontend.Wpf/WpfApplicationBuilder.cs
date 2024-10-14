@@ -45,7 +45,7 @@ public sealed class WpfApplicationBuilder
         controlFactory.Register<ArgumentModel>(argument => argument.Type == typeof(DateTime) ? new TextArgumentControl(argument, x => DateTime.Parse(x), DateTime.Now.ToString()) : null);
         controlFactory.Register<ArgumentModel>(argument => argument.Type == typeof(DateTimeOffset) ? new TextArgumentControl(argument, x => DateTimeOffset.Parse(x), DateTimeOffset.Now.ToString()) : null);
         controlFactory.Register<ArgumentModel>(argument => argument.Type == typeof(TimeSpan) ? new TextArgumentControl(argument, x => TimeSpan.Parse(x), DateTime.Now.TimeOfDay.ToString()) : null);
-#if NET6_0_OR_GREATER
+#if NET
         controlFactory.Register<ArgumentModel>(argument => argument.Type == typeof(DateOnly) ? new TextArgumentControl(argument, x => DateOnly.Parse(x), DateOnly.FromDateTime(DateTime.Now).ToString()) : null);
         controlFactory.Register<ArgumentModel>(argument => argument.Type == typeof(TimeOnly) ? new TextArgumentControl(argument, x => TimeOnly.Parse(x), TimeOnly.FromDateTime(DateTime.Now).ToString()) : null);
 #endif
@@ -73,7 +73,7 @@ public sealed class WpfApplicationBuilder
         controlFactory.Register<ResultModel>(result => result.Type == typeof(DateTime) ? new TextResultControl() : null);
         controlFactory.Register<ResultModel>(result => result.Type == typeof(DateTimeOffset) ? new TextResultControl() : null);
         controlFactory.Register<ResultModel>(result => result.Type == typeof(TimeSpan) ? new TextResultControl() : null);
-#if NET6_0_OR_GREATER
+#if NET
         controlFactory.Register<ResultModel>(result => result.Type == typeof(TimeOnly) ? new TextResultControl() : null);
         controlFactory.Register<ResultModel>(result => result.Type == typeof(DateOnly) ? new TextResultControl() : null);
 #endif
