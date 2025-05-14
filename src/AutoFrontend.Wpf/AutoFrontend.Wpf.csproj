@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
-    <PackageReference Include="System.Text.Json" Version="9.0.4" />
+    <PackageReference Include="System.Text.Json" Version="9.0.5" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
