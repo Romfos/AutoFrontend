@@ -2,7 +2,7 @@ namespace AutoFrontend.Wpf;
 
 public sealed class ControlFactory
 {
-    private readonly List<Func<object?, object?>> factories = new();
+    private readonly List<Func<object?, object?>> factories = [];
 
     public void Register<TArgument>(Func<TArgument, object?> factory)
     {

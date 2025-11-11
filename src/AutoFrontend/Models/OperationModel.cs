@@ -12,6 +12,6 @@ public sealed class OperationModel(
     public object? Target { get; } = target;
     public MethodInfo MethodInfo { get; } = methodInfo;
 
-    public List<ArgumentModel> Arguments { get; } = new();
+    public List<ArgumentModel> Arguments { get; } = [];
     public ResultModel Result { get; } = result;
 }
